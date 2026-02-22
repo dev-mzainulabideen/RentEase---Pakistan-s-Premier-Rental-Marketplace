@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your profile on My Rental Marketplace">
+    <title>My Profile - My Rental Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/ads.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="RentEase Home - Find & Book Easily">
+                    <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+                </a>
+
+                <!-- Main Navigation - Desktop (Large Screens) -->
+                <nav class="main-navigation desktop-nav" aria-label="Main navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="index.html" class="nav-link" data-page="home" role="menuitem" aria-label="Home">
+                                <i class="bi bi-house-door" aria-hidden="true"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-item-dropdown" role="none">
+                            <a href="index.html#categories-grid" class="nav-link" data-page="categories" role="menuitem" aria-label="Browse Categories" aria-haspopup="true">
+                                <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                                <span>Categories</span>
+                                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <!-- Categories Dropdown -->
+                            <div class="nav-dropdown-menu">
+                                <a href="category.html?category=property" class="dropdown-nav-item">
+                                    <i class="bi bi-house" aria-hidden="true"></i>
+                                    <span>Property</span>
+                                </a>
+                                <a href="category.html?category=vehicles" class="dropdown-nav-item">
+                                    <i class="bi bi-car-front" aria-hidden="true"></i>
+                                    <span>Vehicles</span>
+                                </a>
+                                <a href="category.html?category=clothes" class="dropdown-nav-item">
+                                    <i class="bi bi-bag" aria-hidden="true"></i>
+                                    <span>Clothes</span>
+                                </a>
+                                <a href="category.html?category=equipment" class="dropdown-nav-item">
+                                    <i class="bi bi-tools" aria-hidden="true"></i>
+                                    <span>Equipment</span>
+                                </a>
+                                <a href="category.html?category=services" class="dropdown-nav-item">
+                                    <i class="bi bi-person-workspace" aria-hidden="true"></i>
+                                    <span>Services</span>
+                                </a>
+                                <a href="category.html?category=animals" class="dropdown-nav-item">
+                                    <i class="bi bi-heart" aria-hidden="true"></i>
+                                    <span>Animals</span>
+                                </a>
+                                <a href="category.html?category=boat" class="dropdown-nav-item">
+                                    <i class="bi bi-water" aria-hidden="true"></i>
+                                    <span>Boat</span>
+                                </a>
+                                <a href="category.html?category=air-transport" class="dropdown-nav-item">
+                                    <i class="bi bi-airplane" aria-hidden="true"></i>
+                                    <span>Air Transport</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-listings.html" class="nav-link" data-page="listings" role="menuitem" aria-label="My Listings">
+                                <span>Listings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="index.html#how-it-works" class="nav-link" data-page="how-it-works" role="menuitem" aria-label="How It Works">
+                                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                <span>How It Works</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="help.html" class="nav-link" data-page="help" role="menuitem" aria-label="Help & Support">
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Secondary Navigation - Tablet/Medium Screens (Logged In) -->
+                <nav class="secondary-navigation tablet-nav logged-out" aria-label="Secondary navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="dashboard.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-bookings.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                <span>My Bookings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="messages.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                <span>Chats</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Right Menu -->
+                <div class="header-menu">
+                    <!-- Notifications (Secondary Screens & Desktop when logged in) -->
+                    <button class="notification-toggle logged-out" onclick="toggleNotifications()" aria-label="Notifications" aria-expanded="false" type="button">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        <span class="notification-badge" aria-label="Unread notifications">3</span>
+                    </button>
+
+                    <!-- Language Toggle (Desktop) -->
+                    <button class="language-toggle desktop-only" onclick="toggleLanguage()" aria-label="Toggle language" aria-expanded="false" type="button">
+                        <i class="bi bi-globe2" aria-hidden="true"></i>
+                        <span id="lang-text" class="lang-text">اردو</span>
+                    </button>
+
+                    <!-- List Item CTA Button (Desktop) -->
+                    <a href="create-listing.html" class="btn-list-item desktop-only" aria-label="List your item" data-require="createListing">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                        <span>List Item</span>
+                    </a>
+
+                    <!-- User Menu (when logged in) -->
+                    <div class="user-menu logged-out">
+                        <div class="user-dropdown">
+                            <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu" aria-expanded="false" aria-haspopup="true" role="button" tabindex="0">
+                                <div class="user-avatar" role="img" aria-label="User avatar">
+                                    <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" id="user-dropdown-menu" role="menu" aria-label="User menu">
+                                <div class="dropdown-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar-small" role="img" aria-label="User avatar">
+                                            <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <div class="user-name">John Doe</div>
+                                            <div class="user-email">john@example.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="dashboard.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="my-listings.html" class="dropdown-item owner-only" data-require="createListing" role="menuitem">
+                                    <i class="bi bi-house-door" aria-hidden="true"></i>
+                                    <span>My Listings</span>
+                                </a>
+                                <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory" role="menuitem">
+                                    <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                    <span>My Bookings</span>
+                                </a>
+                                <a href="messages.html" class="dropdown-item" data-require="message" role="menuitem">
+                                    <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                    <span>Messages</span>
+                                    <span class="badge-notification" aria-label="3 unread messages">3</span>
+                                </a>
+                                <a href="emergency-contacts.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                                    <span>Emergency Contacts</span>
+                                </a>
+                                <a href="disputes.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                                    <span>Dispute Resolution</span>
+                                </a>
+                                <a href="safety-guidelines.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Safety Guidelines</span>
+                                </a>
+                                <a href="admin/dashboard.html" class="dropdown-item admin-link" data-require="adminAccess" style="display: none;" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Admin Panel</span>
+                                </a>
+                                <a href="profile.html" class="dropdown-item active" role="menuitem">
+                                    <i class="bi bi-person" aria-hidden="true"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="settings.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-gear" aria-hidden="true"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="help.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-question-circle" aria-hidden="true"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout();" role="menuitem">
+                                    <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                                    <span>Log out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Buttons (Desktop - Logged Out) -->
+                    <div class="auth-buttons desktop-only logged-in">
+                        <a href="login.html" class="btn-login" aria-label="Log in to your account">
+                            <span class="btn-text">Login</span>
+                        </a>
+                        <a href="register.html" class="btn-signup" aria-label="Create a new account">
+                            <span class="btn-text">Sign Up</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle - Hamburger -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+                        <span class="hamburger-icon" aria-hidden="true">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications Dropdown -->
+            <div class="notifications-dropdown" id="notifications-dropdown" role="menu" aria-label="Notifications">
+                <div class="notifications-header">
+                    <h4>Notifications</h4>
+                    <button class="notifications-mark-all" onclick="markAllNotificationsRead()" aria-label="Mark all as read">
+                        Mark all as read
+                    </button>
+                </div>
+                <div class="notifications-list">
+                    <a href="messages.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">New message from John</div>
+                            <div class="notification-time">2 minutes ago</div>
+                        </div>
+                    </a>
+                    <a href="my-bookings.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-calendar-check-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Booking confirmed</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                    </a>
+                    <a href="my-listings.html" class="notification-item">
+                        <div class="notification-icon">
+                            <i class="bi bi-heart-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Someone saved your listing</div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="notifications-footer">
+                    <a href="notifications.html" class="notifications-view-all">View all notifications</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-logo">
+                        <a href="index.html" class="mobile-logo-link" aria-label="RentEase Home">
+                            <img src="logos/logo.png" alt="RentEase" class="mobile-logo-image">
+                        </a>
+                    </div>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu" type="button">
+                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <!-- User Info Section (when logged in) -->
+                <div class="mobile-menu-user-info logged-out">
+                    <div class="mobile-user-avatar">
+                        <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="mobile-user-details">
+                        <div class="mobile-user-name">John Doe</div>
+                        <div class="mobile-user-email">john@example.com</div>
+                    </div>
+                </div>
+
+                <div class="mobile-menu-content" role="menu">
+                    <!-- Main Navigation -->
+                    <div class="mobile-menu-section">
+                        <a href="index.html" class="mobile-menu-item" role="menuitem" data-index="0">
+                            <i class="bi bi-house" aria-hidden="true"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="index.html#categories-grid" class="mobile-menu-item" role="menuitem" data-index="1">
+                            <i class="bi bi-grid" aria-hidden="true"></i>
+                            <span>Categories</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item" role="menuitem" data-index="2">
+                            <i class="bi bi-list-ul" aria-hidden="true"></i>
+                            <span>Listings</span>
+                        </a>
+                        <a href="index.html#how-it-works" class="mobile-menu-item" role="menuitem" data-index="3">
+                            <i class="bi bi-info-circle" aria-hidden="true"></i>
+                            <span>How It Works</span>
+                        </a>
+                        <a href="help.html" class="mobile-menu-item" role="menuitem" data-index="4">
+                            <i class="bi bi-question-circle" aria-hidden="true"></i>
+                            <span>Help</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Account Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">My Account</div>
+                        <a href="dashboard.html" class="mobile-menu-item" role="menuitem" data-index="5">
+                            <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item owner-only" data-require="createListing" role="menuitem" data-index="6">
+                            <i class="bi bi-house-door" aria-hidden="true"></i>
+                            <span>My Listings</span>
+                        </a>
+                        <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory" role="menuitem" data-index="7">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                            <span>My Bookings</span>
+                        </a>
+                        <a href="messages.html" class="mobile-menu-item" data-require="message" role="menuitem" data-index="8">
+                            <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                            <span>Messages</span>
+                            <span class="badge-notification" aria-label="Unread messages">3</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Support Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">Support & Safety</div>
+                        <a href="emergency-contacts.html" class="mobile-menu-item" role="menuitem" data-index="9">
+                            <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                            <span>Emergency Contacts</span>
+                        </a>
+                        <a href="disputes.html" class="mobile-menu-item" role="menuitem" data-index="10">
+                            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                            <span>Dispute Resolution</span>
+                        </a>
+                        <a href="safety-guidelines.html" class="mobile-menu-item" role="menuitem" data-index="11">
+                            <i class="bi bi-shield-check" aria-hidden="true"></i>
+                            <span>Safety Guidelines</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Auth Section -->
+                    <div class="mobile-menu-section mobile-menu-auth">
+                        <a href="login.html" class="mobile-menu-item mobile-menu-login" role="menuitem" data-index="12">
+                            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+                            <span>Log in</span>
+                        </a>
+                        <a href="register.html" class="mobile-menu-item mobile-menu-signup" role="menuitem" data-index="13">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i>
+                            <span>Sign up</span>
+                        </a>
+                        <a href="#" class="mobile-menu-item mobile-menu-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;" role="menuitem" data-index="14">
+                            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                            <span>Log out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="profile-page">
+        <div class="profile-section">
+            <div class="container">
+                <div class="profile-wrapper">
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-header-content">
+                            <!-- Profile Picture -->
+                            <div class="profile-picture-section">
+                                <div class="profile-picture-wrapper">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTllY2VmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iI2ZjNzU3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+VVNlcjwvdGV4dD48L3N2Zz4=" alt="Profile Picture" class="profile-picture" id="profilePicture">
+                                    <div class="profile-picture-overlay">
+                                        <button class="profile-picture-edit" onclick="document.getElementById('profilePictureInput').click()">
+                                            <i class="bi bi-camera-fill"></i>
+                                            <span>Change Photo</span>
+                                        </button>
+                                    </div>
+                                    <input type="file" id="profilePictureInput" accept="image/*" style="display: none;" onchange="handleProfilePictureChange(event)">
+                                </div>
+                                <div class="profile-verification-badge" id="verificationBadge">
+                                    <i class="bi bi-shield-check-fill"></i>
+                                    <span>Verified</span>
+                                </div>
+                            </div>
+
+                            <!-- Profile Info -->
+                            <div class="profile-info">
+                                <h1 class="profile-name" id="profileName">John Doe</h1>
+                                <p class="profile-email" id="profileEmail">john.doe@example.com</p>
+                                <p class="profile-phone" id="profilePhone">+92 300 1234567</p>
+                                <div class="profile-meta">
+                                    <span class="profile-role">
+                                        <i class="bi bi-person-badge"></i>
+                                        <span id="profileRole">Owner & Borrower</span>
+                                    </span>
+                                    <span class="profile-account-type">
+                                        <i class="bi bi-star-fill"></i>
+                                        <span id="accountType">Premium Account</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Renter-focused Profile Stats (hidden for pure owners) -->
+                            <div class="profile-stats" id="renterStatsHeader">
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-calendar-check"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="totalBookingsCount">0</div>
+                                        <div class="stat-label">Total Bookings</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-play-circle"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="activeBookingsCount">0</div>
+                                        <div class="stat-label">Active Bookings</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-x-circle"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="cancelledBookingsCount">0</div>
+                                        <div class="stat-label">Cancelled</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="reviewsGivenCount">0</div>
+                                        <div class="stat-label">Reviews Given</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Owner-focused stats summary (hidden by default, shown for owners) -->
+                            <div class="profile-stats owner-stats" id="ownerStatsHeader" style="display: none;">
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-house-door"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="ownerListingsCount">0</div>
+                                        <div class="stat-label">Total Listings</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-toggles"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <button class="stat-link-button" id="ownerActiveListingsLink" type="button">
+                                            <div class="stat-number" id="ownerActiveListingsCount">0</div>
+                                            <div class="stat-label">Active Listings</div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-calendar2-check"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="ownerBookingsCount">0</div>
+                                        <div class="stat-label">Total Bookings</div>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="stat-number" id="ownerRatingValue">0.0</div>
+                                        <div class="stat-label">Avg. Rating</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Navigation Tabs -->
+                    <div class="profile-nav">
+                        <button class="nav-tab active" data-tab="overview" onclick="switchTab('overview')">
+                            <i class="bi bi-person"></i>
+                            <span>Overview</span>
+                        </button>
+                        <button class="nav-tab" data-tab="personal" onclick="switchTab('personal')">
+                            <i class="bi bi-pencil"></i>
+                            <span>Personal Info</span>
+                        </button>
+                        <button class="nav-tab" data-tab="security" onclick="switchTab('security')">
+                            <i class="bi bi-shield-lock"></i>
+                            <span>Security</span>
+                        </button>
+                        <button class="nav-tab" data-tab="verification" onclick="switchTab('verification')">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Verification</span>
+                        </button>
+                        <button class="nav-tab" data-tab="preferences" onclick="switchTab('preferences')">
+                            <i class="bi bi-sliders"></i>
+                            <span>Preferences</span>
+                        </button>
+                        <button class="nav-tab" data-tab="bookings" id="renterBookingsTabBtn" onclick="switchTab('bookings')">
+                            <i class="bi bi-calendar-check"></i>
+                            <span>Bookings & Reviews</span>
+                        </button>
+                        <button class="nav-tab owner-only" data-tab="owner" id="ownerTabBtn" style="display: none;" onclick="switchTab('owner')">
+                            <i class="bi bi-house-door"></i>
+                            <span>Owner Dashboard</span>
+                        </button>
+                    </div>
+
+                    <!-- Profile Content -->
+                    <div class="profile-content">
+                        <!-- Overview Tab -->
+                        <div class="tab-content active" id="overviewTab">
+                            <div class="profile-card" id="activitySummaryCard">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-info-circle"></i>
+                                        About Me
+                                    </h3>
+                                    <div class="card-header-actions">
+                                        <a href="messages.html" class="btn btn-primary btn-chat-profile">
+                                            <i class="bi bi-chat-dots"></i>
+                                            <span>Chat</span>
+                                        </a>
+                                        <button class="btn-edit" onclick="switchTab('personal')">
+                                            <i class="bi bi-pencil"></i>
+                                            Edit
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="profile-bio" id="profileBio">
+                                        I'm a passionate renter and owner who loves sharing quality items with the community. 
+                                        Always looking for great deals and happy to help others find what they need.
+                                    </p>
+                                    <div class="info-grid">
+                                        <div class="info-item">
+                                            <i class="bi bi-calendar"></i>
+                                            <div>
+                                                <span class="info-label">Member Since</span>
+                                                <span class="info-value" id="memberSince">January 2024</span>
+                                            </div>
+                                        </div>
+                                        <div class="info-item">
+                                            <i class="bi bi-geo-alt"></i>
+                                            <div>
+                                                <span class="info-label">Location</span>
+                                                <span class="info-value" id="profileLocation">Lahore, Pakistan</span>
+                                            </div>
+                                        </div>
+                                        <div class="info-item">
+                                            <i class="bi bi-translate"></i>
+                                            <div>
+                                                <span class="info-label">Language</span>
+                                                <span class="info-value" id="profileLanguage">English, Urdu</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-graph-up"></i>
+                                        Activity Summary
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="activity-stats">
+                                        <div class="activity-item">
+                                            <div class="activity-icon success">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Completed Bookings</div>
+                                                <div class="activity-value" id="activityCompleted">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon info">
+                                                <i class="bi bi-clock-history"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Pending Requests</div>
+                                                <div class="activity-value" id="activityPending">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon warning">
+                                                <i class="bi bi-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Cancellations</div>
+                                                <div class="activity-value" id="activityCancelled">0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bookings & Reviews Tab (Renter only) -->
+                        <div class="tab-content" id="bookingsTab">
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-calendar-check"></i>
+                                        My Bookings & Reviews
+                                    </h3>
+                                    <p class="card-subtitle text-muted mb-0">
+                                        View all your trips, track status, and share feedback with hosts.
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="profileBookingsLoading" class="loading-state" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="loading-text mt-2">Loading your bookings...</div>
+                                    </div>
+
+                                    <div id="profileBookingsEmpty" class="empty-state" style="display: none;">
+                                        <div class="empty-icon">
+                                            <i class="bi bi-calendar-x"></i>
+                                        </div>
+                                        <h4>No bookings yet</h4>
+                                        <p>Start exploring and book your first stay or rental.</p>
+                                        <a href="search.html" class="btn btn-gradient">
+                                            <i class="bi bi-search"></i>
+                                            <span>Find a place to stay</span>
+                                        </a>
+                                    </div>
+
+                                    <div id="profileBookingsList" class="profile-bookings-list">
+                                        <!-- Dynamic bookings will render here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Owner Dashboard Tab (Owner only) -->
+                        <div class="tab-content" id="ownerTab">
+                            <!-- Owner overview and stats -->
+                            <div class="profile-card" id="ownerStatsSection" style="display: none;">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-speedometer2"></i>
+                                        Owner Overview
+                                    </h3>
+                                    <a href="messages.html" class="btn btn-primary btn-chat-profile">
+                                        <i class="bi bi-chat-dots"></i>
+                                        <span>Chat</span>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="activity-stats owner-activity-stats">
+                                        <div class="activity-item">
+                                            <div class="activity-icon success">
+                                                <i class="bi bi-house-door"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Listings (Active)</div>
+                                                <div class="activity-value" id="ownerActiveListingsCountSummary">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon info">
+                                                <i class="bi bi-calendar2-check"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Bookings (Total)</div>
+                                                <div class="activity-value" id="ownerTotalBookingsSummary">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon warning">
+                                                <i class="bi bi-star-fill"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Reviews Received</div>
+                                                <div class="activity-value" id="ownerReviewsCount">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon success">
+                                                <i class="bi bi-cash-stack"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <div class="activity-title">Total Earnings (PKR)</div>
+                                                <div class="activity-value" id="ownerEarningsAmount">Rs 0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- My Listings -->
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-house-heart"></i>
+                                        My Listings
+                                    </h3>
+                                    <a href="my-listings.html" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        Manage in full
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <div id="ownerListingsEmpty" class="empty-state" style="display: none;">
+                                        <div class="empty-icon">
+                                            <i class="bi bi-house-door"></i>
+                                        </div>
+                                        <h4>No listings yet</h4>
+                                        <p>Create your first listing to start hosting renters.</p>
+                                        <a href="create-listing.html" class="btn btn-gradient">
+                                            <i class="bi bi-plus-circle"></i>
+                                            <span>Create Listing</span>
+                                        </a>
+                                    </div>
+                                    <div id="ownerListingsLoading" class="loading-state" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="loading-text mt-2">Loading your listings...</div>
+                                    </div>
+                                    <div id="ownerListingsList" class="owner-listings-list">
+                                        <!-- Owner listings will render here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bookings on My Listings -->
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-calendar2-event"></i>
+                                        Bookings on My Listings
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="ownerBookingsEmpty" class="empty-state" style="display: none;">
+                                        <div class="empty-icon">
+                                            <i class="bi bi-calendar-x"></i>
+                                        </div>
+                                        <h4>No bookings yet</h4>
+                                        <p>Once renters book your listings, they will appear here.</p>
+                                    </div>
+                                    <div id="ownerBookingsLoading" class="loading-state" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="loading-text mt-2">Loading bookings on your listings...</div>
+                                    </div>
+                                    <div id="ownerBookingsList" class="owner-bookings-list">
+                                        <!-- Owner bookings will render here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reviews Received -->
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-chat-square-heart"></i>
+                                        Reviews from Renters
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="ownerReviewsEmpty" class="empty-state" style="display: none;">
+                                        <div class="empty-icon">
+                                            <i class="bi bi-emoji-smile"></i>
+                                        </div>
+                                        <h4>No reviews yet</h4>
+                                        <p>After guests complete their stays, their feedback will appear here.</p>
+                                    </div>
+                                    <div id="ownerReviewsLoading" class="loading-state" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="loading-text mt-2">Loading reviews from your guests...</div>
+                                    </div>
+                                    <div id="ownerReviewsList" class="owner-reviews-list">
+                                        <!-- Reviews will render here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Info Tab -->
+                        <div class="tab-content" id="personalTab">
+                            <form class="profile-form" id="personalInfoForm" onsubmit="handlePersonalInfoSubmit(event)">
+                                <div class="profile-card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            <i class="bi bi-person"></i>
+                                            Personal Information
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="fullName" class="form-label">
+                                                <i class="bi bi-person-fill"></i>
+                                                <span>Full Name</span>
+                                            </label>
+                                            <input 
+                                                type="text" 
+                                                id="fullName" 
+                                                name="fullName"
+                                                class="form-control" 
+                                                placeholder="Enter your full name"
+                                                value="John Doe"
+                                                required
+                                            >
+                                            <div class="form-error" id="fullName-error"></div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="email" class="form-label">
+                                                    <i class="bi bi-envelope"></i>
+                                                    <span>Email Address</span>
+                                                </label>
+                                                <input 
+                                                    type="email" 
+                                                    id="email" 
+                                                    name="email"
+                                                    class="form-control" 
+                                                    placeholder="Enter your email"
+                                                    value="john.doe@example.com"
+                                                    required
+                                                >
+                                                <div class="form-error" id="email-error"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="phone" class="form-label">
+                                                    <i class="bi bi-phone"></i>
+                                                    <span>Phone Number</span>
+                                                </label>
+                                                <input 
+                                                    type="tel" 
+                                                    id="phone" 
+                                                    name="phone"
+                                                    class="form-control" 
+                                                    placeholder="Enter your phone number"
+                                                    value="+92 300 1234567"
+                                                    required
+                                                >
+                                                <div class="form-error" id="phone-error"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="bio" class="form-label">
+                                                <i class="bi bi-card-text"></i>
+                                                <span>Bio</span>
+                                            </label>
+                                            <textarea 
+                                                id="bio" 
+                                                name="bio"
+                                                class="form-control" 
+                                                rows="4"
+                                                placeholder="Tell us about yourself..."
+                                            >I'm a passionate renter and owner who loves sharing quality items with the community. Always looking for great deals and happy to help others find what they need.</textarea>
+                                            <div class="form-error" id="bio-error"></div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="location" class="form-label">
+                                                    <i class="bi bi-geo-alt"></i>
+                                                    <span>Location</span>
+                                                </label>
+                                                <input 
+                                                    type="text" 
+                                                    id="location" 
+                                                    name="location"
+                                                    class="form-control" 
+                                                    placeholder="City, Country"
+                                                    value="Lahore, Pakistan"
+                                                    required
+                                                >
+                                                <div class="form-error" id="location-error"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dateOfBirth" class="form-label">
+                                                    <i class="bi bi-calendar"></i>
+                                                    <span>Date of Birth</span>
+                                                </label>
+                                                <input 
+                                                    type="date" 
+                                                    id="dateOfBirth" 
+                                                    name="dateOfBirth"
+                                                    class="form-control" 
+                                                    value="1990-01-15"
+                                                >
+                                                <div class="form-error" id="dateOfBirth-error"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="button" class="btn-cancel" onclick="resetPersonalInfoForm()">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn-save">
+                                                <i class="bi bi-check-lg"></i>
+                                                Save Changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Security Tab -->
+                        <div class="tab-content" id="securityTab">
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-key"></i>
+                                        Change Password
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="profile-form" id="passwordForm" onsubmit="handlePasswordChange(event)">
+                                        <div class="form-group">
+                                            <label for="currentPassword" class="form-label">
+                                                <i class="bi bi-lock-fill"></i>
+                                                <span>Current Password</span>
+                                            </label>
+                                            <div class="password-input-wrapper">
+                                                <input 
+                                                    type="password" 
+                                                    id="currentPassword" 
+                                                    name="currentPassword"
+                                                    class="form-control" 
+                                                    placeholder="Enter current password"
+                                                    required
+                                                >
+                                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('currentPassword', 'currentPasswordEye')">
+                                                    <i class="bi bi-eye" id="currentPasswordEye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-error" id="currentPassword-error"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="newPassword" class="form-label">
+                                                <i class="bi bi-lock-fill"></i>
+                                                <span>New Password</span>
+                                            </label>
+                                            <div class="password-input-wrapper">
+                                                <input 
+                                                    type="password" 
+                                                    id="newPassword" 
+                                                    name="newPassword"
+                                                    class="form-control" 
+                                                    placeholder="Enter new password (min. 8 characters)"
+                                                    required
+                                                >
+                                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('newPassword', 'newPasswordEye')">
+                                                    <i class="bi bi-eye" id="newPasswordEye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-error" id="newPassword-error"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="confirmNewPassword" class="form-label">
+                                                <i class="bi bi-lock-fill"></i>
+                                                <span>Confirm New Password</span>
+                                            </label>
+                                            <div class="password-input-wrapper">
+                                                <input 
+                                                    type="password" 
+                                                    id="confirmNewPassword" 
+                                                    name="confirmNewPassword"
+                                                    class="form-control" 
+                                                    placeholder="Confirm new password"
+                                                    required
+                                                >
+                                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('confirmNewPassword', 'confirmNewPasswordEye')">
+                                                    <i class="bi bi-eye" id="confirmNewPasswordEye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-error" id="confirmNewPassword-error"></div>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn-save">
+                                                <i class="bi bi-shield-check"></i>
+                                                Update Password
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-device-hdd"></i>
+                                        Active Sessions
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="session-list">
+                                        <div class="session-item">
+                                            <div class="session-info">
+                                                <div class="session-icon">
+                                                    <i class="bi bi-laptop"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="session-device">Windows PC - Chrome</div>
+                                                    <div class="session-details">Current Session • Lahore, Pakistan</div>
+                                                </div>
+                                            </div>
+                                            <span class="session-badge current">Current</span>
+                                        </div>
+                                        <div class="session-item">
+                                            <div class="session-info">
+                                                <div class="session-icon">
+                                                    <i class="bi bi-phone"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="session-device">iPhone 13 - Safari</div>
+                                                    <div class="session-details">Last active 2 hours ago • Karachi, Pakistan</div>
+                                                </div>
+                                            </div>
+                                            <button class="btn-remove" onclick="removeSession(this)">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Verification Tab -->
+                        <div class="tab-content" id="verificationTab">
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-shield-check"></i>
+                                        Account Verification
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="verification-status">
+                                        <div class="verification-item verified">
+                                            <div class="verification-icon">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="verification-content">
+                                                <div class="verification-title">Email Verified</div>
+                                                <div class="verification-description">Your email address has been verified</div>
+                                            </div>
+                                            <span class="verification-badge">Verified</span>
+                                        </div>
+
+                                        <div class="verification-item verified">
+                                            <div class="verification-icon">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="verification-content">
+                                                <div class="verification-title">Phone Verified</div>
+                                                <div class="verification-description">Your phone number has been verified</div>
+                                            </div>
+                                            <span class="verification-badge">Verified</span>
+                                        </div>
+
+                                        <div class="verification-item pending">
+                                            <div class="verification-icon">
+                                                <i class="bi bi-hourglass-split"></i>
+                                            </div>
+                                            <div class="verification-content">
+                                                <div class="verification-title">ID Verification</div>
+                                                <div class="verification-description">Upload your CNIC/NICOP for verification</div>
+                                            </div>
+                                            <button class="btn-verify" onclick="startIDVerification()">
+                                                <i class="bi bi-upload"></i>
+                                                Upload ID
+                                            </button>
+                                        </div>
+
+                                        <div class="verification-item pending">
+                                            <div class="verification-icon">
+                                                <i class="bi bi-hourglass-split"></i>
+                                            </div>
+                                            <div class="verification-content">
+                                                <div class="verification-title">Biometric Verification</div>
+                                                <div class="verification-description">Complete fingerprint and face verification</div>
+                                            </div>
+                                            <button class="btn-verify" onclick="startBiometricVerification()">
+                                                <i class="bi bi-fingerprint"></i>
+                                                Start Verification
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preferences Tab -->
+                        <div class="tab-content" id="preferencesTab">
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-bell"></i>
+                                        Notification Preferences
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="profile-form" id="notificationForm">
+                                        <div class="preference-item">
+                                            <div class="preference-info">
+                                                <div class="preference-title">Email Notifications</div>
+                                                <div class="preference-description">Receive notifications via email</div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="preference-item">
+                                            <div class="preference-info">
+                                                <div class="preference-title">SMS Notifications</div>
+                                                <div class="preference-description">Receive notifications via SMS</div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="preference-item">
+                                            <div class="preference-info">
+                                                <div class="preference-title">Booking Updates</div>
+                                                <div class="preference-description">Get notified about booking status changes</div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="preference-item">
+                                            <div class="preference-info">
+                                                <div class="preference-title">New Messages</div>
+                                                <div class="preference-description">Get notified when you receive new messages</div>
+                                            </div>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" checked>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="button" class="btn-save" onclick="saveNotificationPreferences()">
+                                                <i class="bi bi-check-lg"></i>
+                                                Save Preferences
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="profile-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-globe"></i>
+                                        Language & Region
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="profile-form" id="languageForm">
+                                        <div class="form-group">
+                                            <label for="preferredLanguage" class="form-label">
+                                                <i class="bi bi-translate"></i>
+                                                <span>Preferred Language</span>
+                                            </label>
+                                            <select id="preferredLanguage" name="preferredLanguage" class="form-control">
+                                                <option value="en">English</option>
+                                                <option value="ur">Urdu</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="timezone" class="form-label">
+                                                <i class="bi bi-clock"></i>
+                                                <span>Timezone</span>
+                                            </label>
+                                            <select id="timezone" name="timezone" class="form-control">
+                                                <option value="Asia/Karachi" selected>Asia/Karachi (PKT)</option>
+                                                <option value="UTC">UTC</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <button type="button" class="btn-save" onclick="saveLanguagePreferences()">
+                                                <i class="bi bi-check-lg"></i>
+                                                Save Preferences
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Owner Booking Details Modal -->
+    <div class="modal fade" id="ownerBookingDetailsModal" tabindex="-1" aria-labelledby="ownerBookingDetailsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ownerBookingDetailsLabel">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        Booking Details
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="ownerBookingDetailsContent">
+                        <!-- Content will be injected by JS -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Top Section -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <svg class="footer-logo-icon" width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="40" height="40" rx="10" fill="url(#footerLogoGradient)"/>
+                                    <path d="M20 8L12 12V18C12 24.5 16.5 29.5 20 31C23.5 29.5 28 24.5 28 18V12L20 8Z" fill="white" opacity="0.95"/>
+                                    <path d="M16 20L18.5 22.5L24 17" stroke="url(#footerLogoGradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="footerLogoGradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#FF385C"/>
+                                            <stop offset="100%" stop-color="#FF6B9D"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="footer-brand-name">MyRental</h3>
+                            <p class="footer-brand-tagline">Your trusted rental marketplace in Pakistan</p>
+                            <p class="footer-description">Rent anything, anywhere. Discover thousands of rental options across 8 categories with trusted, verified listings.</p>
+                            
+                            <!-- Newsletter Subscription -->
+                            <div class="footer-newsletter">
+                                <h6 class="newsletter-title">
+                                    <i class="bi bi-envelope-heart"></i>
+                                    Subscribe to our newsletter
+                                </h6>
+                                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                                    <div class="newsletter-input-group">
+                                        <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                                        <button type="submit" class="newsletter-button">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-info-circle"></i>
+                                About
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> How it works</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Newsroom</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Investors</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Community -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-people"></i>
+                                Community
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Diversity & Belonging</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Accessibility</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Disaster Relief</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Host -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-house-heart"></i>
+                                Host
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Host your home</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Online Experience</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Resources</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Community Forum</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Hosting Tips</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Support & Contact -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-headset"></i>
+                                Support
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Safety</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Cancellation</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Neighborhood</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                            
+                            <!-- Contact Info -->
+                            <div class="footer-contact">
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>+92 300 1234567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>support@myrental.pk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <!-- Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 <strong>MyRental Marketplace</strong>. All rights reserved.</p>
+                        <p class="copyright-subtext">Made with <i class="bi bi-heart-fill"></i> in Pakistan</p>
+                    </div>
+
+                    <!-- Legal Links -->
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-shield-check"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-file-text"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-map"></i>
+                            Sitemap
+                        </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="footer-social">
+                        <span class="social-label">Follow us:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon whatsapp" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="footer-payments">
+                    <span class="payments-label">We accept:</span>
+                    <div class="payment-icons">
+                        <div class="payment-icon" title="JazzCash">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="payment-icon" title="Easypaisa">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </div>
+                        <div class="payment-icon" title="Visa">
+                            <i class="bi bi-credit-card-2-back"></i>
+                        </div>
+                        <div class="payment-icon" title="Mastercard">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wave Decoration -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="url(#waveGradient)"/>
+                <defs>
+                    <linearGradient id="waveGradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#FF385C" stop-opacity="0.1"/>
+                        <stop offset="50%" stop-color="#FF6B9D" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#FF385C" stop-opacity="0.1"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Auth & RBAC (must load before header/profile logic) -->
+    <script src="js/auth.js"></script>
+    <script src="js/rbac.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/profile.js"></script>
+    <!-- Ad System Scripts -->
+    <script src="js/accountService.js"></script>
+    <script src="js/adComponent.js"></script>
+    <script src="js/verificationBadge.js"></script>
+    <script src="js/reviewFilter.js"></script>
+</body>
+</html>

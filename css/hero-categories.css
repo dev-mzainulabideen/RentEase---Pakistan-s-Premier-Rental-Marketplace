@@ -1,0 +1,436 @@
+/* ============================================
+   Modern Hero Categories Section - Redesigned
+   Premium Category Display with Gradients
+   ============================================ */
+
+.hero-categories-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f0f0f0;
+    position: relative;
+    z-index: 3;
+    animation: categoriesFadeIn 0.5s ease-out 0.4s both;
+    overflow: visible;
+}
+
+.hero-categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3rem;
+    right: -3rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #f0f0f0 20%, #f0f0f0 80%, transparent 100%);
+}
+
+@keyframes categoriesFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-categories-header {
+    margin-bottom: 1.25rem;
+}
+
+.hero-categories-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-categories-label i {
+    font-size: 1.125rem;
+    color: var(--primary-color);
+    animation: gridPulse 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(255, 56, 92, 0.3));
+}
+
+@keyframes gridPulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15) rotate(5deg);
+        opacity: 0.9;
+    }
+}
+
+/* Modern Category Grid - 2 Rows of 4 */
+.hero-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+/* Category Item - Card Style with Gradients */
+.hero-category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 1.25rem 0.875rem;
+    background: linear-gradient(135deg, var(--category-color, #FF385C) 0%, var(--category-color-dark, #e61e4d) 100%);
+    border-radius: 18px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    min-height: 110px;
+}
+
+/* Shine Effect */
+.hero-category-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.hero-category-item:hover::before {
+    left: 100%;
+    opacity: 1;
+}
+
+/* Gradient Overlay on Hover */
+.hero-category-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-category-item:hover::after {
+    opacity: 1;
+}
+
+.hero-category-item:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.25),
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        0 0 0 3px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.hero-category-item:active {
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Category Icon - Enhanced */
+.hero-category-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-category-icon i {
+    font-size: 1.625rem;
+    color: #ffffff;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.hero-category-item:hover .hero-category-icon {
+    transform: scale(1.15) rotate(8deg);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.hero-category-item:hover .hero-category-icon i {
+    transform: scale(1.2);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Category Info */
+.hero-category-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-category-name {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.hero-category-item:hover .hero-category-name {
+    transform: scale(1.05);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-category-count {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hero-category-item:hover .hero-category-count {
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Category Color Variants */
+.hero-category-item[data-category="property"] {
+    --category-color: #FF385C;
+    --category-color-dark: #e61e4d;
+}
+
+.hero-category-item[data-category="vehicles"] {
+    --category-color: #0066CC;
+    --category-color-dark: #0052a3;
+}
+
+.hero-category-item[data-category="clothes"] {
+    --category-color: #FF385C;
+    --category-color-dark: #e61e4d;
+}
+
+.hero-category-item[data-category="equipment"] {
+    --category-color: #764ba2;
+    --category-color-dark: #5d3a7e;
+}
+
+.hero-category-item[data-category="services"] {
+    --category-color: #00b894;
+    --category-color-dark: #009670;
+}
+
+.hero-category-item[data-category="animals"] {
+    --category-color: #fdcb6e;
+    --category-color-dark: #f0b84a;
+}
+
+.hero-category-item[data-category="boat"] {
+    --category-color: #0066CC;
+    --category-color-dark: #0052a3;
+}
+
+.hero-category-item[data-category="air-transport"] {
+    --category-color: #764ba2;
+    --category-color-dark: #5d3a7e;
+}
+
+/* Staggered Animation for Category Items */
+.hero-category-item:nth-child(1) { animation-delay: 0.1s; }
+.hero-category-item:nth-child(2) { animation-delay: 0.2s; }
+.hero-category-item:nth-child(3) { animation-delay: 0.3s; }
+.hero-category-item:nth-child(4) { animation-delay: 0.4s; }
+.hero-category-item:nth-child(5) { animation-delay: 0.5s; }
+.hero-category-item:nth-child(6) { animation-delay: 0.6s; }
+.hero-category-item:nth-child(7) { animation-delay: 0.7s; }
+.hero-category-item:nth-child(8) { animation-delay: 0.8s; }
+
+.hero-category-item {
+    animation: categorySlideIn 0.6s ease-out both;
+}
+
+@keyframes categorySlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 1199px) {
+    .hero-categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.875rem;
+    }
+
+    .hero-category-item {
+        padding: 1.25rem 0.875rem;
+        min-height: 130px;
+    }
+
+    .hero-category-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .hero-category-icon i {
+        font-size: 1.75rem;
+    }
+
+    .hero-category-name {
+        font-size: 0.9375rem;
+    }
+
+    .hero-category-count {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-categories-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+    }
+
+    .hero-categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+    }
+
+    .hero-category-item {
+        padding: 1.125rem 0.75rem;
+        min-height: 120px;
+        border-radius: 16px;
+    }
+
+    .hero-category-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+    }
+
+    .hero-category-icon i {
+        font-size: 1.625rem;
+    }
+
+    .hero-category-name {
+        font-size: 0.875rem;
+    }
+
+    .hero-category-count {
+        font-size: 0.6875rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-categories-section {
+        margin-top: 1.75rem;
+        padding-top: 1.75rem;
+    }
+
+    .hero-categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.625rem;
+    }
+
+    .hero-category-item {
+        padding: 1rem 0.625rem;
+        min-height: 110px;
+        border-radius: 14px;
+        gap: 0.625rem;
+    }
+
+    .hero-category-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .hero-category-icon i {
+        font-size: 1.5rem;
+    }
+
+    .hero-category-name {
+        font-size: 0.8125rem;
+    }
+
+    .hero-category-count {
+        font-size: 0.625rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .hero-category-item {
+        padding: 0.875rem 0.5rem;
+        min-height: 100px;
+        border-radius: 12px;
+        gap: 0.5rem;
+    }
+
+    .hero-category-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+    }
+
+    .hero-category-icon i {
+        font-size: 1.375rem;
+    }
+
+    .hero-category-name {
+        font-size: 0.75rem;
+    }
+
+    .hero-category-count {
+        font-size: 0.5625rem;
+    }
+}

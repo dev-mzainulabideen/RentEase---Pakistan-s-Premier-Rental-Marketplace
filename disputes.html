@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dispute Resolution Center - My Rental Marketplace">
+    <title>Dispute Resolution - My Rental Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/disputes.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="disputes-page">
+        <div class="container py-5">
+            <!-- Page Header -->
+            <div class="page-header mb-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                    <a href="index.html" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div>
+                        <h1 class="page-title">
+                            <i class="bi bi-shield-exclamation text-warning"></i>
+                            Dispute Resolution Center
+                        </h1>
+                        <p class="page-subtitle text-muted">Report and manage disputes related to bookings, payments, or listings</p>
+                    </div>
+                    <button class="btn btn-primary btn-lg" id="newDisputeBtn">
+                        <i class="bi bi-plus-circle"></i>
+                        File New Dispute
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="row mb-4" id="statsCards">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-primary">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statTotal">0</div>
+                            <div class="stat-label">Total Disputes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-warning">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statOpen">0</div>
+                            <div class="stat-label">Open</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-info">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statInReview">0</div>
+                            <div class="stat-label">In Review</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="statResolved">0</div>
+                            <div class="stat-label">Resolved</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" id="filterStatus">
+                                    <option value="">All Status</option>
+                                    <option value="open">Open</option>
+                                    <option value="in_review">In Review</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="closed">Closed</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Type</label>
+                                <select class="form-select" id="filterType">
+                                    <option value="">All Types</option>
+                                    <option value="payment">Payment</option>
+                                    <option value="safety">Safety</option>
+                                    <option value="quality">Quality</option>
+                                    <option value="behavior">Behavior</option>
+                                    <option value="fraud">Fraud</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" id="filterPriority">
+                                    <option value="">All Priorities</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button class="btn btn-outline-secondary w-100" id="clearFiltersBtn">
+                                    <i class="bi bi-x-circle"></i> Clear Filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disputes List -->
+            <div class="disputes-section">
+                <!-- Loading State -->
+                <div id="loadingState" class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Loading disputes...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state text-center py-5" style="display: none;">
+                    <i class="bi bi-shield-check display-1 text-muted"></i>
+                    <h3 class="mt-3">No Disputes Found</h3>
+                    <p class="text-muted">You haven't filed any disputes yet.</p>
+                    <button class="btn btn-primary mt-3" onclick="document.getElementById('newDisputeBtn').click()">
+                        <i class="bi bi-plus-circle"></i>
+                        File Your First Dispute
+                    </button>
+                </div>
+
+                <!-- Disputes List -->
+                <div id="disputesList" class="disputes-list">
+                    <!-- Disputes will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- New Dispute Modal -->
+    <div class="modal fade" id="newDisputeModal" tabindex="-1" aria-labelledby="newDisputeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="newDisputeModalLabel">
+                        <i class="bi bi-file-earmark-plus"></i>
+                        File New Dispute
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="newDisputeForm">
+                    <div class="modal-body">
+                        <!-- Dispute Type -->
+                        <div class="mb-3">
+                            <label for="disputeType" class="form-label">
+                                <i class="bi bi-tag"></i>
+                                Dispute Type <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="disputeType" name="type" required>
+                                <option value="">Select dispute type...</option>
+                                <option value="payment">Payment Issue</option>
+                                <option value="safety">Safety Concern</option>
+                                <option value="quality">Quality Issue</option>
+                                <option value="behavior">Inappropriate Behavior</option>
+                                <option value="fraud">Fraud or Scam</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label for="disputeTitle" class="form-label">
+                                <i class="bi bi-card-heading"></i>
+                                Title <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="disputeTitle" name="title" 
+                                   placeholder="Brief description of the dispute" required minlength="5" maxlength="200">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="disputeDescription" class="form-label">
+                                <i class="bi bi-text-paragraph"></i>
+                                Description <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="form-control" id="disputeDescription" name="description" 
+                                      rows="5" placeholder="Provide detailed information about the dispute..." 
+                                      required minlength="20" maxlength="2000"></textarea>
+                            <div class="form-text">
+                                <span id="charCount">0</span> / 2000 characters
+                            </div>
+                        </div>
+
+                        <!-- Priority -->
+                        <div class="mb-3">
+                            <label for="disputePriority" class="form-label">
+                                <i class="bi bi-flag"></i>
+                                Priority
+                            </label>
+                            <select class="form-select" id="disputePriority" name="priority">
+                                <option value="medium" selected>Medium</option>
+                                <option value="low">Low</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+
+                        <!-- Related Booking (Optional) -->
+                        <div class="mb-3">
+                            <label for="relatedBooking" class="form-label">
+                                <i class="bi bi-calendar-check"></i>
+                                Related Booking (Optional)
+                            </label>
+                            <input type="text" class="form-control" id="relatedBooking" name="bookingId" 
+                                   placeholder="Enter booking number (e.g., MR17676224861820039) or ID">
+                            <div class="form-text">
+                                <small>
+                                    <i class="bi bi-info-circle"></i> 
+                                    Enter booking number (e.g., MR17676224861820039) or booking ID. 
+                                    <br>
+                                    <strong>Test Booking Numbers:</strong> MR17676224861820039, MR17676224861820040, MR17676224861820041
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Related Listing (Optional) -->
+                        <div class="mb-3">
+                            <label for="relatedListing" class="form-label">
+                                <i class="bi bi-house-door"></i>
+                                Related Listing (Optional)
+                            </label>
+                            <input type="text" class="form-control" id="relatedListing" name="listingId" 
+                                   placeholder="Enter listing ID">
+                            <div class="form-text">If this dispute is related to a specific listing</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send"></i>
+                            Submit Dispute
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dispute Detail Modal -->
+    <div class="modal fade" id="disputeDetailModal" tabindex="-1" aria-labelledby="disputeDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="disputeDetailModalLabel">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Dispute Details
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="disputeDetailContent">
+                    <!-- Dispute details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Auth & RBAC -->
+    <script src="js/auth.js"></script>
+    <script src="js/rbac.js"></script>
+    <script src="js/route-protection.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/disputes.js"></script>
+</body>
+</html>
+

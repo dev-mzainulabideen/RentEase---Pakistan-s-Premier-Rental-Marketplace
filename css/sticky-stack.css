@@ -1,0 +1,388 @@
+/* ============================================
+   Sticky Stacking Scroll Effects
+   Modern storytelling approach with smooth animations
+   ============================================ */
+
+/* Featured Listings Sticky Stack Section */
+.featured-section.sticky-stack-section {
+    position: relative;
+    padding: 2rem 0 !important;
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    overflow: hidden;
+}
+
+.featured-section.sticky-stack-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 56, 92, 0.2) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.sticky-stack-container {
+    position: relative;
+    width: 100%;
+}
+
+.sticky-stack-wrapper {
+    position: relative;
+    min-height: auto;
+    padding: 1.5rem 0;
+}
+
+.sticky-stack-content {
+    position: relative;
+    width: 100%;
+}
+
+/* Sticky Card Base Styles - Only applies to cards with .sticky-card class */
+.listing-card.sticky-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    contain: layout style paint;
+}
+
+.listing-card.sticky-card.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) !important;
+    z-index: 10;
+}
+
+.listing-card.sticky-card.prev-active {
+    opacity: 0.6;
+    transform: translateY(-20px) scale(0.95);
+    filter: blur(2px) !important;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.listing-card.sticky-card.next {
+    opacity: 0.3;
+    transform: translateY(40px) scale(0.85);
+    filter: blur(4px) !important;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.listing-card.sticky-card.inactive {
+    opacity: 0;
+    transform: translateY(60px) scale(0.8);
+    filter: blur(6px) !important;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure regular listing cards (without .sticky-card) never get blurred */
+.listing-card:not(.sticky-card) {
+    filter: blur(0) !important;
+    opacity: 1 !important;
+}
+
+/* Enhanced Active Card Styling */
+.listing-card.sticky-card.active {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 56, 92, 0.1),
+        0 0 80px rgba(255, 56, 92, 0.2);
+    border-color: rgba(255, 56, 92, 0.3);
+}
+
+.listing-card.sticky-card.active::before {
+    transform: scaleX(1);
+}
+
+/* Why Choose Section Sticky Stack */
+.why-choose-section.sticky-stack-section {
+    position: relative;
+    padding: 2rem 0 !important;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    overflow: hidden;
+}
+
+.why-choose-section .sticky-stack-wrapper {
+    min-height: auto;
+    padding: 1.5rem 0;
+}
+
+/* Feature Card Sticky Stack Styles */
+.feature-card.sticky-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(80px) scale(0.85);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    contain: layout style paint;
+    height: 100%;
+}
+
+.feature-card.sticky-card.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    z-index: 10;
+}
+
+.feature-card.sticky-card.active .feature-icon {
+    transform: scale(1.1) rotate(0deg);
+    box-shadow: 0 12px 32px rgba(255, 56, 92, 0.4);
+}
+
+.feature-card.sticky-card.prev-active {
+    opacity: 0.4;
+    transform: translateY(-30px) scale(0.9);
+    filter: blur(3px);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.feature-card.sticky-card.next {
+    opacity: 0.2;
+    transform: translateY(50px) scale(0.8);
+    filter: blur(5px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.feature-card.sticky-card.inactive {
+    opacity: 0;
+    transform: translateY(80px) scale(0.75);
+    filter: blur(8px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Enhanced Active Feature Card */
+.feature-card.sticky-card.active {
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(255, 56, 92, 0.15),
+        0 0 60px rgba(255, 56, 92, 0.15);
+    border-color: rgba(255, 56, 92, 0.25);
+    transform: translateY(0) scale(1) translateZ(0);
+}
+
+.feature-card.sticky-card.active::before {
+    transform: scaleX(1);
+}
+
+/* Parallax Effect for Images */
+.listing-card.sticky-card.active .listing-image {
+    transform: scale(1.05) translateZ(0);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth Scroll Indicator */
+.sticky-scroll-indicator {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.sticky-scroll-indicator.visible {
+    opacity: 1;
+}
+
+.sticky-scroll-indicator-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+.sticky-scroll-indicator-content i {
+    color: var(--primary-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Progress Bar */
+.sticky-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #FF385C, #FF6B9D);
+    z-index: 1001;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(255, 56, 92, 0.5);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .listing-card.sticky-card,
+    .feature-card.sticky-card {
+        transition: opacity 0.3s ease;
+        transform: none !important;
+        filter: none !important;
+    }
+    
+    .listing-card.sticky-card.active,
+    .feature-card.sticky-card.active {
+        transform: none !important;
+    }
+    
+    .sticky-scroll-indicator-content i {
+        animation: none;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1199px) {
+    .sticky-stack-wrapper {
+        min-height: auto;
+    }
+    
+    .listing-card.sticky-card.active {
+        box-shadow: 
+            0 16px 48px rgba(0, 0, 0, 0.12),
+            0 0 0 1px rgba(255, 56, 92, 0.1);
+    }
+}
+
+@media (max-width: 991px) {
+    .featured-section.sticky-stack-section,
+    .why-choose-section.sticky-stack-section {
+        padding: 1.75rem 0 !important;
+    }
+    
+    .sticky-stack-wrapper {
+        min-height: auto;
+        padding: 1.25rem 0;
+    }
+    
+    /* Simplified stacking on tablet */
+    .listing-card.sticky-card.prev-active,
+    .feature-card.sticky-card.prev-active {
+        opacity: 0.5;
+        transform: translateY(-10px) scale(0.98);
+        filter: blur(1px);
+    }
+    
+    .listing-card.sticky-card.next,
+    .feature-card.sticky-card.next {
+        opacity: 0.4;
+        transform: translateY(20px) scale(0.92);
+        filter: blur(2px);
+    }
+}
+
+@media (max-width: 767px) {
+    .featured-section.sticky-stack-section,
+    .why-choose-section.sticky-stack-section {
+        padding: 2rem 0;
+    }
+    
+    .sticky-stack-wrapper {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+    
+    /* Disable sticky stacking on mobile - use normal scroll */
+    .listing-card.sticky-card,
+    .feature-card.sticky-card {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .listing-card.sticky-card.active,
+    .feature-card.sticky-card.active {
+        transform: none !important;
+    }
+    
+    .listing-card.sticky-card.prev-active,
+    .listing-card.sticky-card.next,
+    .listing-card.sticky-card.inactive,
+    .feature-card.sticky-card.prev-active,
+    .feature-card.sticky-card.next,
+    .feature-card.sticky-card.inactive {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        pointer-events: auto !important;
+    }
+    
+    .sticky-scroll-indicator {
+        display: none;
+    }
+}
+
+/* Performance Optimizations */
+.sticky-stack-section {
+    contain: layout style paint;
+    isolation: isolate;
+}
+
+.sticky-stack-wrapper {
+    contain: layout style paint;
+    will-change: scroll-position;
+}
+
+.sticky-card {
+    contain: layout style paint;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Loading State */
+.sticky-card.loading {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Accessibility */
+.sticky-card:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+}
+
+/* Print Styles */
+@media print {
+    .sticky-stack-section {
+        page-break-inside: avoid;
+    }
+    
+    .listing-card.sticky-card,
+    .feature-card.sticky-card {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        page-break-inside: avoid;
+    }
+}
+

@@ -1,0 +1,1733 @@
+/* ============================================
+   HORIZONTAL FILTER PANEL & PARALLAX GALLERY
+   Modern Airbnb-Style Design
+   ============================================ */
+
+/* Override filter panel to horizontal layout - Improved */
+.filter-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 250, 0.95) 100%) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 2px solid transparent !important;
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 250, 0.95) 100%),
+        linear-gradient(135deg, rgba(255, 56, 92, 0.08), rgba(102, 126, 234, 0.08), rgba(255, 107, 157, 0.08)) !important;
+    background-origin: border-box !important;
+    background-clip: padding-box, border-box !important;
+    border-radius: 999px !important;
+    padding: 0.875rem 1.75rem !important;
+    position: sticky !important;
+    top: 100px !important;
+    box-shadow: 
+        0 8px 24px rgba(15, 23, 42, 0.06),
+        0 0 0 1px rgba(255, 56, 92, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+    flex-wrap: nowrap !important;
+    z-index: 50 !important;
+    margin-bottom: 2rem !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 56, 92, 0.4) transparent !important;
+    position: relative !important;
+}
+
+.filter-panel::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.2), rgba(102, 126, 234, 0.2), rgba(255, 107, 157, 0.2)) !important;
+    background-size: 200% 200% !important;
+    animation: filterBorderGlow 4s ease infinite !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+@keyframes filterBorderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.filter-panel:hover::before {
+    opacity: 0.6 !important;
+}
+
+.filter-panel:active {
+    transform: translateY(0) !important;
+}
+
+.filter-panel::-webkit-scrollbar {
+    height: 4px !important;
+    width: auto !important;
+}
+
+.filter-panel::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.filter-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(255, 56, 92, 0.6), rgba(102, 126, 234, 0.6)) !important;
+    border-radius: 10px !important;
+    transition: background 0.3s ease !important;
+}
+
+.filter-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, rgba(255, 56, 92, 0.8), rgba(102, 126, 234, 0.8)) !important;
+}
+
+.filter-panel:hover {
+    box-shadow: 
+        0 12px 40px rgba(255, 56, 92, 0.12),
+        0 0 0 2px rgba(255, 56, 92, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 0 20px rgba(255, 56, 92, 0.1) !important;
+    transform: translateY(-1px) !important;
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 248, 250, 0.98) 100%),
+        linear-gradient(135deg, rgba(255, 56, 92, 0.15), rgba(102, 126, 234, 0.15), rgba(255, 107, 157, 0.15)) !important;
+}
+
+/* Hide filter header in horizontal layout */
+.filter-panel .filter-header {
+    display: none !important;
+}
+
+.filter-panel .filter-header-content {
+    display: none !important;
+}
+
+.filter-panel .filter-header h3 {
+    display: none !important;
+}
+
+/* Clear filters button - compact style */
+.filter-panel .clear-filters {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.12), rgba(255, 107, 157, 0.1)) !important;
+    border: 1.5px solid rgba(255, 56, 92, 0.25) !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+    font-size: 0.8125rem !important;
+    padding: 0.5625rem 1rem !important;
+    border-radius: 22px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 3px rgba(255, 56, 92, 0.1) !important;
+}
+
+.filter-panel .clear-filters::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
+    transition: left 0.5s ease !important;
+}
+
+.filter-panel .clear-filters:hover::before {
+    left: 100% !important;
+}
+
+.filter-panel .clear-filters:hover {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.2), rgba(255, 107, 157, 0.18)) !important;
+    border-color: var(--primary-color) !important;
+    transform: scale(1.06) translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(255, 56, 92, 0.35), 0 0 0 1px rgba(255, 56, 92, 0.1) !important;
+}
+
+/* Filter sections - horizontal layout - Improved */
+.filter-panel .filter-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.625rem !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+    transition: transform 0.2s ease !important;
+}
+
+.filter-panel .filter-section:hover {
+    transform: translateY(-1px) !important;
+}
+
+.filter-panel .filter-section:not(:last-child)::after {
+    content: '' !important;
+    width: 1.5px !important;
+    height: 20px !important;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 56, 92, 0.25) 50%, transparent 100%) !important;
+    margin-left: 0.75rem !important;
+    transition: all 0.3s ease !important;
+    border-radius: 2px !important;
+}
+
+.filter-panel:hover .filter-section:not(:last-child)::after {
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 56, 92, 0.5) 50%, transparent 100%) !important;
+    width: 2px !important;
+    box-shadow: 0 0 6px rgba(255, 56, 92, 0.4) !important;
+    height: 22px !important;
+}
+
+.filter-panel .filter-section-header {
+    display: none !important;
+}
+
+.filter-panel .filter-label {
+    display: none !important;
+}
+
+/* Compact filter inputs - Improved styling */
+.filter-panel .filter-select,
+.filter-panel .filter-input {
+    min-width: 130px !important;
+    width: auto !important;
+    padding: 0.625rem 1rem !important;
+    border: 1.5px solid rgba(148, 163, 184, 0.25) !important;
+    border-radius: 22px !important;
+    font-size: 0.875rem !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 500 !important;
+    color: #1a1a1a !important;
+}
+
+.filter-panel .filter-select:hover,
+.filter-panel .filter-input:hover {
+    border-color: rgba(255, 56, 92, 0.4) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(255, 56, 92, 0.12) !important;
+}
+
+.filter-panel .filter-select:focus,
+.filter-panel .filter-input:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.15), 0 4px 12px rgba(255, 56, 92, 0.15) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+    outline: none !important;
+}
+
+/* Price range - horizontal */
+.filter-panel .price-range {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+}
+
+.filter-panel .price-inputs {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.filter-panel .price-input {
+    width: 85px !important;
+    padding: 0.625rem 0.75rem !important;
+    border: 1.5px solid rgba(148, 163, 184, 0.25) !important;
+    border-radius: 22px !important;
+    font-size: 0.875rem !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 500 !important;
+}
+
+.filter-panel .price-input:hover {
+    border-color: rgba(255, 56, 92, 0.4) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(255, 56, 92, 0.12) !important;
+}
+
+.filter-panel .price-input:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.15), 0 4px 12px rgba(255, 56, 92, 0.15) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+    outline: none !important;
+}
+
+.filter-panel .price-slider {
+    display: none !important;
+}
+
+.filter-panel .price-display {
+    display: none !important;
+}
+
+/* Guests filter - compact */
+.filter-panel .guests-filter {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.filter-panel .guests-input-wrapper {
+    position: relative !important;
+}
+
+.filter-panel .guests-input {
+    min-width: 115px !important;
+    padding: 0.625rem 1rem 0.625rem 2.5rem !important;
+    border: 1.5px solid rgba(148, 163, 184, 0.25) !important;
+    border-radius: 22px !important;
+    font-size: 0.875rem !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 500 !important;
+}
+
+.filter-panel .guests-input:hover {
+    border-color: rgba(255, 56, 92, 0.4) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(255, 56, 92, 0.12) !important;
+}
+
+.filter-panel .guests-input:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.15), 0 4px 12px rgba(255, 56, 92, 0.15) !important;
+    background: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+    outline: none !important;
+}
+
+.filter-panel .guests-display {
+    display: none !important;
+}
+
+/* Distance filter - compact */
+.filter-panel .distance-filter {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+.filter-panel .distance-slider {
+    width: 120px !important;
+    height: 4px !important;
+}
+
+.filter-panel .distance-display {
+    font-size: 0.875rem !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+.filter-panel .distance-hint {
+    display: none !important;
+}
+
+/* Rating filter - horizontal pills */
+.filter-panel .rating-filter {
+    display: flex !important;
+    gap: 0.5rem !important;
+    flex-wrap: nowrap !important;
+}
+
+.filter-panel .rating-btn {
+    padding: 0.5rem 0.875rem !important;
+    border: 1.5px solid rgba(148, 163, 184, 0.25) !important;
+    border-radius: 22px !important;
+    font-size: 0.8125rem !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 600 !important;
+}
+
+.filter-panel .rating-btn:hover {
+    border-color: rgba(255, 56, 92, 0.4) !important;
+    background: rgba(255, 56, 92, 0.08) !important;
+    transform: translateY(-1px) scale(1.05) !important;
+    box-shadow: 0 2px 8px rgba(255, 56, 92, 0.15) !important;
+}
+
+.filter-panel .rating-btn.active {
+    background: var(--gradient-primary) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.3) !important;
+    animation: ratingPulse 2s ease-in-out infinite !important;
+}
+
+@keyframes ratingPulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(255, 56, 92, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(255, 56, 92, 0.5);
+    }
+}
+
+/* Filter options - horizontal */
+/* Ensure Quick Options checkboxes stay vertical - override horizontal layout */
+.filter-panel .filter-options {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+}
+
+.filter-panel .filter-checkbox {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    white-space: normal !important;
+    padding: 0.6rem 0.75rem !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+}
+
+/* Tier group - horizontal */
+.filter-panel .tier-group {
+    display: flex !important;
+    gap: 0.5rem !important;
+}
+
+.filter-panel .tier-pill {
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px !important;
+    font-size: 0.8125rem !important;
+    white-space: nowrap !important;
+}
+
+.filter-panel .filter-hint {
+    display: none !important;
+}
+
+/* ============================================
+   HORIZONTAL PARALLAX GALLERY FOR LISTINGS
+   ============================================ */
+
+/* ============================================
+   PARALLAX GALLERY WITH SCROLL INDICATORS
+   Inspired by Categories Gallery
+   ============================================ */
+
+.listings-container {
+    position: relative !important;
+    overflow: visible !important;
+    margin-top: 0;
+    padding: 3rem 0 !important;
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
+}
+
+.listings-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 56, 92, 0.2) 50%, transparent 100%) !important;
+}
+
+.listings-container .row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 2rem !important;
+    padding: 3rem calc(50% - 160px) 3rem calc(50% - 160px) !important;
+    margin: 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    cursor: grab !important;
+    will-change: scroll-position !important;
+    scroll-padding: 0 calc(50% - 160px) !important;
+}
+
+.listings-container .row:active {
+    cursor: grabbing !important;
+}
+
+.listings-container .row::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Scroll Indicators - Like Categories Gallery */
+.listings-gallery-wrapper {
+    position: relative !important;
+    width: 100% !important;
+}
+
+.gallery-scroll-indicator {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 50% !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 56, 92, 0.15) !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    will-change: transform, opacity, background !important;
+}
+
+.gallery-scroll-indicator.visible {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.gallery-scroll-indicator.left {
+    left: 2rem !important;
+}
+
+.gallery-scroll-indicator.right {
+    right: 2rem !important;
+}
+
+.gallery-scroll-indicator:hover {
+    background: var(--gradient-primary) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 
+        0 12px 32px rgba(255, 56, 92, 0.4),
+        0 0 0 1px rgba(255, 56, 92, 0.25) !important;
+}
+
+.gallery-scroll-indicator:hover i {
+    color: #ffffff !important;
+    transform: scale(1.2) !important;
+}
+
+.gallery-scroll-indicator i {
+    font-size: 1.5rem !important;
+    color: var(--primary-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.gallery-scroll-indicator:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Listing cards in horizontal gallery - Center Focus */
+.listings-container .row > [class*="col-"] {
+    flex: 0 0 320px !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-align: center !important;
+    animation: cardSlideIn 0.6s ease-out both !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease !important;
+    opacity: 1 !important; /* Removed blurry effect */
+    transform: scale(1) !important; /* Removed blurry effect */
+}
+
+.listings-container .row > [class*="col-"].active {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    z-index: 10 !important;
+}
+
+.listings-container .row > [class*="col-"]:nth-child(1) { animation-delay: 0.1s !important; }
+.listings-container .row > [class*="col-"]:nth-child(2) { animation-delay: 0.2s !important; }
+.listings-container .row > [class*="col-"]:nth-child(3) { animation-delay: 0.3s !important; }
+.listings-container .row > [class*="col-"]:nth-child(4) { animation-delay: 0.4s !important; }
+.listings-container .row > [class*="col-"]:nth-child(5) { animation-delay: 0.5s !important; }
+.listings-container .row > [class*="col-"]:nth-child(n+6) { animation-delay: 0.6s !important; }
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Airbnb-style compact card sizing - Reduced height */
+.listings-container .listing-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    border-radius: 12px !important;
+    overflow: visible !important; /* Changed from hidden to visible to show all content */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    background: #ffffff !important;
+    max-height: none !important; /* Removed restrictive max-height */
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.listings-container .listing-card:hover {
+    transform: translateY(-6px) scale(1.02) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255, 56, 92, 0.25) !important;
+}
+
+/* Compact image wrapper - Reduced height */
+.listings-container .listing-image-container,
+.listings-container .listing-image-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    padding-top: 42% !important; /* Further reduced for more compact cards (was 55%) */
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%) !important;
+    border-radius: 12px 12px 0 0 !important;
+    flex-shrink: 0 !important; /* Prevent image from shrinking */
+}
+
+.listings-container .listing-image {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease !important;
+    will-change: transform !important;
+    opacity: 0 !important;
+}
+
+.listings-container .listing-image.loaded {
+    opacity: 1 !important;
+}
+
+.listings-container .listing-image.lazy-load {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%) !important;
+    filter: blur(5px) !important;
+    transform: scale(1.1) !important;
+}
+
+.listings-container .listing-image.lazy-load.loaded {
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+}
+
+/* Listing badges - ensure visibility */
+.listings-container .listing-badges {
+    position: absolute !important;
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    z-index: 5 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.listings-container .badge-verified,
+.listings-container .badge-instant,
+.listings-container .badge-account-paid,
+.listings-container .badge-account-free {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.375rem !important;
+    padding: 0.375rem 0.625rem !important;
+    border-radius: 6px !important;
+    font-size: 0.6875rem !important;
+    font-weight: 600 !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.listings-container .badge-verified {
+    background: rgba(34, 34, 34, 0.9) !important;
+    color: #ffffff !important;
+}
+
+.listings-container .badge-instant {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--primary-color) !important;
+}
+
+.listings-container .badge-account-paid {
+    background: rgba(255, 215, 0, 0.9) !important;
+    color: #1a1a1a !important;
+}
+
+.listings-container .badge-account-free {
+    background: rgba(108, 117, 125, 0.9) !important;
+    color: #ffffff !important;
+}
+
+/* Parallax effect on scroll */
+.listings-container .listing-card:hover .listing-image {
+    transform: scale(1.08) !important;
+}
+
+/* Compact content area - Reduced padding */
+.listings-container .listing-content {
+    padding: 0.875rem 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    visibility: visible !important; /* Ensure content is visible */
+    opacity: 1 !important; /* Ensure content is visible */
+    min-height: auto !important;
+    flex: 1 1 auto !important; /* Allow content to grow */
+}
+
+.listings-container .listing-header {
+    visibility: visible !important; /* Ensure header is visible */
+    opacity: 1 !important; /* Ensure header is visible */
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.listings-container .listing-title {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    visibility: visible !important; /* Ensure title is visible */
+    opacity: 1 !important; /* Ensure title is visible */
+    color: #1a1a1a !important; /* Ensure title has color */
+}
+
+.listings-container .listing-location {
+    font-size: 0.75rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    visibility: visible !important; /* Ensure location is visible */
+    opacity: 1 !important; /* Ensure location is visible */
+    color: #717171 !important; /* Ensure location has color */
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.375rem !important;
+}
+
+.listings-container .listing-rating {
+    font-size: 0.75rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    visibility: visible !important; /* Ensure rating is visible */
+    opacity: 1 !important; /* Ensure rating is visible */
+    color: #1a1a1a !important; /* Ensure rating has color */
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.375rem !important;
+}
+
+.listings-container .listing-rating i {
+    color: #FFD700 !important; /* Gold color for star */
+    font-size: 0.8125rem !important;
+}
+
+.listings-container .reviews-count {
+    color: #717171 !important;
+    visibility: visible !important; /* Ensure reviews count is visible */
+    opacity: 1 !important; /* Ensure reviews count is visible */
+}
+
+.listings-container .listing-price {
+    margin-top: auto !important;
+    padding-top: 0.625rem !important;
+    border-top: 1px solid #f1f3f5 !important;
+    visibility: visible !important; /* Ensure price is visible */
+    opacity: 1 !important; /* Ensure price is visible */
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 0.25rem !important;
+}
+
+.listings-container .price-amount {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    color: #1a1a1a !important; /* Ensure price has color */
+    visibility: visible !important; /* Ensure price is visible */
+    opacity: 1 !important; /* Ensure price is visible */
+}
+
+.listings-container .price-period {
+    font-size: 0.75rem !important;
+    color: #717171 !important; /* Ensure period has color */
+    visibility: visible !important; /* Ensure period is visible */
+    opacity: 1 !important; /* Ensure period is visible */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .listings-container .row > [class*="col-"] {
+        width: 280px !important;
+        max-width: 280px !important;
+    }
+    
+    .filter-panel {
+        padding: 0.625rem 1rem !important;
+        gap: 1rem !important;
+    }
+    
+    .filter-panel .filter-select,
+    .filter-panel .filter-input {
+        min-width: 120px !important;
+        font-size: 0.8125rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .listings-container .row > [class*="col-"] {
+        width: 260px !important;
+        max-width: 260px !important;
+    }
+}
+
+/* ============================================
+   HERO SEARCH - FLEXIBLE (NOT STICKY/DOCKED)
+   ============================================ */
+
+.search-hero-section {
+    position: relative !important;
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
+    padding: 3rem 0 2.5rem 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    z-index: 10 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+
+.search-hero-section.scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ============================================
+   IMPROVED PARALLAX GALLERY - LIKE CATEGORIES
+   ============================================ */
+
+.listings-gallery-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 4rem 0 !important;
+}
+
+.listings-container {
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.listings-container .row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 2rem !important;
+    padding: 3rem calc(50% - 160px) 3rem calc(50% - 160px) !important;
+    margin: 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    cursor: grab !important;
+    will-change: scroll-position !important;
+    scroll-padding: 0 calc(50% - 160px) !important;
+}
+
+.listings-container .row:active {
+    cursor: grabbing !important;
+}
+
+.listings-container .row::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Listing cards - center focus */
+.listings-container .row > [class*="col-"] {
+    flex: 0 0 320px !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-align: center !important;
+    animation: cardSlideIn 0.6s ease-out both !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform !important;
+}
+
+/* Scroll Indicators */
+.listings-gallery-wrapper .gallery-scroll-indicator {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 50% !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 56, 92, 0.15) !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    will-change: transform, opacity, background !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator.visible {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator.left {
+    left: 2rem !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator.right {
+    right: 2rem !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator:hover {
+    background: var(--gradient-primary) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 
+        0 12px 32px rgba(255, 56, 92, 0.4),
+        0 0 0 1px rgba(255, 56, 92, 0.25) !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator:hover i {
+    color: #ffffff !important;
+    transform: scale(1.2) !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator i {
+    font-size: 1.5rem !important;
+    color: var(--primary-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.listings-gallery-wrapper .gallery-scroll-indicator:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* ============================================
+   HERO SEARCH - FLEXIBLE (NOT STICKY)
+   ============================================ */
+
+.search-hero-section {
+    position: relative !important;
+    top: auto !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    padding: 3rem 0 2.5rem 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: none !important;
+    z-index: 1 !important;
+}
+
+.search-hero-section.scrolled {
+    box-shadow: none !important;
+}
+
+/* ============================================
+   FILTER PANEL - COLORS & ANIMATIONS
+   ============================================ */
+
+.filter-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 250, 0.98) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 2px solid transparent !important;
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 250, 0.98) 100%),
+        linear-gradient(135deg, rgba(255, 56, 92, 0.1), rgba(102, 126, 234, 0.1), rgba(255, 107, 157, 0.1)) !important;
+    background-origin: border-box !important;
+    background-clip: padding-box, border-box !important;
+    animation: filterPanelGlow 3s ease-in-out infinite !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.filter-panel::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: radial-gradient(circle, rgba(255, 56, 92, 0.15) 0%, transparent 70%) !important;
+    animation: filterShine 8s ease-in-out infinite !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+.filter-panel > * {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+@keyframes filterPanelGlow {
+    0%, 100% {
+        box-shadow: 
+            0 10px 30px rgba(15, 23, 42, 0.08),
+            0 0 0 1px rgba(148, 163, 184, 0.1),
+            0 0 20px rgba(255, 56, 92, 0.1) !important;
+    }
+    50% {
+        box-shadow: 
+            0 12px 40px rgba(15, 23, 42, 0.12),
+            0 0 0 1px rgba(255, 56, 92, 0.2),
+            0 0 30px rgba(255, 56, 92, 0.2) !important;
+    }
+}
+
+@keyframes filterShine {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 0.6;
+    }
+}
+
+.filter-panel:hover {
+    animation: filterPanelGlow 1.5s ease-in-out infinite !important;
+    border-image: linear-gradient(135deg, rgba(255, 56, 92, 0.3), rgba(102, 126, 234, 0.3), rgba(255, 107, 157, 0.3)) 1 !important;
+}
+
+.filter-panel .filter-section {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.filter-panel .filter-section:hover {
+    transform: translateY(-2px) !important;
+}
+
+.filter-panel .filter-select,
+.filter-panel .filter-input,
+.filter-panel .price-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.filter-panel .filter-select:hover,
+.filter-panel .filter-input:hover,
+.filter-panel .price-input:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 56, 92, 0.3) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.15) !important;
+}
+
+.filter-panel .filter-select:focus,
+.filter-panel .filter-input:focus,
+.filter-panel .price-input:focus {
+    background: rgba(255, 255, 255, 1) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.2), 0 4px 16px rgba(255, 56, 92, 0.2) !important;
+    transform: scale(1.03) !important;
+}
+
+.filter-panel .rating-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.filter-panel .rating-btn:hover {
+    background: rgba(255, 56, 92, 0.1) !important;
+    border-color: var(--primary-color) !important;
+    transform: scale(1.1) translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.2) !important;
+}
+
+.filter-panel .rating-btn.active {
+    background: var(--gradient-primary) !important;
+    animation: ratingPulse 2s ease-in-out infinite !important;
+}
+
+@keyframes ratingPulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(255, 56, 92, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 16px rgba(255, 56, 92, 0.5);
+    }
+}
+
+.filter-panel .clear-filters {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.15), rgba(255, 107, 157, 0.15)) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.filter-panel .clear-filters::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: translate(-50%, -50%) !important;
+    transition: width 0.4s ease, height 0.4s ease !important;
+}
+
+.filter-panel .clear-filters:hover::before {
+    width: 300% !important;
+    height: 300% !important;
+}
+
+.filter-panel .clear-filters:hover {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.25), rgba(255, 107, 157, 0.25)) !important;
+    transform: scale(1.08) translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 56, 92, 0.3) !important;
+}
+
+/* ============================================
+   PARALLAX GALLERY - IMPROVED SCROLLABLE
+   Inspired by Categories Gallery
+   ============================================ */
+
+.listings-container {
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+    padding: 2rem 0 4rem 0 !important;
+}
+
+.listings-container .row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 2rem !important;
+    padding: 3rem calc(50% - 160px) 3rem calc(50% - 160px) !important;
+    margin: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    cursor: grab !important;
+    will-change: scroll-position !important;
+    scroll-padding: 0 calc(50% - 160px) !important;
+}
+
+.listings-container .row:active {
+    cursor: grabbing !important;
+}
+
+.listings-container .row::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Scroll Indicators */
+.listings-gallery-wrapper {
+    position: relative !important;
+    width: 100% !important;
+}
+
+.gallery-scroll-indicator {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 50% !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 56, 92, 0.15) !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    will-change: transform, opacity, background !important;
+}
+
+.listings-container:hover .gallery-scroll-indicator {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.gallery-scroll-indicator.left {
+    left: 2rem !important;
+}
+
+.gallery-scroll-indicator.right {
+    right: 2rem !important;
+}
+
+.gallery-scroll-indicator:hover {
+    background: var(--gradient-primary) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 
+        0 12px 32px rgba(255, 56, 92, 0.4),
+        0 0 0 1px rgba(255, 56, 92, 0.25) !important;
+}
+
+.gallery-scroll-indicator:hover i {
+    color: #ffffff !important;
+    transform: scale(1.2) !important;
+}
+
+.gallery-scroll-indicator i {
+    font-size: 1.5rem !important;
+    color: var(--primary-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.gallery-scroll-indicator:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Listing cards in parallax gallery */
+.listings-container .row > [class*="col-"] {
+    flex: 0 0 auto !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-align: center !important;
+    animation: cardSlideIn 0.6s ease-out both !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.listings-container .row > [class*="col-"]:nth-child(1) { animation-delay: 0.1s !important; }
+.listings-container .row > [class*="col-"]:nth-child(2) { animation-delay: 0.2s !important; }
+.listings-container .row > [class*="col-"]:nth-child(3) { animation-delay: 0.3s !important; }
+.listings-container .row > [class*="col-"]:nth-child(4) { animation-delay: 0.4s !important; }
+.listings-container .row > [class*="col-"]:nth-child(5) { animation-delay: 0.5s !important; }
+.listings-container .row > [class*="col-"]:nth-child(n+6) { animation-delay: 0.6s !important; }
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Parallax effect on scroll */
+.listings-container .row:not(:hover) > [class*="col-"]:nth-child(odd) {
+    transform: translateY(10px) !important;
+}
+
+.listings-container .row:not(:hover) > [class*="col-"]:nth-child(even) {
+    transform: translateY(-10px) !important;
+}
+
+.listings-container .row:hover > [class*="col-"] {
+    transform: translateY(0) !important;
+}
+
+/* Center card focus effect */
+.listings-container .row > [class*="col-"]:target,
+.listings-container .row > [class*="col-"].active {
+    transform: scale(1.05) !important;
+    z-index: 10 !important;
+}
+
+.listings-container .listing-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.listings-container .listing-card:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+    .listings-container .row {
+        padding: 2.5rem calc(50% - 140px) 2.5rem calc(50% - 140px) !important;
+        gap: 1.75rem !important;
+        scroll-padding: 0 calc(50% - 140px) !important;
+    }
+    
+    .listings-container .row > [class*="col-"] {
+        width: 300px !important;
+        max-width: 300px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .listings-container .row {
+        padding: 2rem calc(50% - 130px) 2rem calc(50% - 130px) !important;
+        gap: 1.5rem !important;
+        scroll-padding: 0 calc(50% - 130px) !important;
+    }
+    
+    .listings-container .row > [class*="col-"] {
+        width: 280px !important;
+        max-width: 280px !important;
+    }
+    
+    .gallery-scroll-indicator {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .gallery-scroll-indicator.left {
+        left: 1rem !important;
+    }
+    
+    .gallery-scroll-indicator.right {
+        right: 1rem !important;
+    }
+}
+
+/* ============================================
+   HERO SEARCH - FLEXIBLE (NOT STICKY)
+   ============================================ */
+
+.search-hero-section {
+    position: relative !important;
+    top: auto !important;
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
+    padding: 3rem 0 2.5rem 0 !important;
+    border-bottom: 1px solid rgba(235, 235, 235, 0.8) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+    z-index: 10 !important;
+}
+
+.search-hero-section.scrolled {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    border-bottom-color: rgba(255, 56, 92, 0.15) !important;
+}
+
+/* ============================================
+   FILTER PANEL - COLORS & ANIMATIONS
+   ============================================ */
+
+.filter-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 247, 250, 0.95) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 2px solid transparent !important;
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 247, 250, 0.95) 100%),
+        linear-gradient(135deg, rgba(255, 56, 92, 0.1), rgba(102, 126, 234, 0.1), rgba(255, 56, 92, 0.1)) !important;
+    background-origin: border-box !important;
+    background-clip: padding-box, border-box !important;
+    border-radius: 999px !important;
+    padding: 0.75rem 1.5rem !important;
+    position: sticky !important;
+    top: 100px !important;
+    box-shadow: 
+        0 10px 30px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 56, 92, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    flex-wrap: nowrap !important;
+    z-index: 50 !important;
+    margin-bottom: 2rem !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 56, 92, 0.5) transparent !important;
+    animation: filterPanelSlideIn 0.6s ease-out !important;
+}
+
+@keyframes filterPanelSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filter-panel::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.3), rgba(102, 126, 234, 0.3), rgba(255, 56, 92, 0.3)) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.filter-panel:hover::before {
+    opacity: 1 !important;
+}
+
+.filter-panel:hover {
+    box-shadow: 
+        0 12px 40px rgba(255, 56, 92, 0.15),
+        0 0 0 2px rgba(255, 56, 92, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.filter-panel::-webkit-scrollbar {
+    height: 4px !important;
+    width: auto !important;
+}
+
+.filter-panel::-webkit-scrollbar-track {
+    background: rgba(255, 56, 92, 0.05) !important;
+    border-radius: 10px !important;
+}
+
+.filter-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(255, 56, 92, 0.6), rgba(102, 126, 234, 0.6)) !important;
+    border-radius: 10px !important;
+    transition: background 0.3s ease !important;
+}
+
+.filter-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, rgba(255, 56, 92, 0.8), rgba(102, 126, 234, 0.8)) !important;
+}
+
+/* Animated filter sections */
+.filter-panel .filter-section {
+    animation: filterItemFadeIn 0.5s ease-out both !important;
+}
+
+.filter-panel .filter-section:nth-child(1) { animation-delay: 0.1s !important; }
+.filter-panel .filter-section:nth-child(2) { animation-delay: 0.2s !important; }
+.filter-panel .filter-section:nth-child(3) { animation-delay: 0.3s !important; }
+.filter-panel .filter-section:nth-child(4) { animation-delay: 0.4s !important; }
+.filter-panel .filter-section:nth-child(5) { animation-delay: 0.5s !important; }
+.filter-panel .filter-section:nth-child(n+6) { animation-delay: 0.6s !important; }
+
+@keyframes filterItemFadeIn {
+    from {
+    opacity: 0;
+        transform: translateX(-10px);
+}
+    to {
+    opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.filter-panel .filter-select,
+.filter-panel .filter-input,
+.filter-panel .price-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.filter-panel .filter-select:hover,
+.filter-panel .filter-input:hover,
+.filter-panel .price-input:hover {
+    border-color: rgba(255, 56, 92, 0.4) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.15) !important;
+}
+
+.filter-panel .filter-select:focus,
+.filter-panel .filter-input:focus,
+.filter-panel .price-input:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.2) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+.filter-panel .rating-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.filter-panel .rating-btn:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.2) !important;
+}
+
+.filter-panel .rating-btn.active {
+    background: var(--gradient-primary) !important;
+    animation: pulseGlow 2s ease-in-out infinite !important;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 56, 92, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 56, 92, 0);
+    }
+}
+
+.filter-panel .clear-filters {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.15), rgba(255, 56, 92, 0.1)) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.filter-panel .clear-filters:hover {
+    background: linear-gradient(135deg, rgba(255, 56, 92, 0.25), rgba(255, 56, 92, 0.2)) !important;
+    transform: scale(1.08) translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 56, 92, 0.3) !important;
+}
+
+/* ============================================
+   PARALLAX GALLERY - ENHANCED WITH SCROLL INDICATORS
+   Inspired by Categories Gallery
+   ============================================ */
+
+.listings-container {
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+}
+
+.listings-gallery-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    padding: 2rem 0 4rem 0 !important;
+    overflow: hidden !important;
+}
+
+.listings-container .row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-behavior: smooth !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 1.5rem !important;
+    padding: 3rem calc(50% - 160px) 3rem calc(50% - 160px) !important;
+    margin: 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    cursor: grab !important;
+    will-change: scroll-position !important;
+    scroll-padding: 0 calc(50% - 160px) !important;
+}
+
+.listings-container .row:active {
+    cursor: grabbing !important;
+}
+
+.listings-container .row::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Scroll Indicators */
+.gallery-scroll-indicator {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 50% !important;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 56, 92, 0.15) !important;
+    cursor: pointer !important;
+    z-index: 20 !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    will-change: transform, opacity, background !important;
+}
+
+.gallery-scroll-indicator.visible {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.gallery-scroll-indicator.left {
+    left: 2rem !important;
+}
+
+.gallery-scroll-indicator.right {
+    right: 2rem !important;
+}
+
+.gallery-scroll-indicator:hover {
+    background: var(--gradient-primary) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 
+        0 12px 32px rgba(255, 56, 92, 0.4),
+        0 0 0 1px rgba(255, 56, 92, 0.25) !important;
+}
+
+.gallery-scroll-indicator:hover i {
+    color: #ffffff !important;
+    transform: scale(1.2) !important;
+}
+
+.gallery-scroll-indicator i {
+    font-size: 1.5rem !important;
+    color: var(--primary-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.gallery-scroll-indicator:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Listing cards in horizontal gallery */
+.listings-container .row > [class*="col-"] {
+    flex: 0 0 auto !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-align: start !important;
+    animation: cardSlideIn 0.6s ease-out both !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.listings-container .row > [class*="col-"]:nth-child(1) { animation-delay: 0.1s !important; }
+.listings-container .row > [class*="col-"]:nth-child(2) { animation-delay: 0.2s !important; }
+.listings-container .row > [class*="col-"]:nth-child(3) { animation-delay: 0.3s !important; }
+.listings-container .row > [class*="col-"]:nth-child(4) { animation-delay: 0.4s !important; }
+.listings-container .row > [class*="col-"]:nth-child(5) { animation-delay: 0.5s !important; }
+.listings-container .row > [class*="col-"]:nth-child(n+6) { animation-delay: 0.6s !important; }
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Parallax effect on scroll */
+.listings-container .row > [class*="col-"]:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    z-index: 10 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .listings-container .row {
+        padding: 2rem calc(50% - 140px) 2rem calc(50% - 140px) !important;
+        scroll-padding: 0 calc(50% - 140px) !important;
+    }
+    
+    .listings-container .row > [class*="col-"] {
+        width: 280px !important;
+        max-width: 280px !important;
+    }
+    
+    .gallery-scroll-indicator {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .gallery-scroll-indicator.left {
+        left: 1rem !important;
+    }
+    
+    .gallery-scroll-indicator.right {
+        right: 1rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .listings-container .row {
+        padding: 1.5rem calc(50% - 130px) 1.5rem calc(50% - 130px) !important;
+        scroll-padding: 0 calc(50% - 130px) !important;
+    }
+    
+    .listings-container .row > [class*="col-"] {
+        width: 260px !important;
+        max-width: 260px !important;
+    }
+}

@@ -1,0 +1,76 @@
+/* RTL adjustments for Urdu */
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] body.rtl {
+    font-family: 'Noto Naskh Arabic', 'Poppins', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .header-content,
+[dir="rtl"] .search-hero-bar,
+[dir="rtl"] .filter-panel,
+[dir="rtl"] .search-toolbar,
+[dir="rtl"] .listings-container,
+[dir="rtl"] .footer-bottom-content,
+[dir="rtl"] .footer-top .row {
+    direction: rtl;
+}
+
+[dir="rtl"] .search-divider {
+    display: none;
+}
+
+[dir="rtl"] .search-item {
+    text-align: right;
+}
+
+[dir="rtl"] .listing-location i,
+[dir="rtl"] .filter-input-wrapper i,
+[dir="rtl"] .footer-links i,
+[dir="rtl"] .social-icons i {
+    margin-left: .35rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .view-toggle .view-btn i,
+[dir="rtl"] .sort-label i,
+[dir="rtl"] .filter-header i,
+[dir="rtl"] .filter-section-header i {
+    margin-left: .35rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .dropdown-menu {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-links li {
+    padding-right: 0;
+}
+
+[dir="rtl"] .badge-verified,
+[dir="rtl"] .badge-instant,
+[dir="rtl"] .badge-account-paid,
+[dir="rtl"] .badge-account-free {
+    right: auto;
+    left: .75rem;
+}
+
+[dir="rtl"] .listing-card,
+[dir="rtl"] .listing-card-list {
+    text-align: right;
+}
+
+[dir="rtl"] .mobile-menu-item i {
+    margin-left: .5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .breadcrumb,
+[dir="rtl"] .nav,
+[dir="rtl"] .pagination {
+    flex-direction: row-reverse;
+}
+

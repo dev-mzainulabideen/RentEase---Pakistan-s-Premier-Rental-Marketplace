@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your listings on My Rental Marketplace">
+    <title>My Listings - My Rental Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/my-listings.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="RentEase Home">
+                    <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+                </a>
+
+                <!-- Right Menu -->
+                <div class="header-menu">
+                    <!-- Language Toggle -->
+                    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                        <i class="bi bi-globe2"></i>
+                        <span id="lang-text" class="lang-text">اردو</span>
+                        <i class="bi bi-chevron-down lang-chevron"></i>
+                    </button>
+
+                    <!-- User Menu (when logged in) -->
+                    <div class="user-menu logged-out">
+                        <a href="create-listing.html" class="host-link" data-require="createListing">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            <span class="host-link-text">Create Listing</span>
+                        </a>
+                        <div class="user-dropdown">
+                            <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu">
+                                <div class="user-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" id="user-dropdown-menu">
+                                <div class="dropdown-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar-small">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                        <div>
+                                            <div class="user-name">John Doe</div>
+                                            <div class="user-email">john@example.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="dashboard.html" class="dropdown-item">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="my-listings.html" class="dropdown-item active owner-only" data-require="createListing">
+                                    <i class="bi bi-house-door"></i>
+                                    <span>My Listings</span>
+                                </a>
+                                <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory">
+                                    <i class="bi bi-calendar-check"></i>
+                                    <span>My Bookings</span>
+                                </a>
+                                <a href="messages.html" class="dropdown-item" data-require="message">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                    <span class="badge-notification">3</span>
+                                </a>
+                                <a href="profile.html" class="dropdown-item">
+                                    <i class="bi bi-person"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="settings.html" class="dropdown-item">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="help.html" class="dropdown-item">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout && window.logout();">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Log out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Buttons / User Actions -->
+                    <div class="auth-buttons logged-in">
+                        <a href="profile.html" class="btn-profile">
+                            <i class="bi bi-person-circle"></i>
+                            <span class="btn-text">Profile</span>
+                        </a>
+                        <a href="login.html" class="btn-login">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="btn-text">Log in</span>
+                        </a>
+                        <a href="register.html" class="btn-signup">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span class="btn-text">Sign up</span>
+                        </a>
+                        <a href="#" class="btn-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="btn-text">Log out</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-menu-item">
+                        <i class="bi bi-house"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="search.html" class="mobile-menu-item">
+                        <i class="bi bi-search"></i>
+                        <span>Search</span>
+                    </a>
+                    <a href="create-listing.html" class="mobile-menu-item" data-require="createListing">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Create Listing</span>
+                    </a>
+                    <div class="mobile-menu-divider"></div>
+                    <a href="profile.html" class="mobile-menu-item">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                    <a href="my-listings.html" class="mobile-menu-item active owner-only" data-require="createListing">
+                        <i class="bi bi-house-door"></i>
+                        <span>My Listings</span>
+                    </a>
+                    <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <a href="messages.html" class="mobile-menu-item" data-require="message">
+                        <i class="bi bi-chat-dots"></i>
+                        <span>Messages</span>
+                    </a>
+                    <div class="mobile-menu-divider"></div>
+                    <a href="login.html" class="mobile-menu-item">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        <span>Log in</span>
+                    </a>
+                    <a href="register.html" class="mobile-menu-item">
+                        <i class="bi bi-person-plus"></i>
+                        <span>Sign up</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="my-listings-page">
+        <div class="my-listings-section">
+            <div class="container">
+                <div class="listings-wrapper">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div class="page-icon">
+                                <i class="bi bi-house-door-fill"></i>
+                            </div>
+                            <div>
+                                <h1 class="page-title">My Listings</h1>
+                                <p class="page-subtitle">Manage your rental listings</p>
+                            </div>
+                        </div>
+                        <div class="page-actions">
+                            <a href="create-listing.html" class="btn-create-listing">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>Create New Listing</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Owner Stats Summary -->
+                    <div class="owner-stats-summary" id="ownerStatsSummary">
+                        <div class="stat-card">
+                            <div class="stat-icon active">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value" id="stat-active">0</span>
+                                <span class="stat-label">Active</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon draft">
+                                <i class="bi bi-pencil-fill"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value" id="stat-draft">0</span>
+                                <span class="stat-label">Drafts</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon paused">
+                                <i class="bi bi-pause-circle-fill"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value" id="stat-paused">0</span>
+                                <span class="stat-label">Paused</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bookings">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value" id="stat-bookings">0</span>
+                                <span class="stat-label">Total Bookings</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all" onclick="filterListings('all')">
+                            <span>All</span>
+                            <span class="tab-count" id="count-all">0</span>
+                        </button>
+                        <button class="filter-tab" data-filter="active" onclick="filterListings('active')">
+                            <span>Active</span>
+                            <span class="tab-count" id="count-active">0</span>
+                        </button>
+                        <button class="filter-tab" data-filter="draft" onclick="filterListings('draft')">
+                            <span>Draft</span>
+                            <span class="tab-count" id="count-draft">0</span>
+                        </button>
+                        <button class="filter-tab" data-filter="inactive" onclick="filterListings('inactive')">
+                            <span>Paused</span>
+                            <span class="tab-count" id="count-inactive">0</span>
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Loading your listings...</p>
+                    </div>
+
+                    <!-- Listings Grid -->
+                    <div class="listings-grid" id="listingsGrid" style="display: none;">
+                        <!-- Listings will be loaded by JavaScript -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <div class="empty-icon">
+                            <i class="bi bi-house-add"></i>
+                        </div>
+                        <h3 class="empty-title">No listings yet</h3>
+                        <p class="empty-description">Start earning by creating your first listing!</p>
+                        <a href="create-listing.html" class="btn-create-first">
+                            <i class="bi bi-plus-lg"></i>
+                            <span>Create Your First Listing</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Listing Modal -->
+    <div class="modal fade" id="editListingModal" tabindex="-1" aria-labelledby="editListingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editListingModalLabel">
+                        <i class="bi bi-pencil-square"></i>
+                        Quick Edit Listing
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editListingForm">
+                        <input type="hidden" id="edit-listing-id">
+                        <div class="mb-3">
+                            <label for="edit-title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="edit-title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-description" class="form-label">Description</label>
+                            <textarea class="form-control" id="edit-description" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-address" class="form-label">Address / Location</label>
+                            <input type="text" class="form-control" id="edit-address" placeholder="e.g. House 12, Street 5, DHA" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-city" class="form-label">City</label>
+                                <select class="form-control" id="edit-city">
+                                    <option value="">Select city</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Karachi">Karachi</option>
+                                    <option value="Islamabad">Islamabad</option>
+                                    <option value="Rawalpindi">Rawalpindi</option>
+                                    <option value="Faisalabad">Faisalabad</option>
+                                    <option value="Multan">Multan</option>
+                                    <option value="Peshawar">Peshawar</option>
+                                    <option value="Quetta">Quetta</option>
+                                    <option value="Sialkot">Sialkot</option>
+                                    <option value="Gujranwala">Gujranwala</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-pricing-model" class="form-label">Pricing Model</label>
+                                <select class="form-control" id="edit-pricing-model">
+                                    <option value="hourly">Per Hour</option>
+                                    <option value="daily">Per Day</option>
+                                    <option value="weekly">Per Week</option>
+                                    <option value="monthly">Per Month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit-price" class="form-label">Price (PKR)</label>
+                                <input type="number" class="form-control" id="edit-price" min="0" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="edit-instant-booking">
+                                <label class="form-check-label" for="edit-instant-booking">
+                                    Enable Instant Booking
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveListingEdit()">
+                        <i class="bi bi-check-lg"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteListingModal" tabindex="-1" aria-labelledby="deleteListingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteListingModalLabel">
+                        <i class="bi bi-exclamation-triangle text-danger"></i>
+                        Delete Listing
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this listing?</p>
+                    <p class="text-muted"><strong id="delete-listing-title"></strong></p>
+                    <p class="text-danger small">This action cannot be undone.</p>
+                    <input type="hidden" id="delete-listing-id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDeleteListing()">
+                        <i class="bi bi-trash"></i>
+                        Delete Listing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 <strong>MyRental Marketplace</strong>. All rights reserved.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/rbac.js"></script>
+    <script src="js/my-listings.js"></script>
+    <script>
+        // Restrict access to owners only
+        document.addEventListener('DOMContentLoaded', function() {
+            window.checkPageAccess('createListing', null, 'login.html');
+        });
+    </script>
+</body>
+</html>
+

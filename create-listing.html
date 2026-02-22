@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new listing on My Rental Marketplace">
+    <title>Create Listing - My Rental Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/create-listing.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="RentEase Home">
+                    <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+                </a>
+
+                <!-- Right Menu -->
+                <div class="header-menu">
+                    <!-- Language Toggle -->
+                    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                        <i class="bi bi-globe2"></i>
+                        <span id="lang-text" class="lang-text">اردو</span>
+                        <i class="bi bi-chevron-down lang-chevron"></i>
+                    </button>
+
+                    <!-- User Menu (when logged in) -->
+                    <div class="user-menu logged-out">
+                        <a href="create-listing.html" class="host-link active" data-require="createListing">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            <span class="host-link-text">Become a Host</span>
+                        </a>
+                        <div class="user-dropdown">
+                            <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu">
+                                <div class="user-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" id="user-dropdown-menu">
+                                <div class="dropdown-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar-small">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                        <div>
+                                            <div class="user-name">John Doe</div>
+                                            <div class="user-email">john@example.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="dashboard.html" class="dropdown-item">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="my-listings.html" class="dropdown-item owner-only" data-require="createListing">
+                                    <i class="bi bi-house-door"></i>
+                                    <span>My Listings</span>
+                                </a>
+                                <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory">
+                                    <i class="bi bi-calendar-check"></i>
+                                    <span>My Bookings</span>
+                                </a>
+                                <a href="messages.html" class="dropdown-item" data-require="message">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                    <span class="badge-notification">3</span>
+                                </a>
+                                <a href="profile.html" class="dropdown-item">
+                                    <i class="bi bi-person"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="settings.html" class="dropdown-item">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="help.html" class="dropdown-item">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout && window.logout();">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Log out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Buttons / User Actions -->
+                    <div class="auth-buttons logged-in">
+                        <a href="profile.html" class="btn-profile">
+                            <i class="bi bi-person-circle"></i>
+                            <span class="btn-text">Profile</span>
+                        </a>
+                        <a href="login.html" class="btn-login">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="btn-text">Log in</span>
+                        </a>
+                        <a href="register.html" class="btn-signup">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span class="btn-text">Sign up</span>
+                        </a>
+                        <a href="#" class="btn-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="btn-text">Log out</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-menu-item">
+                        <i class="bi bi-house"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="search.html" class="mobile-menu-item">
+                        <i class="bi bi-search"></i>
+                        <span>Search</span>
+                    </a>
+                    <a href="index.html#categories-grid" class="mobile-menu-item">
+                        <i class="bi bi-grid"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="create-listing.html" class="mobile-menu-item active" data-require="createListing">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Become a Host</span>
+                    </a>
+                    <div class="mobile-menu-divider"></div>
+                    <a href="profile.html" class="mobile-menu-item">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                    <a href="my-listings.html" class="mobile-menu-item owner-only" data-require="createListing">
+                        <i class="bi bi-house-door"></i>
+                        <span>My Listings</span>
+                    </a>
+                    <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <div class="mobile-menu-divider"></div>
+                    <a href="login.html" class="mobile-menu-item">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        <span>Log in</span>
+                    </a>
+                    <a href="register.html" class="mobile-menu-item">
+                        <i class="bi bi-person-plus"></i>
+                        <span>Sign up</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="create-listing-page">
+        <div class="create-listing-section">
+            <div class="container">
+                <div class="create-listing-wrapper">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div class="page-icon">
+                                <i class="bi bi-plus-circle-fill"></i>
+                            </div>
+                            <div>
+                                <h1 class="page-title">Create New Listing</h1>
+                                <p class="page-subtitle">Share your item or service with thousands of users across Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="page-steps">
+                            <div class="step-indicator active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Basic Info</span>
+                            </div>
+                            <div class="step-indicator" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Details</span>
+                            </div>
+                            <div class="step-indicator" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Pricing</span>
+                            </div>
+                            <div class="step-indicator" data-step="4">
+                                <span class="step-number">4</span>
+                                <span class="step-label">Publish</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Create Listing Form -->
+                    <form class="create-listing-form" id="createListingForm" onsubmit="handleListingSubmit(event)">
+                        <!-- Step 1: Basic Information -->
+                        <div class="form-step active" id="step1">
+                            <div class="form-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-info-circle"></i>
+                                        Basic Information
+                                    </h3>
+                                    <span class="step-badge">Step 1 of 4</span>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Category Selection -->
+                                    <div class="form-group">
+                                        <label for="category" class="form-label">
+                                            <i class="bi bi-grid"></i>
+                                            <span>Category <span class="required">*</span></span>
+                                        </label>
+                                        <select id="category" name="category" class="form-control" required onchange="handleCategoryChange()">
+                                            <option value="">Select a category</option>
+                                            <option value="property">Property</option>
+                                            <option value="vehicles">Vehicles</option>
+                                            <option value="clothes">Clothes</option>
+                                            <option value="equipment">Equipment</option>
+                                            <option value="service-providers">Service Providers</option>
+                                            <option value="animals">Animals</option>
+                                            <option value="boat">Boat</option>
+                                            <option value="air-transport">Air Transport</option>
+                                        </select>
+                                        <div class="form-error" id="category-error"></div>
+                                    </div>
+
+                                    <!-- Subcategory Selection (Dynamic) -->
+                                    <div class="form-group" id="subcategory-group" style="display: none;">
+                                        <label for="subcategory" class="form-label">
+                                            <i class="bi bi-list-ul"></i>
+                                            <span>Subcategory <span class="required">*</span></span>
+                                        </label>
+                                        <select id="subcategory" name="subcategory" class="form-control" onchange="handleSubcategoryChange()">
+                                            <option value="">Select a subcategory</option>
+                                        </select>
+                                        <div class="form-error" id="subcategory-error"></div>
+                                    </div>
+
+                                    <!-- Listing Title -->
+                                    <div class="form-group">
+                                        <label for="title" class="form-label">
+                                            <i class="bi bi-card-heading"></i>
+                                            <span>Listing Title <span class="required">*</span></span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="title" 
+                                            name="title"
+                                            class="form-control" 
+                                            placeholder="e.g., Luxury 3-Bedroom Apartment in DHA Lahore"
+                                            required
+                                            maxlength="100"
+                                        >
+                                        <div class="form-hint">Be specific and descriptive. Include key features.</div>
+                                        <div class="form-error" id="title-error"></div>
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="form-group">
+                                        <label for="description" class="form-label">
+                                            <i class="bi bi-card-text"></i>
+                                            <span>Description <span class="required">*</span></span>
+                                        </label>
+                                        <textarea 
+                                            id="description" 
+                                            name="description"
+                                            class="form-control" 
+                                            rows="6"
+                                            placeholder="Describe your listing in detail. Include features, amenities, and what makes it special..."
+                                            required
+                                            maxlength="2000"
+                                        ></textarea>
+                                        <div class="form-hint">
+                                            <span id="description-count">0</span> / 2000 characters
+                                        </div>
+                                        <div class="form-error" id="description-error"></div>
+                                    </div>
+
+                                    <!-- Location/Address -->
+                                    <div class="form-group">
+                                        <label for="location" class="form-label">
+                                            <i class="bi bi-geo-alt"></i>
+                                            <span>Address <span class="required">*</span></span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="location" 
+                                            name="location"
+                                            class="form-control" 
+                                            placeholder="e.g., DHA Phase 5, Block D, House 123"
+                                            required
+                                        >
+                                        <div class="form-hint">Enter the full street address</div>
+                                        <div class="form-error" id="location-error"></div>
+                                    </div>
+
+                                    <!-- City & Province -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="city" class="form-label">
+                                                <i class="bi bi-building"></i>
+                                                <span>City <span class="required">*</span></span>
+                                            </label>
+                                            <select id="city" name="city" class="form-control" required>
+                                                <option value="">Select City</option>
+                                                <option value="Lahore">Lahore</option>
+                                                <option value="Karachi">Karachi</option>
+                                                <option value="Islamabad">Islamabad</option>
+                                                <option value="Rawalpindi">Rawalpindi</option>
+                                                <option value="Faisalabad">Faisalabad</option>
+                                                <option value="Multan">Multan</option>
+                                                <option value="Peshawar">Peshawar</option>
+                                                <option value="Quetta">Quetta</option>
+                                                <option value="Sialkot">Sialkot</option>
+                                                <option value="Gujranwala">Gujranwala</option>
+                                            </select>
+                                            <div class="form-error" id="city-error"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="province" class="form-label">
+                                                <i class="bi bi-map"></i>
+                                                <span>Province <span class="required">*</span></span>
+                                            </label>
+                                            <select id="province" name="province" class="form-control" required>
+                                                <option value="">Select Province</option>
+                                                <option value="Punjab">Punjab</option>
+                                                <option value="Sindh">Sindh</option>
+                                                <option value="KPK">Khyber Pakhtunkhwa</option>
+                                                <option value="Balochistan">Balochistan</option>
+                                                <option value="ICT">Islamabad Capital Territory</option>
+                                                <option value="AJK">Azad Kashmir</option>
+                                                <option value="GB">Gilgit-Baltistan</option>
+                                            </select>
+                                            <div class="form-error" id="province-error"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hidden coordinates (auto-set based on city or manual) -->
+                                    <input type="hidden" id="lat" name="lat" value="">
+                                    <input type="hidden" id="lng" name="lng" value="">
+
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-next" onclick="goToStep(2)">
+                                            Next: Details
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Details -->
+                        <div class="form-step" id="step2">
+                            <div class="form-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-sliders"></i>
+                                        Listing Details
+                                    </h3>
+                                    <span class="step-badge">Step 2 of 4</span>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Dynamic Fields Container -->
+                                    <div id="dynamic-fields"></div>
+
+                                    <!-- Images Upload -->
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="bi bi-images"></i>
+                                            <span>Photos <span class="required">*</span></span>
+                                        </label>
+                                        <div class="image-upload-area" id="imageUploadArea">
+                                            <input type="file" id="imageInput" multiple accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                                            <div class="upload-placeholder" onclick="document.getElementById('imageInput').click()">
+                                                <i class="bi bi-cloud-upload"></i>
+                                                <p>Click to upload photos</p>
+                                                <span class="upload-hint">Upload at least 3 photos (Max 10, 5MB each)</span>
+                                            </div>
+                                            <div class="uploaded-images" id="uploadedImages"></div>
+                                        </div>
+                                        <div class="form-error" id="images-error"></div>
+                                    </div>
+
+                                    <!-- Video Upload (Optional) -->
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="bi bi-camera-video"></i>
+                                            <span>Video (Optional)</span>
+                                        </label>
+                                        <div class="video-upload-area">
+                                            <input type="file" id="videoInput" accept="video/*" style="display: none;" onchange="handleVideoUpload(event)">
+                                            <div class="upload-placeholder" onclick="document.getElementById('videoInput').click()">
+                                                <i class="bi bi-play-circle"></i>
+                                                <p>Click to upload video</p>
+                                                <span class="upload-hint">Max 50MB, MP4 format</span>
+                                            </div>
+                                            <div class="uploaded-video" id="uploadedVideo" style="display: none;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-back" onclick="goToStep(1)">
+                                            <i class="bi bi-arrow-left"></i>
+                                            Back
+                                        </button>
+                                        <button type="button" class="btn-next" onclick="goToStep(3)">
+                                            Next: Pricing
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Pricing -->
+                        <div class="form-step" id="step3">
+                            <div class="form-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-currency-dollar"></i>
+                                        Pricing & Availability
+                                    </h3>
+                                    <span class="step-badge">Step 3 of 4</span>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Pricing Model -->
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="bi bi-clock-history"></i>
+                                            <span>Pricing Model <span class="required">*</span></span>
+                                        </label>
+                                        <div class="pricing-options">
+                                            <label class="pricing-option">
+                                                <input type="radio" name="pricingModel" value="hourly" required>
+                                                <div class="pricing-card">
+                                                    <i class="bi bi-clock"></i>
+                                                    <span>Hourly</span>
+                                                </div>
+                                            </label>
+                                            <label class="pricing-option">
+                                                <input type="radio" name="pricingModel" value="daily" required>
+                                                <div class="pricing-card">
+                                                    <i class="bi bi-calendar-day"></i>
+                                                    <span>Daily</span>
+                                                </div>
+                                            </label>
+                                            <label class="pricing-option">
+                                                <input type="radio" name="pricingModel" value="weekly" required>
+                                                <div class="pricing-card">
+                                                    <i class="bi bi-calendar-week"></i>
+                                                    <span>Weekly</span>
+                                                </div>
+                                            </label>
+                                            <label class="pricing-option">
+                                                <input type="radio" name="pricingModel" value="monthly" required>
+                                                <div class="pricing-card">
+                                                    <i class="bi bi-calendar-month"></i>
+                                                    <span>Monthly</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="price" class="form-label">
+                                                <i class="bi bi-tag"></i>
+                                                <span>Price (PKR) <span class="required">*</span></span>
+                                            </label>
+                                            <div class="input-with-icon">
+                                                <span class="input-icon">Rs</span>
+                                                <input 
+                                                    type="number" 
+                                                    id="price" 
+                                                    name="price"
+                                                    class="form-control" 
+                                                    placeholder="0"
+                                                    min="0"
+                                                    step="100"
+                                                    required
+                                                >
+                                            </div>
+                                            <div class="form-error" id="price-error"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="deposit" class="form-label">
+                                                <i class="bi bi-shield-check"></i>
+                                                <span>Security Deposit (PKR)</span>
+                                            </label>
+                                            <div class="input-with-icon">
+                                                <span class="input-icon">Rs</span>
+                                                <input 
+                                                    type="number" 
+                                                    id="deposit" 
+                                                    name="deposit"
+                                                    class="form-control" 
+                                                    placeholder="0"
+                                                    min="0"
+                                                    step="100"
+                                                >
+                                            </div>
+                                            <div class="form-hint">Optional security deposit amount</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Negotiable & Cancellation Policy -->
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                <i class="bi bi-chat-square-quote"></i>
+                                                <span>Price Negotiable</span>
+                                            </label>
+                                            <div class="toggle-switch-container">
+                                                <label class="toggle-switch">
+                                                    <input type="checkbox" id="negotiable" name="negotiable">
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                                <span class="toggle-label">Allow renters to negotiate price</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cancellationPolicy" class="form-label">
+                                                <i class="bi bi-shield-exclamation"></i>
+                                                <span>Cancellation Policy</span>
+                                            </label>
+                                            <select id="cancellationPolicy" name="cancellationPolicy" class="form-control">
+                                                <option value="flexible">Flexible - Full refund up to 24h before</option>
+                                                <option value="moderate" selected>Moderate - Full refund up to 5 days before</option>
+                                                <option value="strict">Strict - 50% refund up to 7 days before</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Availability -->
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="bi bi-calendar-check"></i>
+                                            <span>Availability <span class="required">*</span></span>
+                                        </label>
+                                        <div class="availability-options">
+                                            <label class="availability-option">
+                                                <input type="radio" name="availability" value="instant" required>
+                                                <div class="availability-card">
+                                                    <i class="bi bi-lightning-fill"></i>
+                                                    <span>Instant Booking</span>
+                                                    <small>Available immediately</small>
+                                                </div>
+                                            </label>
+                                            <label class="availability-option">
+                                                <input type="radio" name="availability" value="request" required>
+                                                <div class="availability-card">
+                                                    <i class="bi bi-envelope-check"></i>
+                                                    <span>Request-Based</span>
+                                                    <small>Requires approval</small>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Availability Calendar -->
+                                    <div class="form-group">
+                                        <label for="availableDates" class="form-label">
+                                            <i class="bi bi-calendar-range"></i>
+                                            <span>Available Dates</span>
+                                        </label>
+                                        <div class="calendar-container">
+                                            <div class="calendar-note">
+                                                <i class="bi bi-info-circle"></i>
+                                                <span>Select dates when your listing is available. Leave empty for always available.</span>
+                                            </div>
+                                            <div class="date-range-inputs">
+                                                <input type="date" id="availableFrom" name="availableFrom" class="form-control">
+                                                <span class="date-separator">to</span>
+                                                <input type="date" id="availableTo" name="availableTo" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-back" onclick="goToStep(2)">
+                                            <i class="bi bi-arrow-left"></i>
+                                            Back
+                                        </button>
+                                        <button type="button" class="btn-next" onclick="goToStep(4)">
+                                            Next: Publish
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Publish -->
+                        <div class="form-step" id="step4">
+                            <div class="form-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="bi bi-check-circle"></i>
+                                        Review & Publish
+                                    </h3>
+                                    <span class="step-badge">Step 4 of 4</span>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Listing Preview -->
+                                    <div class="listing-preview" id="listingPreview">
+                                        <div class="preview-header">
+                                            <h4>Listing Preview</h4>
+                                            <p>Review your listing before publishing</p>
+                                        </div>
+                                        <div class="preview-content" id="previewContent">
+                                            <!-- Preview will be generated by JavaScript -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Terms & Conditions -->
+                                    <div class="form-group">
+                                        <div class="terms-acceptance">
+                                            <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                                            <label for="acceptTerms">
+                                                I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>. I confirm that all information provided is accurate.
+                                            </label>
+                                        </div>
+                                        <div class="form-error" id="terms-error"></div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="button" class="btn-back" onclick="goToStep(3)">
+                                            <i class="bi bi-arrow-left"></i>
+                                            Back
+                                        </button>
+                                        <button type="submit" class="btn-publish" id="publishBtn">
+                                            <i class="bi bi-check-circle"></i>
+                                            Publish Listing
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Top Section -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <svg class="footer-logo-icon" width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="40" height="40" rx="10" fill="url(#footerLogoGradient)"/>
+                                    <path d="M20 8L12 12V18C12 24.5 16.5 29.5 20 31C23.5 29.5 28 24.5 28 18V12L20 8Z" fill="white" opacity="0.95"/>
+                                    <path d="M16 20L18.5 22.5L24 17" stroke="url(#footerLogoGradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="footerLogoGradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#FF385C"/>
+                                            <stop offset="100%" stop-color="#FF6B9D"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="footer-brand-name">MyRental</h3>
+                            <p class="footer-brand-tagline">Your trusted rental marketplace in Pakistan</p>
+                            <p class="footer-description">Rent anything, anywhere. Discover thousands of rental options across 8 categories with trusted, verified listings.</p>
+                            
+                            <!-- Newsletter Subscription -->
+                            <div class="footer-newsletter">
+                                <h6 class="newsletter-title">
+                                    <i class="bi bi-envelope-heart"></i>
+                                    Subscribe to our newsletter
+                                </h6>
+                                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                                    <div class="newsletter-input-group">
+                                        <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                                        <button type="submit" class="newsletter-button">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-info-circle"></i>
+                                About
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> How it works</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Newsroom</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Investors</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Community -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-people"></i>
+                                Community
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Diversity & Belonging</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Accessibility</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Disaster Relief</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Host -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-house-heart"></i>
+                                Host
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="create-listing.html"><i class="bi bi-chevron-right"></i> Host your home</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Online Experience</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Resources</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Community Forum</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Hosting Tips</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Support & Contact -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-headset"></i>
+                                Support
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Safety</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Cancellation</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Neighborhood</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                            
+                            <!-- Contact Info -->
+                            <div class="footer-contact">
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>+92 300 1234567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>support@myrental.pk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <!-- Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 <strong>MyRental Marketplace</strong>. All rights reserved.</p>
+                        <p class="copyright-subtext">Made with <i class="bi bi-heart-fill"></i> in Pakistan</p>
+                    </div>
+
+                    <!-- Legal Links -->
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-shield-check"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-file-text"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-map"></i>
+                            Sitemap
+                        </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="footer-social">
+                        <span class="social-label">Follow us:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon whatsapp" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="footer-payments">
+                    <span class="payments-label">We accept:</span>
+                    <div class="payment-icons">
+                        <div class="payment-icon" title="JazzCash">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="payment-icon" title="Easypaisa">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </div>
+                        <div class="payment-icon" title="Visa">
+                            <i class="bi bi-credit-card-2-back"></i>
+                        </div>
+                        <div class="payment-icon" title="Mastercard">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wave Decoration -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="url(#waveGradient)"/>
+                <defs>
+                    <linearGradient id="waveGradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#FF385C" stop-opacity="0.1"/>
+                        <stop offset="50%" stop-color="#FF6B9D" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#FF385C" stop-opacity="0.1"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/category.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/rbac.js"></script>
+    <script src="js/create-listing.js"></script>
+    <script>
+        // Check if user has permission to create listings
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window.checkPageAccess('createListing', null, 'index.html')) {
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,228 @@
+/* Subscription Page Styles */
+
+.subscription-page {
+    padding: 4rem 0;
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+}
+
+.subscription-header {
+    margin-bottom: 3rem;
+}
+
+.subscription-header h1 {
+    background: linear-gradient(135deg, #FF385C 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subscription Plan Cards */
+.subscription-plan-card {
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.subscription-plan-card:hover {
+    border-color: #FF385C;
+    box-shadow: 0 8px 24px rgba(255, 56, 92, 0.15);
+    transform: translateY(-4px);
+}
+
+.subscription-plan-card.premium {
+    border-color: #FF385C;
+    background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 2rem;
+    background: linear-gradient(135deg, #FF385C 0%, #FF6B9D 100%);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.plan-price .currency {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #717171;
+}
+
+.plan-price .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #FF385C;
+    line-height: 1;
+}
+
+.plan-price .period {
+    font-size: 1rem;
+    color: #717171;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.plan-features li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #1a1a1a;
+}
+
+.plan-features li i {
+    color: #10b981;
+    font-size: 1.25rem;
+}
+
+/* Payment Section */
+.payment-section {
+    margin-top: 3rem;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.payment-method-option {
+    cursor: pointer;
+}
+
+.payment-method-option input[type="radio"] {
+    display: none;
+}
+
+.payment-method-card {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.payment-method-card i {
+    font-size: 2rem;
+    color: #717171;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.payment-method-card span {
+    display: block;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.payment-method-option input[type="radio"]:checked + .payment-method-card {
+    border-color: #FF385C;
+    background: #fff5f8;
+}
+
+.payment-method-option input[type="radio"]:checked + .payment-method-card i {
+    color: #FF385C;
+}
+
+.payment-form {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.payment-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-row.total {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FF385C;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 2px solid #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subscription-page {
+        padding: 2rem 0;
+    }
+    
+    .subscription-plan-card {
+        padding: 1.5rem;
+    }
+    
+    .plan-price .amount {
+        font-size: 2.5rem;
+    }
+    
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+}
+

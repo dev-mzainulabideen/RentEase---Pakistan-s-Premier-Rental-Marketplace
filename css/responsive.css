@@ -1,0 +1,168 @@
+/* ============================================
+   Responsive Design - Mobile First Approach
+   Production-Level Breakpoints
+   ============================================ */
+
+/* Extra Small Devices (Phones) - < 576px */
+@media (max-width: 575.98px) {
+    .header-content {
+        padding: 1rem;
+    }
+
+    .host-link-text {
+        display: none;
+    }
+
+    .language-toggle span {
+        display: none;
+    }
+
+    .language-toggle {
+        padding: 0.5rem;
+        min-width: 40px;
+    }
+
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
+    .user-menu-button,
+    .user-dropdown,
+    .user-avatar-link {
+        display: none !important;
+    }
+    
+    .auth-buttons {
+        display: none !important;
+    }
+
+    .btn-login span,
+    .btn-signup span {
+        display: none;
+    }
+
+    .btn-login,
+    .btn-signup {
+        padding: 0.75rem;
+        min-width: 44px;
+    }
+
+    /* Hero responsive styles moved to hero.css */
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    /* Category styles moved to home.css */
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-social {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+}
+
+/* Small Devices (Tablets) - 576px - 767px */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .header-content {
+        padding: 1rem 1.5rem;
+    }
+
+    .host-link-text {
+        display: inline;
+    }
+
+    .language-toggle span {
+        display: inline;
+    }
+
+    /* Hero responsive styles moved to hero.css */
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Medium Devices (Small Laptops) - 768px - 991px */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .header-content {
+        padding: 1rem 2rem;
+    }
+}
+
+/* Large Devices (Desktops) - 992px - 1199px */
+@media (min-width: 992px) {
+}
+
+/* Extra Large Devices - >= 1200px */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Hide/Show Utilities */
+.desktop-only {
+    display: none;
+}
+
+.mobile-only {
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .desktop-only {
+        display: block;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+}
+
+/* Additional Responsive Adjustments */
+@media (max-width: 991px) {
+    /* Hero responsive styles moved to hero.css */
+
+    .categories-section,
+    .featured-section,
+    .how-it-works-section,
+    .trust-safety-section,
+    .payment-methods-section,
+    .testimonials-section {
+        padding: var(--section-padding-y-md, 3.5rem) 0;
+    }
+
+    .section-header {
+        margin-bottom: var(--space-2xl, 2.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+    /* Hero responsive styles moved to hero.css */
+
+    .categories-section,
+    .featured-section,
+    .how-it-works-section,
+    .trust-safety-section,
+    .payment-methods-section,
+    .testimonials-section {
+        padding: var(--section-padding-y-sm, 3rem) 0;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .section-header {
+        margin-bottom: var(--space-xl, 2rem);
+    }
+
+    .step-card {
+        margin-bottom: var(--space-xl, 2rem);
+    }
+}
+

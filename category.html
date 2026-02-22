@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Property Rentals in Pakistan - Apartments, Houses, Commercial Spaces, Event Venues, Farmhouses & More">
+    <title>Property Rentals - MyRental Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/design-refinements.css">
+    <link rel="stylesheet" href="css/category.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="RentEase Home - Find & Book Easily">
+                    <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+                </a>
+
+                <!-- Main Navigation - Desktop (Large Screens) -->
+                <nav class="main-navigation desktop-nav" aria-label="Main navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="index.html" class="nav-link" data-page="home" role="menuitem" aria-label="Home">
+                                <i class="bi bi-house-door" aria-hidden="true"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-item-dropdown" role="none">
+                            <a href="index.html#categories-grid" class="nav-link" data-page="categories" role="menuitem" aria-label="Browse Categories" aria-haspopup="true">
+                                <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                                <span>Categories</span>
+                                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <!-- Categories Dropdown -->
+                            <div class="nav-dropdown-menu">
+                                <a href="category.html?category=property" class="dropdown-nav-item">
+                                    <i class="bi bi-house" aria-hidden="true"></i>
+                                    <span>Property</span>
+                                </a>
+                                <a href="category.html?category=vehicles" class="dropdown-nav-item">
+                                    <i class="bi bi-car-front" aria-hidden="true"></i>
+                                    <span>Vehicles</span>
+                                </a>
+                                <a href="category.html?category=clothes" class="dropdown-nav-item">
+                                    <i class="bi bi-bag" aria-hidden="true"></i>
+                                    <span>Clothes</span>
+                                </a>
+                                <a href="category.html?category=equipment" class="dropdown-nav-item">
+                                    <i class="bi bi-tools" aria-hidden="true"></i>
+                                    <span>Equipment</span>
+                                </a>
+                                <a href="category.html?category=services" class="dropdown-nav-item">
+                                    <i class="bi bi-person-workspace" aria-hidden="true"></i>
+                                    <span>Services</span>
+                                </a>
+                                <a href="category.html?category=animals" class="dropdown-nav-item">
+                                    <i class="bi bi-heart" aria-hidden="true"></i>
+                                    <span>Animals</span>
+                                </a>
+                                <a href="category.html?category=boat" class="dropdown-nav-item">
+                                    <i class="bi bi-water" aria-hidden="true"></i>
+                                    <span>Boat</span>
+                                </a>
+                                <a href="category.html?category=air-transport" class="dropdown-nav-item">
+                                    <i class="bi bi-airplane" aria-hidden="true"></i>
+                                    <span>Air Transport</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-listings.html" class="nav-link" data-page="listings" role="menuitem" aria-label="My Listings">
+                                <span>Listings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="index.html#how-it-works" class="nav-link" data-page="how-it-works" role="menuitem" aria-label="How It Works">
+                                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                <span>How It Works</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="help.html" class="nav-link" data-page="help" role="menuitem" aria-label="Help & Support">
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Secondary Navigation - Tablet/Medium Screens (Logged In) -->
+                <nav class="secondary-navigation tablet-nav logged-out" aria-label="Secondary navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="dashboard.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-bookings.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                <span>My Bookings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="messages.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                <span>Chats</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Right Menu -->
+                <div class="header-menu">
+                    <!-- Notifications (Secondary Screens & Desktop when logged in) -->
+                    <button class="notification-toggle logged-out" onclick="toggleNotifications()" aria-label="Notifications" aria-expanded="false" type="button">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        <span class="notification-badge" aria-label="Unread notifications">3</span>
+                    </button>
+
+                    <!-- Language Toggle (Desktop) -->
+                    <button class="language-toggle desktop-only" onclick="toggleLanguage()" aria-label="Toggle language" aria-expanded="false" type="button">
+                        <i class="bi bi-globe2" aria-hidden="true"></i>
+                        <span id="lang-text" class="lang-text">اردو</span>
+                    </button>
+
+                    <!-- List Item CTA Button (Desktop) -->
+                    <a href="create-listing.html" class="btn-list-item desktop-only" aria-label="List your item" data-require="createListing">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                        <span>List Item</span>
+                    </a>
+
+                    <!-- User Menu (when logged in) -->
+                    <div class="user-menu logged-out">
+                        <div class="user-dropdown">
+                            <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu" aria-expanded="false" aria-haspopup="true" role="button" tabindex="0">
+                                <div class="user-avatar" role="img" aria-label="User avatar">
+                                    <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" id="user-dropdown-menu" role="menu" aria-label="User menu">
+                                <div class="dropdown-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar-small" role="img" aria-label="User avatar">
+                                            <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <div class="user-name">John Doe</div>
+                                            <div class="user-email">john@example.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="dashboard.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="my-listings.html" class="dropdown-item owner-only" data-require="createListing" role="menuitem">
+                                    <i class="bi bi-house-door" aria-hidden="true"></i>
+                                    <span>My Listings</span>
+                                </a>
+                                <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory" role="menuitem">
+                                    <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                    <span>My Bookings</span>
+                                </a>
+                                <a href="messages.html" class="dropdown-item" data-require="message" role="menuitem">
+                                    <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                    <span>Messages</span>
+                                    <span class="badge-notification" aria-label="3 unread messages">3</span>
+                                </a>
+                                <a href="emergency-contacts.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                                    <span>Emergency Contacts</span>
+                                </a>
+                                <a href="disputes.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                                    <span>Dispute Resolution</span>
+                                </a>
+                                <a href="safety-guidelines.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Safety Guidelines</span>
+                                </a>
+                                <a href="admin/dashboard.html" class="dropdown-item admin-link" data-require="adminAccess" style="display: none;" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Admin Panel</span>
+                                </a>
+                                <a href="profile.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-person" aria-hidden="true"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="settings.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-gear" aria-hidden="true"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="help.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-question-circle" aria-hidden="true"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout();" role="menuitem">
+                                    <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                                    <span>Log out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Buttons (Desktop - Logged Out) -->
+                    <div class="auth-buttons desktop-only logged-in">
+                        <a href="login.html" class="btn-login" aria-label="Log in to your account">
+                            <span class="btn-text">Login</span>
+                        </a>
+                        <a href="register.html" class="btn-signup" aria-label="Create a new account">
+                            <span class="btn-text">Sign Up</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle - Hamburger -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+                        <span class="hamburger-icon" aria-hidden="true">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications Dropdown -->
+            <div class="notifications-dropdown" id="notifications-dropdown" role="menu" aria-label="Notifications">
+                <div class="notifications-header">
+                    <h4>Notifications</h4>
+                    <button class="notifications-mark-all" onclick="markAllNotificationsRead()" aria-label="Mark all as read">
+                        Mark all as read
+                    </button>
+                </div>
+                <div class="notifications-list">
+                    <a href="messages.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">New message from John</div>
+                            <div class="notification-time">2 minutes ago</div>
+                        </div>
+                    </a>
+                    <a href="my-bookings.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-calendar-check-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Booking confirmed</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                    </a>
+                    <a href="my-listings.html" class="notification-item">
+                        <div class="notification-icon">
+                            <i class="bi bi-heart-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Someone saved your listing</div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="notifications-footer">
+                    <a href="notifications.html" class="notifications-view-all">View all notifications</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-logo">
+                        <a href="index.html" class="mobile-logo-link" aria-label="RentEase Home">
+                            <img src="logos/logo.png" alt="RentEase" class="mobile-logo-image">
+                        </a>
+                    </div>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu" type="button">
+                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <!-- User Info Section (when logged in) -->
+                <div class="mobile-menu-user-info logged-out">
+                    <div class="mobile-user-avatar">
+                        <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="mobile-user-details">
+                        <div class="mobile-user-name">John Doe</div>
+                        <div class="mobile-user-email">john@example.com</div>
+                    </div>
+                </div>
+
+                <div class="mobile-menu-content" role="menu">
+                    <!-- Main Navigation -->
+                    <div class="mobile-menu-section">
+                        <a href="index.html" class="mobile-menu-item" role="menuitem" data-index="0">
+                            <i class="bi bi-house" aria-hidden="true"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="index.html#categories-grid" class="mobile-menu-item" role="menuitem" data-index="1">
+                            <i class="bi bi-grid" aria-hidden="true"></i>
+                            <span>Categories</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item" role="menuitem" data-index="2">
+                            <i class="bi bi-list-ul" aria-hidden="true"></i>
+                            <span>Listings</span>
+                        </a>
+                        <a href="index.html#how-it-works" class="mobile-menu-item" role="menuitem" data-index="3">
+                            <i class="bi bi-info-circle" aria-hidden="true"></i>
+                            <span>How It Works</span>
+                        </a>
+                        <a href="help.html" class="mobile-menu-item" role="menuitem" data-index="4">
+                            <i class="bi bi-question-circle" aria-hidden="true"></i>
+                            <span>Help</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Account Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">My Account</div>
+                        <a href="dashboard.html" class="mobile-menu-item" role="menuitem" data-index="5">
+                            <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item owner-only" data-require="createListing" role="menuitem" data-index="6">
+                            <i class="bi bi-house-door" aria-hidden="true"></i>
+                            <span>My Listings</span>
+                        </a>
+                        <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory" role="menuitem" data-index="7">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                            <span>My Bookings</span>
+                        </a>
+                        <a href="messages.html" class="mobile-menu-item" data-require="message" role="menuitem" data-index="8">
+                            <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                            <span>Messages</span>
+                            <span class="badge-notification" aria-label="Unread messages">3</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Support Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">Support & Safety</div>
+                        <a href="emergency-contacts.html" class="mobile-menu-item" role="menuitem" data-index="9">
+                            <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                            <span>Emergency Contacts</span>
+                        </a>
+                        <a href="disputes.html" class="mobile-menu-item" role="menuitem" data-index="10">
+                            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                            <span>Dispute Resolution</span>
+                        </a>
+                        <a href="safety-guidelines.html" class="mobile-menu-item" role="menuitem" data-index="11">
+                            <i class="bi bi-shield-check" aria-hidden="true"></i>
+                            <span>Safety Guidelines</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Auth Section -->
+                    <div class="mobile-menu-section mobile-menu-auth">
+                        <a href="login.html" class="mobile-menu-item mobile-menu-login" role="menuitem" data-index="12">
+                            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+                            <span>Log in</span>
+                        </a>
+                        <a href="register.html" class="mobile-menu-item mobile-menu-signup" role="menuitem" data-index="13">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i>
+                            <span>Sign up</span>
+                        </a>
+                        <a href="#" class="mobile-menu-item mobile-menu-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;" role="menuitem" data-index="14">
+                            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                            <span>Log out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Category Hero Section -->
+        <section class="category-hero-section">
+            <div class="category-hero-background">
+                <div class="category-hero-gradient"></div>
+                <div class="category-hero-shapes">
+                    <div class="category-shape category-shape-1"></div>
+                    <div class="category-shape category-shape-2"></div>
+                    <div class="category-shape category-shape-3"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="category-hero-content">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="index.html#categories-grid">Categories</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-category">Property</li>
+                        </ol>
+                    </nav>
+                    <div class="category-hero-text">
+                        <div class="category-badge" id="category-badge">
+                            <i class="bi bi-house-door-fill"></i>
+                            <span>Property Rentals</span>
+                        </div>
+                        <h1 class="category-hero-title" id="category-hero-title">
+                            Find Your Perfect Property
+                        </h1>
+                        <p class="category-hero-subtitle" id="category-hero-subtitle">
+                            Discover thousands of verified property listings across Pakistan. From cozy apartments to luxurious villas, commercial spaces to event venues - find exactly what you need.
+                        </p>
+                        <div class="category-hero-stats">
+                            <div class="category-stat-item">
+                                <div class="category-stat-number" id="stat-listings">1,250+</div>
+                                <div class="category-stat-label">Active Listings</div>
+                            </div>
+                            <div class="category-stat-divider"></div>
+                            <div class="category-stat-item">
+                                <div class="category-stat-number" id="stat-subcategories">6</div>
+                                <div class="category-stat-label">Subcategories</div>
+                            </div>
+                            <div class="category-stat-divider"></div>
+                            <div class="category-stat-item">
+                                <div class="category-stat-number" id="stat-rating">4.8★</div>
+                                <div class="category-stat-label">Average Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Search Section -->
+        <section class="category-search-section">
+            <div class="container">
+                <div class="category-search-card">
+                    <div class="category-search-form">
+                        <div class="search-field location-field">
+                            <label class="field-label">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Location</span>
+                            </label>
+                            <input type="text" 
+                                   id="category-location-input" 
+                                   placeholder="Where are you looking?" 
+                                   class="field-input"
+                                   autocomplete="off">
+                        </div>
+                        <div class="search-field checkin-field">
+                            <label class="field-label">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Check in</span>
+                            </label>
+                            <input type="date" 
+                                   id="category-checkin-input" 
+                                   class="field-input date-input"
+                                   min="">
+                        </div>
+                        <div class="search-field checkout-field">
+                            <label class="field-label">
+                                <i class="bi bi-calendar-check"></i>
+                                <span>Check out</span>
+                            </label>
+                            <input type="date" 
+                                   id="category-checkout-input" 
+                                   class="field-input date-input"
+                                   min="">
+                        </div>
+                        <button type="button" class="category-search-button" id="category-search-button" onclick="window.location.href='search.html?category=property'">
+                            <i class="bi bi-search"></i>
+                            <span id="search-button-text">Search Properties</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subcategories Section -->
+        <section class="subcategories-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title" id="subcategories-title">Property Types</h2>
+                    <p class="section-subtitle" id="subcategories-subtitle">Explore our wide range of property rental options</p>
+                </div>
+                <div class="row g-4" id="subcategories-grid">
+                    <!-- Subcategories will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Property Listings -->
+        <section class="featured-listings-section">
+            <div class="container">
+                <div class="section-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="section-title mb-0" id="featured-title">Featured Property Listings</h2>
+                        <p class="section-subtitle mb-0 mt-2" id="featured-subtitle">Handpicked properties just for you</p>
+                    </div>
+                    <a href="search.html?category=property" class="see-all-link" id="see-all-link">See all <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="row g-4" id="featured-property-listings">
+                    <!-- Featured listings will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Property Section -->
+        <section class="why-choose-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title" id="why-choose-title">Why Rent Properties on MyRental?</h2>
+                    <p class="section-subtitle" id="why-choose-subtitle">Experience the best property rental marketplace in Pakistan</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield-check-fill"></i>
+                            </div>
+                            <h4 class="feature-title">Verified Listings</h4>
+                            <p class="feature-description">All properties are verified for authenticity and quality assurance.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <h4 class="feature-title">Flexible Booking</h4>
+                            <p class="feature-description">Choose your dates and duration with flexible cancellation policies.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-credit-card-fill"></i>
+                            </div>
+                            <h4 class="feature-title">Secure Payments</h4>
+                            <p class="feature-description">Multiple payment options including JazzCash, Easypaisa, and cards.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <h4 class="feature-title">Real Reviews</h4>
+                            <p class="feature-description">Read authentic reviews from verified renters to make informed decisions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <h4 class="feature-title">24/7 Support</h4>
+                            <p class="feature-description">Get help anytime with our dedicated customer support team.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <h4 class="feature-title">Nationwide Coverage</h4>
+                            <p class="feature-description">Properties available across all major cities in Pakistan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Top Section -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <svg class="footer-logo-icon" width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="40" height="40" rx="10" fill="url(#footerLogoGradient)"/>
+                                    <path d="M20 8L12 12V18C12 24.5 16.5 29.5 20 31C23.5 29.5 28 24.5 28 18V12L20 8Z" fill="white" opacity="0.95"/>
+                                    <path d="M16 20L18.5 22.5L24 17" stroke="url(#footerLogoGradient)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="footerLogoGradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#FF385C"/>
+                                            <stop offset="100%" stop-color="#FF6B9D"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="footer-brand-name">MyRental</h3>
+                            <p class="footer-brand-tagline">Your trusted rental marketplace in Pakistan</p>
+                            <p class="footer-description">Rent anything, anywhere. Discover thousands of rental options across 8 categories with trusted, verified listings.</p>
+                            
+                            <!-- Newsletter Subscription -->
+                            <div class="footer-newsletter">
+                                <h6 class="newsletter-title">
+                                    <i class="bi bi-envelope-heart"></i>
+                                    Subscribe to our newsletter
+                                </h6>
+                                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                                    <div class="newsletter-input-group">
+                                        <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                                        <button type="submit" class="newsletter-button">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-info-circle"></i>
+                                About
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> How it works</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Newsroom</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Investors</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Community -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-people"></i>
+                                Community
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Diversity & Belonging</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Accessibility</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Disaster Relief</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Host -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-house-heart"></i>
+                                Host
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Host your home</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Online Experience</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Resources</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Community Forum</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Hosting Tips</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Support & Contact -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-headset"></i>
+                                Support
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Safety</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Cancellation</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Neighborhood</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                            
+                            <!-- Contact Info -->
+                            <div class="footer-contact">
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>+92 300 1234567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>support@myrental.pk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <!-- Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 <strong>MyRental Marketplace</strong>. All rights reserved.</p>
+                        <p class="copyright-subtext">Made with <i class="bi bi-heart-fill"></i> in Pakistan</p>
+                    </div>
+
+                    <!-- Legal Links -->
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-shield-check"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-file-text"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-map"></i>
+                            Sitemap
+                        </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="footer-social">
+                        <span class="social-label">Follow us:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon whatsapp" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="footer-payments">
+                    <span class="payments-label">We accept:</span>
+                    <div class="payment-icons">
+                        <div class="payment-icon" title="JazzCash">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="payment-icon" title="Easypaisa">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </div>
+                        <div class="payment-icon" title="Visa">
+                            <i class="bi bi-credit-card-2-back"></i>
+                        </div>
+                        <div class="payment-icon" title="Mastercard">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wave Decoration -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="url(#waveGradient)"/>
+                <defs>
+                    <linearGradient id="waveGradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#FF385C" stop-opacity="0.1"/>
+                        <stop offset="50%" stop-color="#FF6B9D" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#FF385C" stop-opacity="0.1"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/category.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - RentEase | Find & Book Easily</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for additional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/search-modern.css">
+    <link rel="stylesheet" href="css/category.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/image-optimization.css">
+    <style>
+        /* Filter panel - clean white design matching screenshot */
+        .filter-panel {
+            background: #ffffff !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 1.5rem !important;
+            position: sticky !important;
+            top: 96px !important;
+            z-index: 20 !important;
+            max-height: calc(100vh - 120px) !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+        }
+        /* Filter header - clean design */
+        .filter-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .filter-header-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-header-content i {
+            color: #FF385C;
+            font-size: 1.25rem;
+        }
+        .filter-header-content h3 {
+            color: #000000;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .filter-header-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .filter-badge {
+            display: none;
+        }
+        .clear-filters {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #6b7280;
+            border: 1px solid #e5e7eb;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .clear-filters:hover {
+            background: #f9fafb;
+        }
+        .clear-filters i {
+            font-size: 0.9rem;
+        }
+        /* Filter sections - clean white design */
+        .filter-section {
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            background: transparent;
+            box-shadow: none;
+        }
+        .filter-section-body {
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .filter-section.collapsed .filter-section-body {
+            display: none;
+        }
+        .filter-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        .filter-section-header h4 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #000000;
+            margin: 0;
+        }
+        .filter-section-header .filter-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #000000;
+            margin: 0;
+        }
+        .filter-section-header i {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        .filter-section-header .chevron {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .filter-section.collapsed .chevron {
+            transform: rotate(-90deg);
+        }
+        /* Ensure listings are visible */
+        .listings-container,
+        #listings-container,
+        .listings-gallery-wrapper {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        #listings-grid,
+        .listings-grid,
+        .listings-grid.row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100% !important;
+        }
+        #listings-grid > [class*="col-"],
+        .listings-grid > [class*="col-"] {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        /* Inputs & selects - clean design */
+        .filter-select,
+        .filter-input,
+        .price-input,
+        .guests-input {
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            color: #000000;
+            font-weight: 400;
+            width: 100%;
+        }
+        .filter-select:focus,
+        .filter-input:focus,
+        .price-input:focus,
+        .guests-input:focus {
+            outline: none;
+            border-color: #FF385C;
+        }
+        .filter-input-wrapper,
+        .guests-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+        }
+        .filter-input-wrapper i,
+        .guests-input-wrapper i {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        .filter-input-wrapper:focus-within,
+        .guests-input-wrapper:focus-within {
+            border-color: #FF385C;
+        }
+        .filter-input-wrapper input,
+        .guests-input-wrapper input {
+            border: none;
+            background: transparent;
+            padding: 0;
+            flex: 1;
+        }
+        .filter-input-wrapper input:focus,
+        .guests-input-wrapper input:focus {
+            outline: none;
+        }
+        /* Price range */
+        .price-range {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .price-inputs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .price-inputs .price-input {
+            flex: 1;
+        }
+        .price-separator {
+            color: #6b7280;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+        .price-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #6b7280;
+            padding: 0.25rem 0;
+        }
+        .price-display-item strong {
+            font-weight: 500;
+            color: #000000;
+            font-size: 0.9rem;
+        }
+        .price-currency {
+            color: #6b7280;
+            font-weight: 400;
+        }
+        /* Sliders - pink handle */
+        .price-slider,
+        .distance-slider,
+        #radius-range {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: #e5e7eb;
+            outline: none;
+            cursor: pointer;
+        }
+        .price-slider::-webkit-slider-thumb,
+        .distance-slider::-webkit-slider-thumb,
+        #radius-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FF385C;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+        }
+        .price-slider::-moz-range-thumb,
+        .distance-slider::-moz-range-thumb,
+        #radius-range::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #FF385C;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+        }
+        /* Rating buttons - clean design */
+        .rating-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .rating-btn {
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            color: #000000;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+        }
+        .rating-btn i {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .rating-btn:hover {
+            border-color: #9ca3af;
+            background: #f9fafb;
+        }
+        .rating-btn.active {
+            border-color: #FF385C;
+            background: #FF385C;
+            color: #ffffff;
+        }
+        .rating-btn.active i {
+            color: #ffffff;
+        }
+        /* Quick option checkboxes - clean design */
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #000000;
+            font-weight: 400;
+            cursor: pointer;
+            padding: 0;
+        }
+        .filter-checkbox input {
+            display: none;
+        }
+        .checkbox-custom {
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .checkbox-custom::after {
+            content: '✓';
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+        }
+        .filter-checkbox input:checked + .checkbox-custom {
+            border-color: #FF385C;
+            background: #FF385C;
+        }
+        .filter-checkbox input:checked + .checkbox-custom::after {
+            opacity: 1;
+        }
+        .checkbox-label {
+            flex: 1;
+        }
+        /* Filter chips - clean design */
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0;
+        }
+        .filter-chip {
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 4px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        .filter-chip:hover {
+            border-color: #9ca3af;
+            background: #f9fafb;
+        }
+        .filter-chip.active {
+            border-color: #FF385C;
+            background: #FF385C;
+            color: #ffffff;
+        }
+        /* Tier pills - clean design */
+        .tier-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tier-pill {
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            color: #000000;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        .tier-pill i {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .tier-pill:hover {
+            border-color: #9ca3af;
+            background: #f9fafb;
+        }
+        .tier-pill.active {
+            border-color: #FF385C;
+            background: #FF385C;
+            color: #ffffff;
+        }
+        .tier-pill.active i {
+            color: #ffffff;
+        }
+        .filter-hint {
+            font-size: 0.85rem;
+            color: #6b7280;
+            padding: 0.5rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+        .guests-display,
+        .distance-display {
+            padding: 0.5rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            color: #000000;
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .distance-hint {
+            padding: 0.5rem;
+            background: #f9fafb;
+            border-radius: 4px;
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        .distance-hint i {
+            color: #6b7280;
+        }
+        .filter-inline-note {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        /* Horizontal scroll gallery for grid view */
+        .listings-container .row.listings-grid-animated {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            scroll-behavior: smooth !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 1.5rem !important;
+            padding: 2rem calc(50% - 160px) 2rem calc(50% - 160px) !important;
+            margin: 0 !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: thin !important;
+            cursor: grab !important;
+        }
+        
+        .listings-container .row.listings-grid-animated:active {
+            cursor: grabbing !important;
+        }
+        
+        /* Ensure listings grid displays properly */
+        #listings-grid.listings-grid-animated {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            gap: 1.5rem !important;
+        }
+        
+        #listings-grid.listings-grid-animated > [class*="col-"] {
+            flex: 0 0 320px !important;
+            width: 320px !important;
+            max-width: 320px !important;
+            scroll-snap-align: center !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container-fluid">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="RentEase Home - Find & Book Easily">
+                    <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+                </a>
+
+                <!-- Main Navigation - Desktop (Large Screens) -->
+                <nav class="main-navigation desktop-nav" aria-label="Main navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="index.html" class="nav-link" data-page="home" role="menuitem" aria-label="Home">
+                                <i class="bi bi-house-door" aria-hidden="true"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-item-dropdown" role="none">
+                            <a href="index.html#categories-grid" class="nav-link" data-page="categories" role="menuitem" aria-label="Browse Categories" aria-haspopup="true">
+                                <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                                <span>Categories</span>
+                                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <!-- Categories Dropdown -->
+                            <div class="nav-dropdown-menu">
+                                <a href="category.html?category=property" class="dropdown-nav-item">
+                                    <i class="bi bi-house" aria-hidden="true"></i>
+                                    <span>Property</span>
+                                </a>
+                                <a href="category.html?category=vehicles" class="dropdown-nav-item">
+                                    <i class="bi bi-car-front" aria-hidden="true"></i>
+                                    <span>Vehicles</span>
+                                </a>
+                                <a href="category.html?category=clothes" class="dropdown-nav-item">
+                                    <i class="bi bi-bag" aria-hidden="true"></i>
+                                    <span>Clothes</span>
+                                </a>
+                                <a href="category.html?category=equipment" class="dropdown-nav-item">
+                                    <i class="bi bi-tools" aria-hidden="true"></i>
+                                    <span>Equipment</span>
+                                </a>
+                                <a href="category.html?category=services" class="dropdown-nav-item">
+                                    <i class="bi bi-person-workspace" aria-hidden="true"></i>
+                                    <span>Services</span>
+                                </a>
+                                <a href="category.html?category=animals" class="dropdown-nav-item">
+                                    <i class="bi bi-heart" aria-hidden="true"></i>
+                                    <span>Animals</span>
+                                </a>
+                                <a href="category.html?category=boat" class="dropdown-nav-item">
+                                    <i class="bi bi-water" aria-hidden="true"></i>
+                                    <span>Boat</span>
+                                </a>
+                                <a href="category.html?category=air-transport" class="dropdown-nav-item">
+                                    <i class="bi bi-airplane" aria-hidden="true"></i>
+                                    <span>Air Transport</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-listings.html" class="nav-link" data-page="listings" role="menuitem" aria-label="My Listings">
+                                <span>Listings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="index.html#how-it-works" class="nav-link" data-page="how-it-works" role="menuitem" aria-label="How It Works">
+                                <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                <span>How It Works</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="help.html" class="nav-link" data-page="help" role="menuitem" aria-label="Help & Support">
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Secondary Navigation - Tablet/Medium Screens (Logged In) -->
+                <nav class="secondary-navigation tablet-nav logged-out" aria-label="Secondary navigation">
+                    <ul class="nav-list" role="menubar">
+                        <li class="nav-item" role="none">
+                            <a href="dashboard.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="my-bookings.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                <span>My Bookings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="none">
+                            <a href="messages.html" class="nav-link" role="menuitem">
+                                <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                <span>Chats</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Right Menu -->
+                <div class="header-menu">
+                    <!-- Notifications (Secondary Screens & Desktop when logged in) -->
+                    <button class="notification-toggle logged-out" onclick="toggleNotifications()" aria-label="Notifications" aria-expanded="false" type="button">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        <span class="notification-badge" aria-label="Unread notifications">3</span>
+                    </button>
+
+                    <!-- Language Toggle (Desktop) -->
+                    <button class="language-toggle desktop-only" onclick="toggleLanguage()" aria-label="Toggle language" aria-expanded="false" type="button">
+                        <i class="bi bi-globe2" aria-hidden="true"></i>
+                        <span id="lang-text" class="lang-text">اردو</span>
+                    </button>
+
+                    <!-- List Item CTA Button (Desktop) -->
+                    <a href="create-listing.html" class="btn-list-item desktop-only" aria-label="List your item" data-require="createListing">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                        <span>List Item</span>
+                    </a>
+
+                    <!-- User Menu (when logged in) -->
+                    <div class="user-menu logged-out">
+                        <div class="user-dropdown">
+                            <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu" aria-expanded="false" aria-haspopup="true" role="button" tabindex="0">
+                                <div class="user-avatar" role="img" aria-label="User avatar">
+                                    <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu" id="user-dropdown-menu" role="menu" aria-label="User menu">
+                                <div class="dropdown-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar-small" role="img" aria-label="User avatar">
+                                            <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <div class="user-name">John Doe</div>
+                                            <div class="user-email">john@example.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="dashboard.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="my-listings.html" class="dropdown-item owner-only" data-require="createListing" role="menuitem">
+                                    <i class="bi bi-house-door" aria-hidden="true"></i>
+                                    <span>My Listings</span>
+                                </a>
+                                <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory" role="menuitem">
+                                    <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                    <span>My Bookings</span>
+                                </a>
+                                <a href="messages.html" class="dropdown-item" data-require="message" role="menuitem">
+                                    <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                    <span>Messages</span>
+                                    <span class="badge-notification" aria-label="3 unread messages">3</span>
+                                </a>
+                                <a href="emergency-contacts.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                                    <span>Emergency Contacts</span>
+                                </a>
+                                <a href="disputes.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                                    <span>Dispute Resolution</span>
+                                </a>
+                                <a href="safety-guidelines.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Safety Guidelines</span>
+                                </a>
+                                <a href="admin/dashboard.html" class="dropdown-item admin-link" data-require="adminAccess" style="display: none;" role="menuitem">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                    <span>Admin Panel</span>
+                                </a>
+                                <a href="profile.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-person" aria-hidden="true"></i>
+                                    <span>Profile</span>
+                                </a>
+                                <a href="settings.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-gear" aria-hidden="true"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="help.html" class="dropdown-item" role="menuitem">
+                                    <i class="bi bi-question-circle" aria-hidden="true"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout();" role="menuitem">
+                                    <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                                    <span>Log out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auth Buttons (Desktop - Logged Out) -->
+                    <div class="auth-buttons desktop-only logged-in">
+                        <a href="login.html" class="btn-login" aria-label="Log in to your account">
+                            <span class="btn-text">Login</span>
+                        </a>
+                        <a href="register.html" class="btn-signup" aria-label="Create a new account">
+                            <span class="btn-text">Sign Up</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle - Hamburger -->
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+                        <span class="hamburger-icon" aria-hidden="true">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications Dropdown -->
+            <div class="notifications-dropdown" id="notifications-dropdown" role="menu" aria-label="Notifications">
+                <div class="notifications-header">
+                    <h4>Notifications</h4>
+                    <button class="notifications-mark-all" onclick="markAllNotificationsRead()" aria-label="Mark all as read">
+                        Mark all as read
+                    </button>
+                </div>
+                <div class="notifications-list">
+                    <a href="messages.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">New message from John</div>
+                            <div class="notification-time">2 minutes ago</div>
+                        </div>
+                    </a>
+                    <a href="my-bookings.html" class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="bi bi-calendar-check-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Booking confirmed</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                    </a>
+                    <a href="my-listings.html" class="notification-item">
+                        <div class="notification-icon">
+                            <i class="bi bi-heart-fill" aria-hidden="true"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Someone saved your listing</div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="notifications-footer">
+                    <a href="notifications.html" class="notifications-view-all">View all notifications</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Hidden by default) -->
+            <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-logo">
+                        <a href="index.html" class="mobile-logo-link" aria-label="RentEase Home">
+                            <img src="logos/logo.png" alt="RentEase" class="mobile-logo-image">
+                        </a>
+                    </div>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu" type="button">
+                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <!-- User Info Section (when logged in) -->
+                <div class="mobile-menu-user-info logged-out">
+                    <div class="mobile-user-avatar">
+                        <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="mobile-user-details">
+                        <div class="mobile-user-name">John Doe</div>
+                        <div class="mobile-user-email">john@example.com</div>
+                    </div>
+                </div>
+
+                <div class="mobile-menu-content" role="menu">
+                    <!-- Main Navigation -->
+                    <div class="mobile-menu-section">
+                        <a href="index.html" class="mobile-menu-item" role="menuitem" data-index="0">
+                            <i class="bi bi-house" aria-hidden="true"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="index.html#categories-grid" class="mobile-menu-item" role="menuitem" data-index="1">
+                            <i class="bi bi-grid" aria-hidden="true"></i>
+                            <span>Categories</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item" role="menuitem" data-index="2">
+                            <i class="bi bi-list-ul" aria-hidden="true"></i>
+                            <span>Listings</span>
+                        </a>
+                        <a href="index.html#how-it-works" class="mobile-menu-item" role="menuitem" data-index="3">
+                            <i class="bi bi-info-circle" aria-hidden="true"></i>
+                            <span>How It Works</span>
+                        </a>
+                        <a href="help.html" class="mobile-menu-item" role="menuitem" data-index="4">
+                            <i class="bi bi-question-circle" aria-hidden="true"></i>
+                            <span>Help</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Account Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">My Account</div>
+                        <a href="dashboard.html" class="mobile-menu-item" role="menuitem" data-index="5">
+                            <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="my-listings.html" class="mobile-menu-item owner-only" data-require="createListing" role="menuitem" data-index="6">
+                            <i class="bi bi-house-door" aria-hidden="true"></i>
+                            <span>My Listings</span>
+                        </a>
+                        <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory" role="menuitem" data-index="7">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                            <span>My Bookings</span>
+                        </a>
+                        <a href="messages.html" class="mobile-menu-item" data-require="message" role="menuitem" data-index="8">
+                            <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                            <span>Messages</span>
+                            <span class="badge-notification" aria-label="Unread messages">3</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Support Section -->
+                    <div class="mobile-menu-section">
+                        <div class="mobile-menu-section-title">Support & Safety</div>
+                        <a href="emergency-contacts.html" class="mobile-menu-item" role="menuitem" data-index="9">
+                            <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                            <span>Emergency Contacts</span>
+                        </a>
+                        <a href="disputes.html" class="mobile-menu-item" role="menuitem" data-index="10">
+                            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                            <span>Dispute Resolution</span>
+                        </a>
+                        <a href="safety-guidelines.html" class="mobile-menu-item" role="menuitem" data-index="11">
+                            <i class="bi bi-shield-check" aria-hidden="true"></i>
+                            <span>Safety Guidelines</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-menu-divider"></div>
+
+                    <!-- Auth Section -->
+                    <div class="mobile-menu-section mobile-menu-auth">
+                        <a href="login.html" class="mobile-menu-item mobile-menu-login" role="menuitem" data-index="12">
+                            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+                            <span>Log in</span>
+                        </a>
+                        <a href="register.html" class="mobile-menu-item mobile-menu-signup" role="menuitem" data-index="13">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i>
+                            <span>Sign up</span>
+                        </a>
+                        <a href="#" class="mobile-menu-item mobile-menu-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;" role="menuitem" data-index="14">
+                            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                            <span>Log out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Page Content -->
+    <main class="search-page">
+        <!-- Search Page Hero Section -->
+        <section class="search-hero-section">
+            <div class="container">
+                <div class="search-hero-content">
+                    <div class="search-hero-header">
+                        <h1 class="search-hero-title">Find Your Perfect Rental</h1>
+                        <p class="search-hero-subtitle">Search across thousands of verified listings in Pakistan</p>
+                    </div>
+                    
+                    <!-- Search Bar - Modern Airbnb Style -->
+                    <div class="search-hero-bar">
+                        <div class="search-item search-item-location">
+                            <div class="search-label">Where</div>
+                            <input type="text" id="search-location-input" placeholder="Search destinations" class="search-input">
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-item">
+                            <div class="search-label">Check in</div>
+                            <input type="date" id="search-checkin-input" class="search-input">
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-item">
+                            <div class="search-label">Check out</div>
+                            <input type="date" id="search-checkout-input" class="search-input">
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-item">
+                            <div class="search-label">Guests</div>
+                            <input type="number" id="search-guests-input" placeholder="Add guests" class="search-input" value="1" min="1" max="20">
+                        </div>
+                        <button type="button" class="search-button" id="search-submit-button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Results Section -->
+        <section class="search-results-section">
+            <div class="container-fluid px-3 px-lg-4">
+                <!-- Search Toolbar - Moved to top, separate from hero -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="search-toolbar-wrapper">
+                            <div class="search-toolbar">
+                                <div class="search-toolbar-left">
+                                    <div class="results-count">
+                                        <strong id="results-count">0</strong> 
+                                        <span class="results-text">results found</span>
+                                    </div>
+                                    <div class="active-filters" id="active-filters">
+                                        <!-- Active filters will appear here -->
+                                    </div>
+                                </div>
+                                <div class="search-toolbar-right">
+                                    <div class="sort-dropdown-wrapper">
+                                        <label for="sort-select" class="sort-label">
+                                            <i class="bi bi-arrow-down-up"></i>
+                                            <span>Sort by:</span>
+                                        </label>
+                                        <select id="sort-select" class="sort-select" onchange="handleSort(this.value)">
+                                            <option value="relevance">Relevance</option>
+                                            <option value="price-low">Price: Low to High</option>
+                                            <option value="price-high">Price: High to Low</option>
+                                            <option value="rating">Highest Rated</option>
+                                            <option value="newest">Newest First</option>
+                                        </select>
+                                    </div>
+                                    <div class="radius-filter d-flex align-items-center gap-2">
+                                        <label for="radius-range" class="sort-label mb-0">
+                                            <i class="bi bi-bullseye"></i>
+                                            <span>Radius:</span>
+                                        </label>
+                                        <input type="range" id="radius-range" min="5" max="200" step="5" value="50" oninput="setRadius(this.value)" />
+                                        <span id="radius-value" class="text-muted small">50 km</span>
+                                    </div>
+                                    <div class="view-toggle">
+                                        <button class="view-btn active" onclick="setView('grid'); return false;" data-view="grid" title="Grid View">
+                                            <i class="bi bi-grid-3x3-gap"></i>
+                                        </button>
+                                        <button class="view-btn" onclick="setView('list'); return false;" data-view="list" title="List View">
+                                            <i class="bi bi-list-ul"></i>
+                                        </button>
+                                        <button class="view-btn" onclick="setView('map'); return false;" data-view="map" title="Map View">
+                                            <i class="bi bi-map"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Filters Bar -->
+                    <aside class="col-12 col-lg-4 col-xl-3 mb-4 mb-lg-0">
+                        <div class="filter-panel">
+                            <div class="filter-header">
+                                <div class="filter-header-content">
+                                    <i class="bi bi-funnel"></i>
+                                    <h3>Filters</h3>
+                                </div>
+                                <div class="filter-header-actions">
+                                    <span class="filter-badge" id="active-filters-badge">No filters</span>
+                                <button class="clear-filters" onclick="clearFilters()">
+                                    <i class="bi bi-x-circle"></i>
+                                    <span>Clear all</span>
+                                </button>
+                                </div>
+                            </div>
+
+                            <div class="filter-section" data-collapsible>
+                                <div class="filter-section-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-currency-exchange"></i>
+                                        <h4>Price Range</h4>
+                                </div>
+                                    <i class="bi bi-chevron-down chevron"></i>
+                                </div>
+                                <div class="filter-section-body">
+                                <div class="price-range">
+                                    <div class="price-inputs">
+                                        <input type="number" placeholder="Min" class="price-input" id="price-min" value="0" min="0" step="1000">
+                                        <span class="price-separator">-</span>
+                                            <input type="number" placeholder="Max" class="price-input" id="price-max" value="200000" min="0" step="1000">
+                                    </div>
+                                        <input type="range" min="0" max="200000" value="200000" class="price-slider" id="price-slider" step="1000">
+                                    <div class="price-display">
+                                        <span class="price-display-item">
+                                            <span class="price-currency">Rs</span>
+                                            <strong id="price-min-display">0</strong>
+                                        </span>
+                                        <span class="price-display-item">
+                                            <span class="price-currency">Rs</span>
+                                                <strong id="price-value">Any</strong>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="filter-chips" id="price-chips">
+                                        <span class="filter-chip" data-price-max="any">Any</span>
+                                        <span class="filter-chip" data-price-max="50000">Under 50k</span>
+                                        <span class="filter-chip" data-price-max="100000">Under 100k</span>
+                                        <span class="filter-chip" data-price-max="150000">Under 150k</span>
+                                        <span class="filter-chip" data-price-max="200000">Under 200k</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter-section" data-collapsible>
+                                <div class="filter-section-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-people"></i>
+                                        <h4>Number of Guests</h4>
+                                </div>
+                                    <i class="bi bi-chevron-down chevron"></i>
+                                </div>
+                                <div class="filter-section-body">
+                                <div class="guests-filter">
+                                    <div class="guests-input-wrapper">
+                                        <i class="bi bi-people-fill"></i>
+                                        <input type="number" id="filter-guests" class="guests-input" placeholder="Number of guests" value="1" min="1" max="20" step="1">
+                                    </div>
+                                    <div class="guests-display">
+                                        <span id="guests-display-value">1 Guest</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter-section" data-collapsible>
+                                <div class="filter-section-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-bullseye"></i>
+                                        <label class="filter-label mb-0">Distance (Kilometers)</label>
+                                </div>
+                                    <i class="bi bi-chevron-down chevron"></i>
+                                </div>
+                                <div class="filter-section-body">
+                                <div class="distance-filter">
+                                    <div class="distance-input-wrapper">
+                                        <input type="range" id="filter-distance" class="distance-slider" min="5" max="200" step="5" value="50">
+                                        <div class="distance-display">
+                                            <span id="distance-display-value">50 km</span>
+                                        </div>
+                                    </div>
+                                    <div class="distance-hint">
+                                        <i class="bi bi-info-circle"></i>
+                                        <span>Search within this radius from your location</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter-section" data-collapsible>
+                                <div class="filter-section-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid"></i>
+                                        <label class="filter-label mb-0">Category</label>
+                                    </div>
+                                    <i class="bi bi-chevron-down chevron"></i>
+                                </div>
+                                <div class="filter-section-body">
+                                    <div class="filter-chips mb-2" id="category-chips">
+                                        <span class="filter-chip" data-category="property">Property</span>
+                                        <span class="filter-chip" data-category="vehicles">Vehicles</span>
+                                        <span class="filter-chip" data-category="service-providers">Services</span>
+                                        <span class="filter-chip" data-category="equipment">Equipment</span>
+                                        <span class="filter-chip" data-category="clothes">Clothes</span>
+                                </div>
+                                <select class="filter-select" id="category-filter">
+                                    <option value="">All Categories</option>
+                                    <option value="property">Property</option>
+                                    <option value="vehicles">Vehicles</option>
+                                    <option value="clothes">Clothes</option>
+                                    <option value="equipment">Equipment</option>
+                                    <option value="service-providers">Service Providers</option>
+                                    <option value="animals">Animals</option>
+                                    <option value="boat">Boat</option>
+                                    <option value="air-transport">Air Transport</option>
+                                    </select>
+                                    <div class="mt-3">
+                                        <label class="filter-label small text-muted d-block mb-1"><i class="bi bi-shield-check"></i> Listing status</label>
+                                        <select class="filter-select" id="status-filter">
+                                            <option value="active">Active only (default)</option>
+                                            <option value="pending">Active + Pending</option>
+                                            <option value="all">All except suspended/deleted</option>
+                                </select>
+                                    </div>
+                                    <p class="filter-inline-note mb-0 mt-2">Tip: use category + price to narrow quickly.</p>
+                                </div>
+                            </div>
+
+                            <div class="filter-section" data-collapsible>
+                                <div class="filter-section-header">
+                                    <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                        <label class="filter-label mb-0">Location</label>
+                                </div>
+                                    <i class="bi bi-chevron-down chevron"></i>
+                                </div>
+                                <div class="filter-section-body">
+                                <div class="filter-input-wrapper">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <input type="text" placeholder="Enter location" class="filter-input" id="location-filter">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <i class="bi bi-star"></i>
+                                    <label class="filter-label">Minimum Rating</label>
+                                </div>
+                                <div class="rating-filter">
+                                    <button class="rating-btn" onclick="setRating(5)">
+                                        <span>5+</span>
+                                        <i class="bi bi-star-fill"></i>
+                                    </button>
+                                    <button class="rating-btn" onclick="setRating(4)">
+                                        <span>4+</span>
+                                        <i class="bi bi-star-fill"></i>
+                                    </button>
+                                    <button class="rating-btn" onclick="setRating(3)">
+                                        <span>3+</span>
+                                        <i class="bi bi-star-fill"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <i class="bi bi-lightning-charge"></i>
+                                    <label class="filter-label">Quick Options</label>
+                                </div>
+                                <div class="filter-options">
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" id="instant-booking">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Instant booking only</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" id="verified-only">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Verified listings only</span>
+                                    </label>
+                                    <label class="filter-checkbox">
+                                        <input type="checkbox" id="adfree-only" onchange="toggleAdFreeOnly(this.checked)">
+                                        <span class="checkbox-custom"></span>
+                                        <span class="checkbox-label">Ad-free only (paid)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <i class="bi bi-shield-check"></i>
+                                    <label class="filter-label">Account Tier</label>
+                                </div>
+                                <div class="tier-group">
+                                    <button class="tier-pill active" data-tier="all" onclick="setTier('all'); return false;">
+                                        <i class="bi bi-sliders"></i> All
+                                    </button>
+                                    <button class="tier-pill" data-tier="paid" onclick="setTier('paid'); return false;">
+                                        <i class="bi bi-patch-check"></i> Paid
+                                    </button>
+                                    <button class="tier-pill" data-tier="free" onclick="setTier('free'); return false;">
+                                        <i class="bi bi-megaphone"></i> Free
+                                    </button>
+                                </div>
+                                <div class="filter-hint mt-2">Free listings show ads and expire in 48h; paid listings are ad-free with verification.</div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <main class="col-12 col-lg-8 col-xl-9">
+                        <!-- Map View -->
+                        <div class="map-view-container" id="map-view-container" style="display: none; position: relative;">
+                            <div id="google-map" style="width: 100%; height: 600px; border-radius: 12px; overflow: hidden;"></div>
+                            <div class="map-controls" style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <input type="text" id="map-search-input" placeholder="Search location..." style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; width: 250px; font-size: 14px;">
+                            </div>
+                        </div>
+
+                        <!-- Listings View -->
+                        <div class="listings-gallery-wrapper">
+                            <div class="listings-container" id="listings-container">
+                                <!-- Ad Placeholder (for free accounts) -->
+                                <div class="ad-placeholder mb-4" id="ad-placeholder" style="display: none;">
+                                    <div class="ad-banner">
+                                        <div class="ad-label">
+                                            <i class="bi bi-megaphone"></i>
+                                            <span>Advertisement</span>
+                                        </div>
+                                        <div class="ad-content">
+                                            <div class="ad-image-placeholder">
+                                                <i class="bi bi-image"></i>
+                                            </div>
+                                            <div class="ad-text">
+                                                <h4>Sponsored Content</h4>
+                                                <p>This is a placeholder for advertisements. In production, ads will be displayed here for free account listings.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row listings-grid-animated" id="listings-grid">
+                                    <!-- Listings will be loaded here -->
+                                </div>
+                                
+                                <!-- Scroll indicators -->
+                                <div class="gallery-scroll-indicator left" id="listings-scroll-left">
+                                    <i class="bi bi-chevron-left"></i>
+                                </div>
+                                <div class="gallery-scroll-indicator right" id="listings-scroll-right">
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
+                                
+                                <div class="empty-state mt-5" id="empty-state" style="display: none;">
+                                    <div class="empty-state-icon">
+                                        <i class="bi bi-search"></i>
+                                    </div>
+                                    <h3>No listings found</h3>
+                                    <p>Try adjusting your filters or search terms</p>
+                                    <button class="btn-clear-filters" onclick="clearFilters()">Clear All Filters</button>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Top Section -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <div class="footer-logo mb-3">
+                                <img src="logos/logo.png" alt="RentEase Logo" style="height: 60px; width: auto;">
+                            </div>
+                            <p class="footer-brand-tagline">Find & Book Easily</p>
+                            <p class="footer-description">Rent anything, anywhere. Discover thousands of rental options across 8 categories with trusted, verified listings.</p>
+                            
+                            <!-- Newsletter Subscription -->
+                            <div class="footer-newsletter">
+                                <h6 class="newsletter-title">
+                                    <i class="bi bi-envelope-heart"></i>
+                                    Subscribe to our newsletter
+                                </h6>
+                                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                                    <div class="newsletter-input-group">
+                                        <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                                        <button type="submit" class="newsletter-button">
+                                            <i class="bi bi-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-info-circle"></i>
+                                About
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> How it works</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Newsroom</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Investors</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Community -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-people"></i>
+                                Community
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Diversity & Belonging</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Accessibility</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Disaster Relief</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Host -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-house-heart"></i>
+                                Host
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Host your home</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Online Experience</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Resources</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Community Forum</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Hosting Tips</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Support & Contact -->
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-column">
+                            <h5 class="footer-column-title">
+                                <i class="bi bi-headset"></i>
+                                Support
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Safety</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Cancellation</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Neighborhood</a></li>
+                                <li><a href="#"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                            
+                            <!-- Contact Info -->
+                            <div class="footer-contact">
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>+92 300 1234567</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>support@myrental.pk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <!-- Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 <strong>RentEase</strong>. All rights reserved.</p>
+                        <p class="copyright-subtext">Made with <i class="bi bi-heart-fill"></i> in Pakistan</p>
+                    </div>
+
+                    <!-- Legal Links -->
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-shield-check"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-file-text"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#" class="legal-link">
+                            <i class="bi bi-map"></i>
+                            Sitemap
+                        </a>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="footer-social">
+                        <span class="social-label">Follow us:</span>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon whatsapp" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="footer-payments">
+                    <span class="payments-label">We accept:</span>
+                    <div class="payment-icons">
+                        <div class="payment-icon" title="JazzCash">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="payment-icon" title="Easypaisa">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </div>
+                        <div class="payment-icon" title="Visa">
+                            <i class="bi bi-credit-card-2-back"></i>
+                        </div>
+                        <div class="payment-icon" title="Mastercard">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wave Decoration -->
+        <div class="footer-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="url(#waveGradient)"/>
+                <defs>
+                    <linearGradient id="waveGradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#FF385C" stop-opacity="0.1"/>
+                        <stop offset="50%" stop-color="#FF6B9D" stop-opacity="0.05"/>
+                        <stop offset="100%" stop-color="#FF385C" stop-opacity="0.1"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Google Maps API -->
+    <script>
+        // IMPORTANT: Replace 'YOUR_API_KEY_HERE' with your actual Google Maps API key
+        // Get your API key from: https://console.cloud.google.com/google/maps-apis
+        // Enable: Maps JavaScript API and Places API
+        window.GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY_HERE';
+        
+        // If no API key is set, map features will be disabled but search will still work
+        if (window.GOOGLE_MAPS_API_KEY === 'YOUR_API_KEY_HERE' || !window.GOOGLE_MAPS_API_KEY) {
+            console.warn('⚠️ Google Maps API key not configured. Map features will be disabled.');
+            console.info('💡 To enable maps: Get API key from https://console.cloud.google.com and replace YOUR_API_KEY_HERE in search.html');
+        }
+        
+        // Load Google Maps API dynamically
+        function loadGoogleMapsAPI() {
+            if (window.google && window.google.maps) {
+                return Promise.resolve();
+            }
+            
+            // Don't load if API key is not configured
+            if (!window.GOOGLE_MAPS_API_KEY || window.GOOGLE_MAPS_API_KEY === 'YOUR_API_KEY_HERE') {
+                console.warn('Google Maps API key not configured. Skipping map initialization.');
+                return Promise.resolve();
+            }
+            
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${window.GOOGLE_MAPS_API_KEY}&libraries=places,geometry&loading=async&callback=initGoogleMapsCallback`;
+                script.async = true;
+                script.defer = true;
+                script.onerror = () => {
+                    console.warn('Google Maps API failed to load. Map features will be disabled.');
+                    resolve(); // Resolve anyway so search still works
+                };
+                window.initGoogleMapsCallback = () => {
+                    console.log('✅ Google Maps API loaded successfully');
+                    resolve();
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+        // Initialize on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGoogleMapsAPI);
+        } else {
+            loadGoogleMapsAPI();
+        }
+    </script>
+    <!-- Custom JS -->
+    <!-- Load search.js FIRST so functions are available for onclick handlers -->
+    <script src="js/search.js"></script>
+    <script src="js/search-components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+    <script>
+        // Initialize header on search page
+        document.addEventListener('DOMContentLoaded', function() {
+            initHeader();
+            
+            // Handle scroll for header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Initialize date inputs
+            const checkinInput = document.getElementById('search-checkin-input');
+            const checkoutInput = document.getElementById('search-checkout-input');
+            const guestsInput = document.getElementById('search-guests-input');
+            
+            if (checkinInput && checkoutInput) {
+                const today = new Date().toISOString().split('T')[0];
+                checkinInput.setAttribute('min', today);
+                checkoutInput.setAttribute('min', today);
+
+                checkinInput.addEventListener('change', function() {
+                    if (this.value) {
+                        const nextDay = new Date(this.value);
+                        nextDay.setDate(nextDay.getDate() + 1);
+                        checkoutInput.setAttribute('min', nextDay.toISOString().split('T')[0]);
+                        
+                        if (checkoutInput.value && checkoutInput.value <= this.value) {
+                            checkoutInput.value = '';
+                        }
+                    }
+                });
+
+                checkoutInput.addEventListener('change', function() {
+                    if (checkinInput.value && this.value && this.value <= checkinInput.value) {
+                        alert('Check-out date must be after check-in date');
+                        this.value = '';
+                    }
+                });
+            }
+
+            // Load search inputs from URL params
+            const searchLocation = document.getElementById('search-location-input');
+            const searchCheckin = document.getElementById('search-checkin-input');
+            const searchCheckout = document.getElementById('search-checkout-input');
+            const searchGuests = document.getElementById('search-guests-input');
+
+            // Load from URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('location')) {
+                const locationValue = urlParams.get('location');
+                if (searchLocation) searchLocation.value = locationValue;
+            }
+            if (urlParams.get('checkin')) {
+                const checkinValue = urlParams.get('checkin');
+                if (searchCheckin) searchCheckin.value = checkinValue;
+            }
+            if (urlParams.get('checkout')) {
+                const checkoutValue = urlParams.get('checkout');
+                if (searchCheckout) searchCheckout.value = checkoutValue;
+            }
+            if (urlParams.get('guests')) {
+                const guestsValue = urlParams.get('guests');
+                if (searchGuests) searchGuests.value = guestsValue;
+            }
+
+            // Sync between header and page search (if header search inputs exist)
+            try {
+                const headerLocation = document.getElementById('header-location-input') || document.querySelector('.header-search-bar #location-input') || null;
+                const headerCheckin = document.getElementById('header-checkin-input') || document.querySelector('.header-search-bar #checkin-input') || null;
+                const headerCheckout = document.getElementById('header-checkout-input') || document.querySelector('.header-search-bar #checkout-input') || null;
+                const headerGuests = document.getElementById('header-guests-input') || document.querySelector('.header-search-bar #guests-input') || null;
+
+                if (headerLocation && searchLocation) {
+                    headerLocation.addEventListener('input', function() {
+                        searchLocation.value = this.value;
+                    });
+                    searchLocation.addEventListener('input', function() {
+                        headerLocation.value = this.value;
+                    });
+                }
+
+                if (headerCheckin && searchCheckin) {
+                    headerCheckin.addEventListener('change', function() {
+                        searchCheckin.value = this.value;
+                    });
+                    searchCheckin.addEventListener('change', function() {
+                        headerCheckin.value = this.value;
+                    });
+                }
+
+                if (headerCheckout && searchCheckout) {
+                    headerCheckout.addEventListener('change', function() {
+                        searchCheckout.value = this.value;
+                    });
+                    searchCheckout.addEventListener('change', function() {
+                        headerCheckout.value = this.value;
+                    });
+                }
+
+                if (headerGuests && searchGuests) {
+                    headerGuests.addEventListener('change', function() {
+                        searchGuests.value = this.value;
+                    });
+                    searchGuests.addEventListener('change', function() {
+                        headerGuests.value = this.value;
+                    });
+                }
+            } catch (e) {
+                console.log('Header search inputs not found, skipping sync');
+            }
+
+            // Perform initial search after a short delay to ensure all scripts are loaded
+            setTimeout(() => {
+                if (typeof window.performSearch === 'function') {
+                    console.log('Performing initial search...');
+                    window.performSearch();
+                } else {
+                    console.error('performSearch function not available');
+                }
+            }, 200);
+
+            // Scroll animation observer for listing cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const cardObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Function to observe listing cards
+            const observeListings = () => {
+                document.querySelectorAll('.listings-container .row > [class*="col-"]').forEach(el => {
+                    if (!el.classList.contains('scroll-visible')) {
+                        cardObserver.observe(el);
+                    }
+                });
+            };
+
+            // Initial observation
+            setTimeout(observeListings, 500);
+
+            // Re-observe when listings are updated
+            const listingsContainer = document.getElementById('listings-grid');
+            if (listingsContainer) {
+                const mutationObserver = new MutationObserver(observeListings);
+                mutationObserver.observe(listingsContainer, { childList: true, subtree: true });
+            }
+        });
+
+        // Initialize listings gallery scroll indicators
+        function initListingsGalleryScroll() {
+            const gallery = document.getElementById('listings-grid');
+            const scrollLeft = document.getElementById('listings-scroll-left');
+            const scrollRight = document.getElementById('listings-scroll-right');
+            
+            if (!gallery || !scrollLeft || !scrollRight) return;
+
+            function updateScrollIndicators() {
+                const scrollLeftValue = gallery.scrollLeft;
+                const scrollWidth = gallery.scrollWidth;
+                const clientWidth = gallery.clientWidth;
+                const maxScroll = scrollWidth - clientWidth;
+
+                if (scrollLeftValue <= 10) {
+                    scrollLeft.classList.remove('visible');
+                } else {
+                    scrollLeft.classList.add('visible');
+                }
+
+                if (scrollLeftValue >= maxScroll - 10) {
+                    scrollRight.classList.remove('visible');
+                } else {
+                    scrollRight.classList.add('visible');
+                }
+            }
+
+            // Scroll left
+            scrollLeft.addEventListener('click', () => {
+                gallery.scrollBy({ left: -400, behavior: 'smooth' });
+            });
+
+            // Scroll right
+            scrollRight.addEventListener('click', () => {
+                gallery.scrollBy({ left: 400, behavior: 'smooth' });
+            });
+
+            // Update indicators on scroll
+            gallery.addEventListener('scroll', updateScrollIndicators);
+            
+            // Initial check
+            setTimeout(updateScrollIndicators, 500);
+            
+            // Update when listings change
+            const observer = new MutationObserver(() => {
+                setTimeout(updateScrollIndicators, 100);
+            });
+            observer.observe(gallery, { childList: true, subtree: true });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initListingsGalleryScroll, 500);
+        });
+    </script>
+</body>
+</html>

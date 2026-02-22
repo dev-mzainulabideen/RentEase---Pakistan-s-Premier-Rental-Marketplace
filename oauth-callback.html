@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging in...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .loading-container {
+            text-align: center;
+            color: white;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <h2>Completing login...</h2>
+        <div id="errorMessage" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const userParam = urlParams.get('user');
+            const error = urlParams.get('error');
+            const errorMessage = urlParams.get('message');
+
+            if (error) {
+                document.querySelector('h2').textContent = 'Login Failed';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = errorMessage || 'OAuth authentication failed. Please try again.';
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 3000);
+                return;
+            }
+
+            if (token && userParam) {
+                try {
+                    // Store token
+                    localStorage.setItem('mr-token', token);
+                    
+                    // Parse and store user data
+                    const user = JSON.parse(decodeURIComponent(userParam));
+                    localStorage.setItem('mr-user', JSON.stringify(user));
+                    localStorage.setItem('mr-role', user.role || 'renter');
+                    
+                    // Trigger auth state update
+                    if (window.dispatchEvent) {
+                        window.dispatchEvent(new CustomEvent('authStateChanged', { 
+                            detail: { user: user, role: user.role } 
+                        }));
+                    }
+                    
+                    // Redirect to intended destination or home
+                    const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+                    sessionStorage.removeItem('redirectAfterLogin');
+                    
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 500);
+                } catch (e) {
+                    console.error('Error processing OAuth callback:', e);
+                    document.querySelector('h2').textContent = 'Login Failed';
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('errorMessage').textContent = 'Failed to process login. Please try again.';
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 3000);
+                }
+            } else {
+                document.querySelector('h2').textContent = 'Login Failed';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Missing authentication data. Please try again.';
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 3000);
+            }
+        })();
+    </script>
+</body>
+</html>
+

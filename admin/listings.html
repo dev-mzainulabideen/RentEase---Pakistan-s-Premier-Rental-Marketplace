@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings Management - Admin Panel</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .admin-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+        .admin-sidebar .nav-link {
+            color: rgba(255,255,255,0.7);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            margin: 0.25rem 1rem;
+            transition: all 0.3s;
+        }
+        .admin-sidebar .nav-link:hover,
+        .admin-sidebar .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .filter-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .listing-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 admin-sidebar">
+                <div class="px-3 mb-4">
+                    <h4 class="text-white mb-0">Admin Panel</h4>
+                    <small class="text-muted">My Rental Marketplace</small>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.html">
+                            <i class="bi bi-people me-2"></i> Users & Verification
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="listings.html">
+                            <i class="bi bi-list-ul me-2"></i> Listings Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reviews.html">
+                            <i class="bi bi-star me-2"></i> Reviews Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">
+                            <i class="bi bi-grid me-2"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ads.html">
+                            <i class="bi bi-megaphone me-2"></i> Ads Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="subscriptions.html">
+                            <i class="bi bi-credit-card me-2"></i> Subscriptions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="disputes.html">
+                            <i class="bi bi-exclamation-triangle me-2"></i> Disputes & Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="content.html">
+                            <i class="bi bi-translate me-2"></i> Content (Urdu/English)
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="statistics.html">
+                            <i class="bi bi-graph-up me-2"></i> Statistics
+                        </a>
+                    </li>
+                    <li class="nav-item mt-4">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-arrow-left me-2"></i> Back to Site
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4 py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-1">Listings Management</h1>
+                        <p class="text-muted mb-0">Manage all listings on the platform</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-card">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label small text-muted">Search</label>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Title, description...">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small text-muted">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="draft">Draft</option>
+                                <option value="active">Active</option>
+                                <option value="paused">Paused</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="reported">Reported</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small text-muted">Category</label>
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label small text-muted">Featured</label>
+                            <select class="form-select" id="featuredFilter">
+                                <option value="">All</option>
+                                <option value="true">Featured</option>
+                                <option value="false">Not Featured</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="form-label small text-muted">&nbsp;</label>
+                            <button class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listings Table -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Listing</th>
+                                        <th>Owner</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                        <th>Featured</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listingsTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center" id="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Listing Detail Modal -->
+    <div class="modal fade" id="listingDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listing Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="listingDetailContent">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/rbac.js"></script>
+    <script src="../js/config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window.checkPageAccess('adminAccess', null, '../login.html')) {
+                return;
+            }
+            loadListings();
+            loadCategories();
+        });
+
+        async function loadListings(filters = {}) {
+            try {
+                const token = localStorage.getItem('mr-token');
+                const queryParams = new URLSearchParams();
+                if (filters.search) queryParams.append('search', filters.search);
+                if (filters.status) queryParams.append('status', filters.status);
+                if (filters.category) queryParams.append('category', filters.category);
+                if (filters.featured !== undefined) queryParams.append('featured', filters.featured);
+                queryParams.append('page', filters.page || 1);
+                queryParams.append('limit', filters.limit || 20);
+
+                const response = await fetch(`${window.API_BASE_URL || 'http://localhost:4001/api'}/admin/listings?${queryParams}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) throw new Error('Failed to load listings');
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    renderListings(result.data.listings);
+                    renderPagination(result.data.pagination);
+                }
+            } catch (error) {
+                console.error('Error loading listings:', error);
+                document.getElementById('listingsTableBody').innerHTML = 
+                    '<tr><td colspan="7" class="text-center text-danger">Failed to load listings</td></tr>';
+            }
+        }
+
+        function renderListings(listings) {
+            const tbody = document.getElementById('listingsTableBody');
+            if (listings.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No listings found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = listings.map(listing => {
+                const image = listing.images && listing.images[0] ? listing.images[0] : '../logos/logo.png';
+                const statusBadge = getStatusBadge(listing.status);
+                const featuredBadge = listing.featured ? 
+                    '<span class="badge bg-warning">Featured</span>' : 
+                    '<span class="badge bg-secondary">Not Featured</span>';
+                
+                return `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${image}" alt="${listing.title}" class="listing-image me-2">
+                                <div>
+                                    <div class="fw-semibold">${listing.title}</div>
+                                    <small class="text-muted">${listing.location?.city || 'N/A'}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${listing.owner?.name || 'N/A'}</td>
+                        <td><span class="badge bg-info">${listing.category || 'N/A'}</span></td>
+                        <td>${statusBadge}</td>
+                        <td>${featuredBadge}</td>
+                        <td>${formatDate(listing.createdAt)}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary" onclick="viewListing('${listing._id}')" title="View">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                ${listing.status !== 'active' ? 
+                                    `<button class="btn btn-outline-success" onclick="approveListing('${listing._id}')" title="Approve">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>` : ''}
+                                ${listing.status === 'active' ? 
+                                    `<button class="btn btn-outline-warning" onclick="pauseListing('${listing._id}')" title="Pause">
+                                        <i class="bi bi-pause-circle"></i>
+                                    </button>` : ''}
+                                <button class="btn btn-outline-info" onclick="toggleFeatured('${listing._id}')" title="Toggle Featured">
+                                    <i class="bi bi-star"></i>
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="rejectListing('${listing._id}')" title="Reject">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function getStatusBadge(status) {
+            const badges = {
+                'draft': '<span class="badge bg-secondary">Draft</span>',
+                'active': '<span class="badge bg-success">Active</span>',
+                'paused': '<span class="badge bg-warning">Paused</span>',
+                'rejected': '<span class="badge bg-danger">Rejected</span>',
+                'reported': '<span class="badge bg-danger">Reported</span>'
+            };
+            return badges[status] || '<span class="badge bg-secondary">' + status + '</span>';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function renderPagination(pagination) {
+            const paginationEl = document.getElementById('pagination');
+            if (!pagination || !paginationEl) return;
+            // Similar pagination code as users.html
+        }
+
+        async function loadCategories() {
+            try {
+                const token = localStorage.getItem('mr-token');
+                const response = await fetch(`${window.API_BASE_URL || 'http://localhost:4001/api'}/admin/categories`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        const select = document.getElementById('categoryFilter');
+                        result.data.categories.forEach(cat => {
+                            const option = document.createElement('option');
+                            option.value = cat.slug || cat.name;
+                            option.textContent = cat.name;
+                            select.appendChild(option);
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        async function viewListing(id) {
+            // Load listing details
+            alert('View listing: ' + id);
+        }
+
+        async function approveListing(id) {
+            if (!confirm('Approve this listing?')) return;
+            await updateListingStatus(id, 'active');
+        }
+
+        async function pauseListing(id) {
+            if (!confirm('Pause this listing?')) return;
+            await updateListingStatus(id, 'paused');
+        }
+
+        async function rejectListing(id) {
+            if (!confirm('Reject this listing?')) return;
+            await updateListingStatus(id, 'rejected');
+        }
+
+        async function toggleFeatured(id) {
+            try {
+                const token = localStorage.getItem('mr-token');
+                const response = await fetch(`${window.API_BASE_URL || 'http://localhost:4001/api'}/admin/listings/${id}/feature`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    alert('Featured status updated');
+                    loadListings();
+                }
+            } catch (error) {
+                alert('Error updating featured status');
+            }
+        }
+
+        async function updateListingStatus(id, status) {
+            try {
+                const token = localStorage.getItem('mr-token');
+                const response = await fetch(`${window.API_BASE_URL || 'http://localhost:4001/api'}/admin/listings/${id}/status`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status })
+                });
+                if (response.ok) {
+                    alert('Listing status updated');
+                    loadListings();
+                }
+            } catch (error) {
+                alert('Error updating listing status');
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('featuredFilter').value = '';
+            loadListings({});
+        }
+
+        // Filter event listeners
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(this.searchTimeout);
+            this.searchTimeout = setTimeout(() => {
+                loadListings({
+                    search: this.value,
+                    status: document.getElementById('statusFilter').value,
+                    category: document.getElementById('categoryFilter').value
+                });
+            }, 500);
+        });
+
+        ['statusFilter', 'categoryFilter', 'featuredFilter'].forEach(id => {
+            document.getElementById(id).addEventListener('change', function() {
+                loadListings({
+                    search: document.getElementById('searchInput').value,
+                    status: document.getElementById('statusFilter').value,
+                    category: document.getElementById('categoryFilter').value,
+                    featured: document.getElementById('featuredFilter').value
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,536 @@
+/* ============================================
+   Modern Animations & Transitions
+   Smooth, Professional, Performance-Optimized
+   ============================================ */
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ============================================
+   Scroll Animations
+   ============================================ */
+
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.animate-in {
+    opacity: 1;
+}
+
+.fade-in-up {
+    transform: translateY(40px);
+}
+
+.fade-in-up.animate-in {
+    transform: translateY(0);
+}
+
+.fade-in-down {
+    transform: translateY(-40px);
+}
+
+.fade-in-down.animate-in {
+    transform: translateY(0);
+}
+
+.fade-in-left {
+    transform: translateX(-40px);
+}
+
+.fade-in-left.animate-in {
+    transform: translateX(0);
+}
+
+.fade-in-right {
+    transform: translateX(40px);
+}
+
+.fade-in-right.animate-in {
+    transform: translateX(0);
+}
+
+.scale-in {
+    transform: scale(0.9);
+}
+
+.scale-in.animate-in {
+    transform: scale(1);
+}
+
+/* Stagger Animation Delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* ============================================
+   Hero Section Animations
+   ============================================ */
+
+.hero-section {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-title {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-subtitle {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-search-bar {
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-cta-buttons {
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+/* ============================================
+   Category Cards Enhanced Animations
+   ============================================ */
+
+.category-card {
+    animation: fadeInUp 0.6s ease-out both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.category-card:hover {
+    transform: translateY(-8px) scale(1.01) translateZ(0);
+}
+
+.category-card:hover .category-image {
+    transform: scale(1.15) translateZ(0);
+}
+
+/* Icon overlay animations are handled in home.css for better control */
+
+/* Image to Icon Transition */
+.category-image {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-icon-overlay {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Listing Cards Animations
+   ============================================ */
+
+.listing-card {
+    animation: fadeInUp 0.6s ease-out both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.listing-card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+.listing-card:hover .listing-image {
+    transform: scale(1.08);
+}
+
+.listing-card:hover .listing-badges {
+    transform: scale(1.1);
+}
+
+/* ============================================
+   Button Animations
+   ============================================ */
+
+.btn-primary,
+.btn-secondary,
+.category-search-button,
+.search-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.btn-primary::before,
+.btn-secondary::before,
+.category-search-button::before,
+.search-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.category-search-button:hover::before,
+.search-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.category-search-button:hover,
+.search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 56, 92, 0.4);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.category-search-button:active,
+.search-button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   Section Header Animations
+   ============================================ */
+
+.section-header {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.section-title {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.section-subtitle {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* ============================================
+   How It Works Section Animations
+   ============================================ */
+
+.how-it-works-item {
+    animation: fadeInUp 0.6s ease-out both;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.how-it-works-item:hover {
+    transform: translateY(-5px);
+}
+
+.how-it-works-item:hover .how-it-works-icon {
+    transform: scale(1.1) rotate(5deg);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ============================================
+   Featured Listings Animations
+   ============================================ */
+
+.featured-section {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+/* ============================================
+   Search Bar Animations
+   ============================================ */
+
+.search-bar {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 56, 92, 0.15);
+}
+
+.search-item {
+    transition: all 0.3s ease;
+}
+
+.search-item:hover {
+    background: rgba(255, 56, 92, 0.05);
+    transform: translateX(2px);
+}
+
+.search-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-button:hover {
+    transform: scale(1.05);
+}
+
+.search-button:active {
+    transform: scale(0.98);
+}
+
+/* ============================================
+   Logo Animations
+   ============================================ */
+
+.logo {
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    transition: all 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(5deg) scale(1.1);
+}
+
+/* ============================================
+   Badge Animations
+   ============================================ */
+
+.badge-verified,
+.badge-instant,
+.badge-account-paid,
+.badge-account-free {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.listing-card:hover .badge-verified,
+.listing-card:hover .badge-instant,
+.listing-card:hover .badge-account-paid,
+.listing-card:hover .badge-account-free {
+    transform: scale(1.15);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ============================================
+   Icon Animations
+   ============================================ */
+
+.bi,
+.fas,
+.far {
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .bi,
+.listing-card:hover .bi {
+    transform: scale(1.2);
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+/* ============================================
+   Smooth Scroll Behavior
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   Performance Optimizations
+   ============================================ */
+
+.animate,
+.category-card,
+.listing-card,
+.btn-primary,
+.btn-secondary {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   Mobile Optimizations
+   ============================================ */
+
+@media (max-width: 768px) {
+    .category-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .listing-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    /* Disable hover animations on touch devices */
+    @media (hover: none) {
+        .category-card:hover,
+        .listing-card:hover {
+            transform: none;
+        }
+    }
+}
+

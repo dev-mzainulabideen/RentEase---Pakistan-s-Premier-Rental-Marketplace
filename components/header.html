@@ -1,0 +1,374 @@
+<header class="header" role="banner">
+    <div class="container-fluid">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="index.html" class="logo" aria-label="RentEase Home - Find & Book Easily">
+                <img src="logos/logo.png" alt="RentEase - Find & Book Easily" class="logo-image">
+            </a>
+
+            <!-- Main Navigation - Desktop (Large Screens) -->
+            <nav class="main-navigation desktop-nav" aria-label="Main navigation">
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="index.html" class="nav-link" data-page="home" role="menuitem" aria-label="Home">
+                            <i class="bi bi-house-door" aria-hidden="true"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-item-dropdown" role="none">
+                        <a href="index.html#categories-grid" class="nav-link" data-page="categories" role="menuitem" aria-label="Browse Categories" aria-haspopup="true">
+                            <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                            <span>Categories</span>
+                            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                        </a>
+                        <!-- Categories Dropdown -->
+                        <div class="nav-dropdown-menu">
+                            <a href="category.html?category=property" class="dropdown-nav-item">
+                                <i class="bi bi-house" aria-hidden="true"></i>
+                                <span>Property</span>
+                            </a>
+                            <a href="category.html?category=vehicles" class="dropdown-nav-item">
+                                <i class="bi bi-car-front" aria-hidden="true"></i>
+                                <span>Vehicles</span>
+                            </a>
+                            <a href="category.html?category=clothes" class="dropdown-nav-item">
+                                <i class="bi bi-bag" aria-hidden="true"></i>
+                                <span>Clothes</span>
+                            </a>
+                            <a href="category.html?category=equipment" class="dropdown-nav-item">
+                                <i class="bi bi-tools" aria-hidden="true"></i>
+                                <span>Equipment</span>
+                            </a>
+                            <a href="category.html?category=services" class="dropdown-nav-item">
+                                <i class="bi bi-person-workspace" aria-hidden="true"></i>
+                                <span>Services</span>
+                            </a>
+                            <a href="category.html?category=animals" class="dropdown-nav-item">
+                                <i class="bi bi-heart" aria-hidden="true"></i>
+                                <span>Animals</span>
+                            </a>
+                            <a href="category.html?category=boat" class="dropdown-nav-item">
+                                <i class="bi bi-water" aria-hidden="true"></i>
+                                <span>Boat</span>
+                            </a>
+                            <a href="category.html?category=air-transport" class="dropdown-nav-item">
+                                <i class="bi bi-airplane" aria-hidden="true"></i>
+                                <span>Air Transport</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="my-listings.html" class="nav-link" data-page="listings" role="menuitem" aria-label="My Listings">
+                            <span>Listings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="index.html#how-it-works" class="nav-link" data-page="how-it-works" role="menuitem" aria-label="How It Works">
+                            <i class="bi bi-info-circle" aria-hidden="true"></i>
+                            <span>How It Works</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="help.html" class="nav-link" data-page="help" role="menuitem" aria-label="Help & Support">
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Secondary Navigation - Tablet/Medium Screens (Logged In) -->
+            <nav class="secondary-navigation tablet-nav logged-out" aria-label="Secondary navigation">
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="dashboard.html" class="nav-link" role="menuitem">
+                            <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="my-bookings.html" class="nav-link" role="menuitem">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                            <span>My Bookings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="messages.html" class="nav-link" role="menuitem">
+                            <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                            <span>Chats</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Right Menu -->
+            <div class="header-menu">
+                <!-- Notifications (Secondary Screens & Desktop when logged in) -->
+                <button class="notification-toggle logged-out" onclick="toggleNotifications()" aria-label="Notifications" aria-expanded="false" type="button">
+                    <i class="bi bi-bell" aria-hidden="true"></i>
+                    <span class="notification-badge" aria-label="Unread notifications">3</span>
+                </button>
+
+                <!-- Language Toggle (Desktop) -->
+                <button class="language-toggle desktop-only" onclick="toggleLanguage()" aria-label="Toggle language" aria-expanded="false" type="button">
+                    <i class="bi bi-globe2" aria-hidden="true"></i>
+                    <span id="lang-text" class="lang-text">اردو</span>
+                </button>
+
+                <!-- List Item CTA Button (Desktop) -->
+                <a href="create-listing.html" class="btn-list-item desktop-only" aria-label="List your item" data-require="createListing">
+                    <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                    <span>List Item</span>
+                </a>
+
+                <!-- User Menu (when logged in) -->
+                <div class="user-menu logged-out">
+                    <div class="user-dropdown">
+                        <a href="profile.html" class="user-avatar-link" onclick="toggleUserMenu(); return false;" aria-label="User menu" aria-expanded="false" aria-haspopup="true" role="button" tabindex="0">
+                            <div class="user-avatar" role="img" aria-label="User avatar">
+                                <i class="bi bi-person-fill" aria-hidden="true"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu" id="user-dropdown-menu" role="menu" aria-label="User menu">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <div class="user-avatar-small" role="img" aria-label="User avatar">
+                                        <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <div class="user-name">John Doe</div>
+                                        <div class="user-email">john@example.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="dashboard.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                                <span>Dashboard</span>
+                            </a>
+                            <a href="my-listings.html" class="dropdown-item owner-only" data-require="createListing" role="menuitem">
+                                <i class="bi bi-house-door" aria-hidden="true"></i>
+                                <span>My Listings</span>
+                            </a>
+                            <a href="my-bookings.html" class="dropdown-item renter-only bookings-link" data-require="viewBookingHistory" role="menuitem">
+                                <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                                <span>My Bookings</span>
+                            </a>
+                            <a href="messages.html" class="dropdown-item" data-require="message" role="menuitem">
+                                <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                                <span>Messages</span>
+                                <span class="badge-notification" aria-label="3 unread messages">3</span>
+                            </a>
+                            <a href="emergency-contacts.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                                <span>Emergency Contacts</span>
+                            </a>
+                            <a href="disputes.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                                <span>Dispute Resolution</span>
+                            </a>
+                            <a href="safety-guidelines.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                <span>Safety Guidelines</span>
+                            </a>
+                            <a href="admin/dashboard.html" class="dropdown-item admin-link" data-require="adminAccess" style="display: none;" role="menuitem">
+                                <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                <span>Admin Panel</span>
+                            </a>
+                            <a href="profile.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-person" aria-hidden="true"></i>
+                                <span>Profile</span>
+                            </a>
+                            <a href="settings.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-gear" aria-hidden="true"></i>
+                                <span>Settings</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="help.html" class="dropdown-item" role="menuitem">
+                                <i class="bi bi-question-circle" aria-hidden="true"></i>
+                                <span>Help & Support</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item logout-item" onclick="event.preventDefault(); window.logout();" role="menuitem">
+                                <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                                <span>Log out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auth Buttons (Desktop - Logged Out) -->
+                <div class="auth-buttons desktop-only logged-in">
+                    <a href="login.html" class="btn-login" aria-label="Log in to your account">
+                        <span class="btn-text">Login</span>
+                    </a>
+                    <a href="register.html" class="btn-signup" aria-label="Create a new account">
+                        <span class="btn-text">Sign Up</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle - Hamburger -->
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+                    <span class="hamburger-icon" aria-hidden="true">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notifications Dropdown -->
+        <div class="notifications-dropdown" id="notifications-dropdown" role="menu" aria-label="Notifications">
+            <div class="notifications-header">
+                <h4>Notifications</h4>
+                <button class="notifications-mark-all" onclick="markAllNotificationsRead()" aria-label="Mark all as read">
+                    Mark all as read
+                </button>
+            </div>
+            <div class="notifications-list">
+                <a href="messages.html" class="notification-item unread">
+                    <div class="notification-icon">
+                        <i class="bi bi-chat-dots-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">New message from John</div>
+                        <div class="notification-time">2 minutes ago</div>
+                    </div>
+                </a>
+                <a href="my-bookings.html" class="notification-item unread">
+                    <div class="notification-icon">
+                        <i class="bi bi-calendar-check-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">Booking confirmed</div>
+                        <div class="notification-time">1 hour ago</div>
+                    </div>
+                </a>
+                <a href="my-listings.html" class="notification-item">
+                    <div class="notification-icon">
+                        <i class="bi bi-heart-fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">Someone saved your listing</div>
+                        <div class="notification-time">3 hours ago</div>
+                    </div>
+                </a>
+            </div>
+            <div class="notifications-footer">
+                <a href="notifications.html" class="notifications-view-all">View all notifications</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <a href="index.html" class="mobile-logo-link" aria-label="RentEase Home">
+                        <img src="logos/logo.png" alt="RentEase" class="mobile-logo-image">
+                    </a>
+                </div>
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu" type="button">
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <!-- User Info Section (when logged in) -->
+            <div class="mobile-menu-user-info logged-out">
+                <div class="mobile-user-avatar">
+                    <i class="bi bi-person-fill" aria-hidden="true"></i>
+                </div>
+                <div class="mobile-user-details">
+                    <div class="mobile-user-name">John Doe</div>
+                    <div class="mobile-user-email">john@example.com</div>
+                </div>
+            </div>
+
+            <div class="mobile-menu-content" role="menu">
+                <!-- Main Navigation -->
+                <div class="mobile-menu-section">
+                    <a href="index.html" class="mobile-menu-item" role="menuitem" data-index="0">
+                        <i class="bi bi-house" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="index.html#categories-grid" class="mobile-menu-item" role="menuitem" data-index="1">
+                        <i class="bi bi-grid" aria-hidden="true"></i>
+                        <span>Categories</span>
+                    </a>
+                    <a href="my-listings.html" class="mobile-menu-item" role="menuitem" data-index="2">
+                        <i class="bi bi-list-ul" aria-hidden="true"></i>
+                        <span>Listings</span>
+                    </a>
+                    <a href="index.html#how-it-works" class="mobile-menu-item" role="menuitem" data-index="3">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i>
+                        <span>How It Works</span>
+                    </a>
+                    <a href="help.html" class="mobile-menu-item" role="menuitem" data-index="4">
+                        <i class="bi bi-question-circle" aria-hidden="true"></i>
+                        <span>Help</span>
+                    </a>
+                </div>
+
+                <div class="mobile-menu-divider"></div>
+
+                <!-- Account Section -->
+                <div class="mobile-menu-section">
+                    <div class="mobile-menu-section-title">My Account</div>
+                    <a href="dashboard.html" class="mobile-menu-item" role="menuitem" data-index="5">
+                        <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="my-listings.html" class="mobile-menu-item owner-only" data-require="createListing" role="menuitem" data-index="6">
+                        <i class="bi bi-house-door" aria-hidden="true"></i>
+                        <span>My Listings</span>
+                    </a>
+                    <a href="my-bookings.html" class="mobile-menu-item renter-only" data-require="viewBookingHistory" role="menuitem" data-index="7">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <a href="messages.html" class="mobile-menu-item" data-require="message" role="menuitem" data-index="8">
+                        <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                        <span>Messages</span>
+                        <span class="badge-notification" aria-label="Unread messages">3</span>
+                    </a>
+                </div>
+
+                <div class="mobile-menu-divider"></div>
+
+                <!-- Support Section -->
+                <div class="mobile-menu-section">
+                    <div class="mobile-menu-section-title">Support & Safety</div>
+                    <a href="emergency-contacts.html" class="mobile-menu-item" role="menuitem" data-index="9">
+                        <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+                        <span>Emergency Contacts</span>
+                    </a>
+                    <a href="disputes.html" class="mobile-menu-item" role="menuitem" data-index="10">
+                        <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                        <span>Dispute Resolution</span>
+                    </a>
+                    <a href="safety-guidelines.html" class="mobile-menu-item" role="menuitem" data-index="11">
+                        <i class="bi bi-shield-check" aria-hidden="true"></i>
+                        <span>Safety Guidelines</span>
+                    </a>
+                </div>
+
+                <div class="mobile-menu-divider"></div>
+
+                <!-- Auth Section -->
+                <div class="mobile-menu-section mobile-menu-auth">
+                    <a href="login.html" class="mobile-menu-item mobile-menu-login" role="menuitem" data-index="12">
+                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
+                        <span>Log in</span>
+                    </a>
+                    <a href="register.html" class="mobile-menu-item mobile-menu-signup" role="menuitem" data-index="13">
+                        <i class="bi bi-person-plus" aria-hidden="true"></i>
+                        <span>Sign up</span>
+                    </a>
+                    <a href="#" class="mobile-menu-item mobile-menu-logout" onclick="event.preventDefault(); window.logout && window.logout();" style="display: none;" role="menuitem" data-index="14">
+                        <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                        <span>Log out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

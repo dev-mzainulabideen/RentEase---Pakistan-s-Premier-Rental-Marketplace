@@ -1,0 +1,301 @@
+/* ============================================
+   Advanced Scroll-Triggered Animations
+   Section-by-Section Storytelling
+   Sticky Stacking & Smooth Transitions
+   ============================================ */
+
+/* Base Section Styling */
+main#main-content {
+    position: relative;
+    overflow-x: hidden;
+}
+
+#home-page {
+    position: relative;
+}
+
+/* Section Container with Sticky Stacking */
+section {
+    position: relative;
+    min-height: auto;
+    padding: 0 !important; /* Override - use page-layout.css */
+    opacity: 1; /* Start visible, animate on scroll */
+    transform: translateY(0);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Active Section - Fully Visible */
+section.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Previous Section - Fade Out */
+section.section-prev {
+    opacity: 0.3;
+    transform: translateY(-40px) scale(0.98);
+    pointer-events: none;
+}
+
+/* Next Section - Waiting */
+section.section-next {
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+/* Hero Section - Always Visible Initially */
+.hero-section {
+    opacity: 1;
+    transform: translateY(0);
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Sticky Stacking Effect */
+section.sticky-section {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    transition: z-index 0.3s ease;
+}
+
+section.sticky-section.active {
+    z-index: 10;
+}
+
+section.sticky-section.prev {
+    z-index: 3;
+}
+
+/* Section Spacing & Visual Hierarchy - Overridden by page-layout.css */
+.categories-section {
+    padding: 0 !important; /* Use page-layout.css */
+    background: transparent; /* Use page-layout.css */
+    position: relative;
+    z-index: 9;
+}
+
+.featured-section {
+    padding: 0 !important; /* Use page-layout.css */
+    background: transparent; /* Use page-layout.css */
+    position: relative;
+    z-index: 8;
+}
+
+.how-it-works-section {
+    padding: 0 !important; /* Use page-layout.css */
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    z-index: 7;
+}
+
+.why-choose-section {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    z-index: 6;
+}
+
+.account-types-section {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    position: relative;
+    z-index: 5;
+}
+
+/* Section Headers - Enhanced Animation */
+.section-header {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    will-change: opacity, transform;
+}
+
+section.section-visible .section-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+section.section-visible .section-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-subtitle {
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    color: #6c757d;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s,
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+section.section-visible .section-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card Animations - Staggered Entry */
+.feature-card,
+.step-card,
+.account-type-card,
+.listing-card {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+section.section-visible .feature-card,
+section.section-visible .step-card,
+section.section-visible .account-type-card,
+section.section-visible .listing-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Staggered Animation Delays */
+section.section-visible .feature-card:nth-child(1),
+section.section-visible .step-card:nth-child(1),
+section.section-visible .listing-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+section.section-visible .feature-card:nth-child(2),
+section.section-visible .step-card:nth-child(2),
+section.section-visible .listing-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+section.section-visible .feature-card:nth-child(3),
+section.section-visible .step-card:nth-child(3),
+section.section-visible .listing-card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+section.section-visible .feature-card:nth-child(4),
+section.section-visible .listing-card:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+section.section-visible .feature-card:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+section.section-visible .feature-card:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+/* Parallax Effects for Images */
+.category-image,
+.listing-image {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+section.section-visible .category-image,
+section.section-visible .listing-image {
+    transform: scale(1);
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Container Enhancements */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Section Dividers */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 56, 92, 0.2) 20%,
+        rgba(255, 56, 92, 0.2) 80%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+}
+
+section.section-visible::before {
+    opacity: 1;
+}
+
+/* Background Transitions */
+section {
+    transition: background 0.8s ease;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Responsive styles moved to page-layout.css */
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    section,
+    .section-header,
+    .section-title,
+    .section-subtitle,
+    .feature-card,
+    .step-card,
+    .account-type-card,
+    .listing-card {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    section.section-visible,
+    section.section-prev,
+    section.section-next {
+        opacity: 1;
+        transform: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Loading State */
+section:not(.section-visible) {
+    pointer-events: none;
+}
+
+section.section-visible {
+    pointer-events: all;
+}
+

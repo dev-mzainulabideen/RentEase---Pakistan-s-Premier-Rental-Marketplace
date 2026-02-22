@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions Management - Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .admin-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+        .admin-sidebar .nav-link {
+            color: rgba(255,255,255,0.7);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            margin: 0.25rem 1rem;
+            transition: all 0.3s;
+        }
+        .admin-sidebar .nav-link:hover,
+        .admin-sidebar .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 admin-sidebar">
+                <div class="px-3 mb-4">
+                    <h4 class="text-white mb-0">Admin Panel</h4>
+                    <small class="text-muted">My Rental Marketplace</small>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="users.html"><i class="bi bi-people me-2"></i> Users & Verification</a></li>
+                    <li class="nav-item"><a class="nav-link" href="listings.html"><i class="bi bi-list-ul me-2"></i> Listings Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html"><i class="bi bi-star me-2"></i> Reviews Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="categories.html"><i class="bi bi-grid me-2"></i> Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ads.html"><i class="bi bi-megaphone me-2"></i> Ads Management</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="subscriptions.html"><i class="bi bi-credit-card me-2"></i> Subscriptions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="disputes.html"><i class="bi bi-exclamation-triangle me-2"></i> Disputes & Reports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="content.html"><i class="bi bi-translate me-2"></i> Content (Urdu/English)</a></li>
+                    <li class="nav-item"><a class="nav-link" href="statistics.html"><i class="bi bi-graph-up me-2"></i> Statistics</a></li>
+                    <li class="nav-item mt-4"><a class="nav-link" href="../index.html"><i class="bi bi-arrow-left me-2"></i> Back to Site</a></li>
+                </ul>
+            </nav>
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4 py-4">
+                <h1 class="h3 mb-4">Subscriptions Management</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Plan</th>
+                                        <th>Status</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="subscriptionsTableBody">
+                                    <tr><td colspan="7" class="text-center"><div class="spinner-border text-primary"></div></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/rbac.js"></script>
+    <script src="../js/config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!window.checkPageAccess('adminAccess', null, '../login.html')) return;
+            loadSubscriptions();
+        });
+        async function loadSubscriptions() {
+            try {
+                const token = localStorage.getItem('mr-token');
+                const response = await fetch(`${window.API_BASE_URL || 'http://localhost:4001/api'}/admin/subscriptions`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    const tbody = document.getElementById('subscriptionsTableBody');
+                    if (result.data.subscriptions.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No subscriptions found</td></tr>';
+                        return;
+                    }
+                    tbody.innerHTML = result.data.subscriptions.map(sub => `
+                        <tr>
+                            <td>${sub.user?.name || 'N/A'}<br><small class="text-muted">${sub.user?.email || ''}</small></td>
+                            <td><span class="badge bg-primary">${sub.plan || 'N/A'}</span></td>
+                            <td>${getStatusBadge(sub.status)}</td>
+                            <td>${formatDate(sub.startDate)}</td>
+                            <td>${formatDate(sub.endDate)}</td>
+                            <td>PKR ${sub.amount || 0}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" onclick="viewSubscription('${sub._id}')">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading subscriptions:', error);
+            }
+        }
+        function getStatusBadge(status) {
+            const badges = {
+                'active': '<span class="badge bg-success">Active</span>',
+                'expired': '<span class="badge bg-secondary">Expired</span>',
+                'cancelled': '<span class="badge bg-danger">Cancelled</span>'
+            };
+            return badges[status] || '<span class="badge bg-secondary">' + status + '</span>';
+        }
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+        function viewSubscription(id) { alert('View subscription: ' + id); }
+    </script>
+</body>
+</html>
+
