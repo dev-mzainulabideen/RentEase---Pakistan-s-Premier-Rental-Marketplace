@@ -202,4 +202,4 @@ ISC License
 
 ---
 
-*Made with ❤️ in Pakistan by M Zain-ul-Abideen*
+*Made with ❤️ by M Zain-ul-Abideen*
